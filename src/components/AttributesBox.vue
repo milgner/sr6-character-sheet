@@ -1,0 +1,230 @@
+<template>
+  <sheet-box label="Attribute">
+    <v-row>
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+      >
+        <text-input
+          label="Konstitution"
+          type="number"
+        />
+      </v-col>
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+      >
+        <text-input
+          label="Willenskraft"
+          type="number"
+        />
+      </v-col>
+      <v-col
+        cols="12"
+        sm="4"
+        md="4"
+      >
+        <text-input
+          label="Essenz"
+          :rules="[rules.essence]"
+        />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+      >
+        <text-input
+          label="Geschicklichkeit"
+          type="number"
+        />
+      </v-col>
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+      >
+        <text-input
+          label="Logik"
+          type="number"
+        />
+      </v-col>
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+      >
+        <text-input
+          label="Magie/Resonanz"
+          type="number"
+        />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+      >
+        <text-input
+          label="Reaktion"
+          type="number"
+        />
+      </v-col>
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+      >
+        <text-input
+          label="Intuition"
+          type="number"
+        />
+      </v-col>
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+      >
+        <initiative-input label="Initiative" />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+      >
+        <text-input
+          label="Stärke"
+          type="number"
+        />
+      </v-col>
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+      >
+        <text-input
+          label="Charisma"
+          type="number"
+        />
+      </v-col>
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+      >
+        <initiative-input label="Matrix-Initiative" />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+        cols="12"
+        sm="4"
+        md="4"
+      >
+        <text-input
+          label="Edge"
+          type="number"
+        />
+      </v-col>
+      <v-col
+        cols="12"
+        sm="12"
+        md="4"
+      >
+        <v-slider
+          step="1"
+          ticks="always"
+          tick-size="4"
+          min="0"
+          max="5"
+          dense
+          hide-details
+        />
+      </v-col>
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+      >
+        <initiative-input label="Astrale Initiative" />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+      >
+        <text-input
+          label="Selbstbeherrschung"
+          type="number"
+        />
+      </v-col>
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+      >
+        <text-input
+          label="Menschenkenntnis"
+          type="number"
+        />
+      </v-col>
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+      >
+        <text-input
+          label="Erinnerungsvermögen"
+          type="number"
+        />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+        cols="12"
+        sm="6"
+        md="6"
+      >
+        <text-input
+          label="Heben/Tragen"
+          type="number"
+        />
+      </v-col>
+      <v-col
+        cols="12"
+        sm="6"
+        md="6"
+      >
+        <text-input label="Bewegung" />
+      </v-col>
+    </v-row>
+  </sheet-box>
+</template>
+<style lang="scss">
+
+</style>
+<script lang="ts">
+import Vue from 'vue';
+import Component from 'vue-class-component';
+import SheetBox from '@/components/SheetBox.vue';
+import TextInput from '@/components/TextInput.vue';
+import InitiativeInput from '@/components/InitiativeInput.vue';
+
+@Component({
+  components: { InitiativeInput, SheetBox, TextInput },
+})
+export default class AttributesBox extends Vue {
+  rules = {
+    essence: (value: string) => /^\d([\\.,]\d{1,2})?$/.test(value) || 'Ungültiger Wert',
+  }
+}
+</script>

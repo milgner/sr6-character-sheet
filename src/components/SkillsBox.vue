@@ -1,15 +1,31 @@
 <template>
-  <sheet-box label="Fertigkeiten">
-    <v-data-table
-      class="skill-list"
-      dense
-      :headers="headers"
-      :items="items"
-      item-key="name"
-      disable-pagination
-      hide-default-footer
-    />
-  </sheet-box>
+  <v-tabs grow>
+    <v-tabs-slider />
+    <v-tab>Aktionsfertigkeiten</v-tab>
+    <v-tab>Wissensfertigkeiten</v-tab>
+    <v-tab-item>
+      <v-data-table
+        class="skill-list"
+        dense
+        :headers="activeHeaders"
+        :items="activeItems"
+        item-key="name"
+        disable-pagination
+        hide-default-footer
+      />
+    </v-tab-item>
+    <v-tab-item>
+      <v-data-table
+        class="skill-list knowledge"
+        dense
+        :headers="knowledgeHeaders"
+        :items="knowledgeItems"
+        item-key="name"
+        disable-pagination
+        hide-default-footer
+      />
+    </v-tab-item>
+  </v-tabs>
 </template>
 <style lang="scss">
   .skill-list {
@@ -24,10 +40,11 @@ import Component from 'vue-class-component';
 import SheetBox from '@/components/SheetBox.vue';
 
 @Component({
-  components: { SheetBox },
 })
 export default class SkillsBox extends Vue {
-  headers = [{
+  static label = 'Fertigkeiten';
+
+  activeHeaders = [{
     text: 'Name',
     align: 'start',
     sortable: true,
@@ -42,12 +59,16 @@ export default class SkillsBox extends Vue {
     align: 'start',
     sortable: true,
     value: 'attribute',
-  }, {
-    text: 'Typ',
-    align: 'end',
-    sortable: true,
-    value: 'type',
   }]
+
+  knowledgeHeaders = [
+    {
+      text: 'Name',
+      align: 'start',
+      sortable: true,
+      value: 'name',
+    },
+  ]
 
   items = [
     {
@@ -158,5 +179,13 @@ export default class SkillsBox extends Vue {
       type: 'Wissen',
     },
   ]
+
+  get activeItems() {
+    return this.items.filter((i) => i.type === 'Aktion');
+  }
+
+  get knowledgeItems() {
+    return this.items.filter((i) => i.type !== 'Aktion');
+  }
 }
 </script>

@@ -1,14 +1,25 @@
 <template>
-  <v-card class="sheet-box">
-    <v-card-title>{{ label }}</v-card-title>
+  <v-card
+    class="sheet-box"
+    :height="height"
+  >
+    <v-card-title>{{ type.label }}</v-card-title>
     <v-container>
-      <slot />
+      <component :is="type" />
     </v-container>
   </v-card>
 </template>
 <style lang="scss">
   .sheet-box {
+    overflow: hidden;
+
+    .v-card__title {
+      padding-bottom: 0;
+    }
+
     .container {
+      padding-top: 0;
+
       .row {
         padding-left: 12px;
         padding-right: 12px;
@@ -46,13 +57,13 @@ import Component from 'vue-class-component';
 
 const SheetBoxProps = Vue.extend({
   props: {
-    label: String,
+    height: [String, Number],
+    type: Function,
   },
 });
 
 @Component
 export default class SheetBox extends SheetBoxProps {
-
 }
 
 </script>

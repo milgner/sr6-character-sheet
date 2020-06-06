@@ -1,15 +1,12 @@
 <template>
-  <sheet-box label="Fahrzeug" />
+  <label>Dumdidum</label>
 </template>
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import SheetBox from '@/components/SheetBox.vue';
 
-@Component({
-  components: { SheetBox },
-})
+@Component
 export default class VehicleBox extends Vue {
-
+  static label = 'Fahrzeug';
 }
 </script>

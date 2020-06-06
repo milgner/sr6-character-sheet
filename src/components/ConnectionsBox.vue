@@ -1,25 +1,23 @@
 <template>
-  <sheet-box label="Connections">
-    <v-data-table
-      class="connections-list"
-      dense
-      :headers="headers"
-      :items="items"
-      item-key="name"
-      disable-pagination
-      hide-default-footer
-    />
-  </sheet-box>
+  <v-data-table
+    class="connections-list"
+    dense
+    :headers="headers"
+    :items="items"
+    item-key="name"
+    disable-pagination
+    hide-default-footer
+  />
 </template>
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import SheetBox from '@/components/SheetBox.vue';
 
 @Component({
-  components: { SheetBox },
 })
 export default class ConnectionsBox extends Vue {
+  static label = 'Connections';
+
   headers = [{
     text: 'Name',
     align: 'start',
@@ -69,4 +67,5 @@ export default class ConnectionsBox extends Vue {
     },
   ]
 }
+
 </script>

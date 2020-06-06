@@ -1,25 +1,23 @@
 <template>
-  <sheet-box label="Bodytech">
-    <v-data-table
-      class="bodytech-list"
-      dense
-      :headers="headers"
-      :items="items"
-      item-key="name"
-      disable-pagination
-      hide-default-footer
-    />
-  </sheet-box>
+  <v-data-table
+    class="bodytech-list"
+    dense
+    :headers="headers"
+    :items="items"
+    item-key="name"
+    disable-pagination
+    hide-default-footer
+  />
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import Component from 'vue-class-component';
-import SheetBox from '@/components/SheetBox.vue';
 
-@Component({
-  components: { SheetBox },
-})
-export default class BodytechBox extends Vue {
+const BodytechBoxProps = Vue.extend({
+});
+
+export default class BodytechBox extends BodytechBoxProps {
+  static label = 'Bodytech';
+
   headers = [{
     text: 'Name',
     align: 'start',
@@ -56,4 +54,5 @@ export default class BodytechBox extends Vue {
     },
   ]
 }
+
 </script>

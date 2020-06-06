@@ -5,6 +5,7 @@
     :type="type"
     :prefix="prefix"
     :suffix="suffix"
+    :value="value"
     :append-icon="appendIcon"
     :prepend-icon="prependIcon"
     dense
@@ -24,6 +25,7 @@ const TextInputProps = Vue.extend({
     suffix: String,
     appendIcon: String,
     prependIcon: String,
+    value: String,
   },
 });
 

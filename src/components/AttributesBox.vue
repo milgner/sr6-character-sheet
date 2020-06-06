@@ -1,5 +1,5 @@
 <template>
-  <sheet-box label="Attribute">
+  <div>
     <v-row>
       <v-col
         cols="12"
@@ -9,6 +9,7 @@
         <text-input
           label="Konstitution"
           type="number"
+          value="3"
         />
       </v-col>
       <v-col
@@ -19,6 +20,7 @@
         <text-input
           label="Willenskraft"
           type="number"
+          value="5"
         />
       </v-col>
       <v-col
@@ -29,6 +31,7 @@
         <text-input
           label="Essenz"
           :rules="[rules.essence]"
+          value="3.3"
         />
       </v-col>
     </v-row>
@@ -41,6 +44,7 @@
         <text-input
           label="Geschicklichkeit"
           type="number"
+          value="3"
         />
       </v-col>
       <v-col
@@ -51,6 +55,7 @@
         <text-input
           label="Logik"
           type="number"
+          value="6 (8)"
         />
       </v-col>
       <v-col
@@ -61,6 +66,7 @@
         <text-input
           label="Magie/Resonanz"
           type="number"
+          value="-"
         />
       </v-col>
     </v-row>
@@ -73,6 +79,7 @@
         <text-input
           label="Reaktion"
           type="number"
+          value="5"
         />
       </v-col>
       <v-col
@@ -83,6 +90,7 @@
         <text-input
           label="Intuition"
           type="number"
+          value="5"
         />
       </v-col>
       <v-col
@@ -90,7 +98,10 @@
         sm="6"
         md="4"
       >
-        <initiative-input label="Initiative" />
+        <initiative-input
+          label="Initiative"
+          value="10+1d6"
+        />
       </v-col>
     </v-row>
     <v-row>
@@ -102,6 +113,7 @@
         <text-input
           label="Stärke"
           type="number"
+          value="2"
         />
       </v-col>
       <v-col
@@ -112,6 +124,7 @@
         <text-input
           label="Charisma"
           type="number"
+          value="3"
         />
       </v-col>
       <v-col
@@ -119,7 +132,10 @@
         sm="6"
         md="4"
       >
-        <initiative-input label="Matrix-Initiative" />
+        <initiative-input
+          label="Matrix-Initiative"
+          value="12+1d6"
+        />
       </v-col>
     </v-row>
     <v-row>
@@ -131,6 +147,7 @@
         <text-input
           label="Edge"
           type="number"
+          value="5"
         />
       </v-col>
       <v-col
@@ -144,6 +161,7 @@
           tick-size="4"
           min="0"
           max="5"
+          value="5"
           dense
           hide-details
         />
@@ -165,6 +183,7 @@
         <text-input
           label="Selbstbeherrschung"
           type="number"
+          value="8"
         />
       </v-col>
       <v-col
@@ -175,6 +194,7 @@
         <text-input
           label="Menschenkenntnis"
           type="number"
+          value="10"
         />
       </v-col>
       <v-col
@@ -185,6 +205,7 @@
         <text-input
           label="Erinnerungsvermögen"
           type="number"
+          value="13"
         />
       </v-col>
     </v-row>
@@ -197,6 +218,7 @@
         <text-input
           label="Heben/Tragen"
           type="number"
+          value="8"
         />
       </v-col>
       <v-col
@@ -204,27 +226,34 @@
         sm="6"
         md="6"
       >
-        <text-input label="Bewegung" />
+        <text-input
+          label="Bewegung"
+          value="10"
+        />
       </v-col>
     </v-row>
-  </sheet-box>
+  </div>
 </template>
 <style lang="scss">
 
 </style>
 <script lang="ts">
 import Vue from 'vue';
-import Component from 'vue-class-component';
 import SheetBox from '@/components/SheetBox.vue';
 import TextInput from '@/components/TextInput.vue';
 import InitiativeInput from '@/components/InitiativeInput.vue';
 
-@Component({
-  components: { InitiativeInput, SheetBox, TextInput },
-})
-export default class AttributesBox extends Vue {
+const AttributesBoxProps = Vue.extend({
+  components: { InitiativeInput, TextInput },
+});
+
+export default class AttributesBox extends AttributesBoxProps {
+  static label = 'Attribute';
+
   rules = {
     essence: (value: string) => /^\d([\\.,]\d{1,2})?$/.test(value) || 'Ungültiger Wert',
   }
 }
+
+
 </script>

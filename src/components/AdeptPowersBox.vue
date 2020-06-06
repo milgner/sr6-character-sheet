@@ -1,5 +1,5 @@
 <template>
-  <sheet-box label="Adeptenkräfte & Andere Fähigkeiten" />
+  <label>Nix magic</label>
 </template>
 <script lang="ts">
 import Vue from 'vue';
@@ -10,6 +10,6 @@ import SheetBox from '@/components/SheetBox.vue';
   components: { SheetBox },
 })
 export default class AdeptPowersBox extends Vue {
-
+  static label = 'Adeptenkräfte & Andere Fähigkeiten';
 }
 </script>

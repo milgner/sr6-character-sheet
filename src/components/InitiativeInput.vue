@@ -8,6 +8,7 @@
       <text-input
         :label="label"
         type="number"
+        :value="baseValue"
       />
     </v-col>
     <v-col
@@ -18,6 +19,7 @@
       <text-input
         prefix="+"
         append-icon="mdi-dice-d6-outline"
+        :value="dieValue"
         type="number"
       />
     </v-col>
@@ -34,13 +36,22 @@ import TextInput from '@/components/TextInput.vue';
 const InitiativeInputProps = Vue.extend({
   props: {
     label: String,
+    value: String,
   },
 });
+
+const matcher = /^(\d+)\s*\+(\d)[dw]6$/;
 
 @Component({
   components: { TextInput },
 })
 export default class InitiativeInput extends InitiativeInputProps {
+  get baseValue() {
+    return this.$props.value?.match(matcher)[1];
+  }
 
+  get dieValue() {
+    return this.$props.value?.match(matcher)[2];
+  }
 }
 </script>

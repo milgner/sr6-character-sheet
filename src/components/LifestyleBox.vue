@@ -1,15 +1,32 @@
 <template>
-  <sheet-box label="IDs / Lebensstile / Währung" />
+  <div>
+    <v-row>
+      <v-col md="6">
+        <text-input
+          label="Primärer Lebensstil"
+          value="Squatter"
+        />
+      </v-col>
+      <v-col md="6">
+        <text-input label="Nuyen" value="471" />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col md="12">
+        <v-textarea label="IDs, Lizenzen" value="Falsche SIN (4)"/>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import SheetBox from '@/components/SheetBox.vue';
+import TextInput from '@/components/TextInput.vue';
 
 @Component({
-  components: { SheetBox },
+  components: { TextInput },
 })
 export default class LifestyleBox extends Vue {
-
+  static label = 'IDs / Lebensstile / Währung';
 }
 </script>

@@ -1,25 +1,23 @@
 <template>
-  <sheet-box label="Vor- und Nachteile">
-    <v-data-table
-      class="connections-list"
-      dense
-      :headers="headers"
-      :items="items"
-      item-key="name"
-      disable-pagination
-      hide-default-footer
-    />
-  </sheet-box>
+  <v-data-table
+    class="connections-list"
+    dense
+    :headers="headers"
+    :items="items"
+    item-key="name"
+    disable-pagination
+    hide-default-footer
+  />
 </template>
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import SheetBox from '@/components/SheetBox.vue';
 
 @Component({
-  components: { SheetBox },
 })
 export default class FeatBox extends Vue {
+  static label = 'Vor- und Nachteile';
+
   headers = [{
     text: 'Name',
     align: 'start',

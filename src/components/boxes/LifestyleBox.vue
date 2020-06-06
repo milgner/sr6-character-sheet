@@ -13,7 +13,12 @@
     </v-row>
     <v-row>
       <v-col md="12">
-        <v-textarea label="IDs, Lizenzen" value="Falsche SIN (4)"/>
+        <v-textarea
+          label="IDs, Lizenzen"
+          value="Falsche SIN (4)"
+          rows="3"
+          hide-details
+        />
       </v-col>
     </v-row>
   </div>

@@ -50,25 +50,25 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import PersonalDataBox from '@/components/PersonalDataBox.vue';
+import PersonalDataBox from '@/components/boxes/PersonalDataBox.vue';
 import VueGridLayout from 'vue-grid-layout';
-import SkillsBox from '@/components/SkillsBox.vue';
-import AttributesBox from '@/components/AttributesBox.vue';
-import LifestyleBox from '@/components/LifestyleBox.vue';
-import FightSummaryBox from '@/components/FightSummaryBox.vue';
-import HealthMonitorBox from '@/components/HealthMonitorBox.vue';
-import FeatBox from '@/components/FeatBox.vue';
-import ConnectionsBox from '@/components/ConnectionsBox.vue';
-import RangedWeaponsBox from '@/components/RangedWeaponsBox.vue';
-import BodytechBox from '@/components/BodytechBox.vue';
-import EquipmentBox from '@/components/EquipmentBox.vue';
+import SkillsBox from '@/components/boxes/SkillsBox.vue';
+import AttributesBox from '@/components/boxes/AttributesBox.vue';
+import LifestyleBox from '@/components/boxes/LifestyleBox.vue';
+import FightSummaryBox from '@/components/boxes/FightSummaryBox.vue';
+import HealthMonitorBox from '@/components/boxes/HealthMonitorBox.vue';
+import FeatBox from '@/components/boxes/FeatBox.vue';
+import ConnectionsBox from '@/components/boxes/ConnectionsBox.vue';
+import RangedWeaponsBox from '@/components/boxes/RangedWeaponsBox.vue';
+import BodytechBox from '@/components/boxes/BodytechBox.vue';
+import EquipmentBox from '@/components/boxes/EquipmentBox.vue';
 import MeleeWeaponsBox from '@/components/MeleeWeaponsBox.vue';
-import ArmorBox from '@/components/ArmorBox.vue';
-import MatrixStatsBox from '@/components/MatrixStatsBox.vue';
+import ArmorBox from '@/components/boxes/ArmorBox.vue';
+import MatrixStatsBox from '@/components/boxes/MatrixStatsBox.vue';
 import VehicleBox from '@/components/VehicleBox.vue';
 import MagicBox from '@/components/MagicBox.vue';
 import AdeptPowersBox from '@/components/AdeptPowersBox.vue';
-import SheetBox from '@/components/SheetBox.vue';
+import SheetBox from '@/components/boxes/SheetBox.vue';
 
 const testLayout = [
   {
@@ -77,19 +77,19 @@ const testLayout = [
   {
     x: 0, y: 6, w: 6, h: 9, i: 1, type: AttributesBox,
   }, {
-    x: 0, y: 15, w: 6, h: 11, i: 2, type: SkillsBox,
+    x: 0, y: 15, w: 6, h: 12, i: 2, type: SkillsBox,
   }, {
-    x: 0, y: 26, w: 6, h: 4, i: 3, type: LifestyleBox,
+    x: 0, y: 26, w: 6, h: 6, i: 3, type: LifestyleBox,
   }, {
     x: 6, y: 0, w: 6, h: 3, i: 4, type: FightSummaryBox,
   }, {
-    x: 6, y: 3, w: 6, h: 5, i: 5, type: HealthMonitorBox,
+    x: 6, y: 3, w: 6, h: 6, i: 5, type: HealthMonitorBox,
   }, {
-    x: 6, y: 8, w: 6, h: 6, i: 6, type: FeatBox,
+    x: 6, y: 8, w: 6, h: 7, i: 6, type: FeatBox,
   }, {
-    x: 6, y: 19, w: 6, h: 5, i: 7, type: ConnectionsBox,
+    x: 6, y: 19, w: 6, h: 6, i: 7, type: ConnectionsBox,
   }, {
-    x: 0, y: 23, w: 6, h: 4, i: 8, type: RangedWeaponsBox,
+    x: 0, y: 23, w: 6, h: 5, i: 8, type: RangedWeaponsBox,
   }, {
     x: 0, y: 34, w: 6, h: 4, i: 9, type: BodytechBox,
   }, {

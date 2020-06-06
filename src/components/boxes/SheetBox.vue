@@ -11,7 +11,7 @@
 </template>
 <style lang="scss">
   .sheet-box {
-    overflow: hidden;
+    overflow: auto;
 
     .v-card__title {
       padding-bottom: 0;

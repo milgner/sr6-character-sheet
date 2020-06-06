@@ -40,6 +40,7 @@
         <text-input
           label="Firewall"
           type="number"
+          value="6"
         />
       </v-col>
     </v-row>
@@ -55,6 +56,7 @@
       <v-col cols="12">
         <v-textarea
           label="Programme"
+          hide-details
           auto-grow
           dense
           rows="3"
@@ -64,14 +66,12 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <label>Matrixzustandsmonitor</label>
-        <v-rating
-          length="10"
+        <status-tracker
+          label="Matrixzustandsmonitor"
+          :max-value="matrixMaxHealth"
           :value="matrixHealth"
           full-icon="mdi-tablet-dashboard"
           empty-icon="mdi-tablet"
-          size="32"
-          dense
         />
       </v-col>
     </v-row>
@@ -81,12 +81,15 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import TextInput from '@/components/TextInput.vue';
+import StatusTracker from '@/components/StatusTracker.vue';
 
 @Component({
-  components: { TextInput },
+  components: { StatusTracker, TextInput },
 })
 export default class MatrixStatsBox extends Vue {
   static label = 'Matrixwerte';
+
+  matrixMaxHealth = 10;
 
   matrixHealth = 10;
 }

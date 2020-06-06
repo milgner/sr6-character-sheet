@@ -67,6 +67,7 @@
           label="Magie/Resonanz"
           type="number"
           value="-"
+          unavailable
         />
       </v-col>
     </v-row>
@@ -171,7 +172,10 @@
         sm="6"
         md="4"
       >
-        <initiative-input label="Astrale Initiative" />
+        <initiative-input
+          label="Astrale Initiative"
+          unavailable
+        />
       </v-col>
     </v-row>
     <v-row>
@@ -239,7 +243,6 @@
 </style>
 <script lang="ts">
 import Vue from 'vue';
-import SheetBox from '@/components/SheetBox.vue';
 import TextInput from '@/components/TextInput.vue';
 import InitiativeInput from '@/components/InitiativeInput.vue';
 

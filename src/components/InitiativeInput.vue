@@ -1,5 +1,8 @@
 <template>
-  <v-row style="padding: 0; margin: 0;">
+  <v-row
+    style="padding: 0; margin: 0;"
+    v-if="!unavailable"
+  >
     <v-col
       cols="12"
       sm="7"
@@ -24,6 +27,11 @@
       />
     </v-col>
   </v-row>
+  <v-skeleton-loader
+    v-else
+    boilerplate
+    type="list-item"
+  />
 </template>
 <style lang="scss">
 
@@ -37,6 +45,7 @@ const InitiativeInputProps = Vue.extend({
   props: {
     label: String,
     value: String,
+    unavailable: Boolean,
   },
 });
 

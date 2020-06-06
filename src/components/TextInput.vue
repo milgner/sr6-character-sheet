@@ -1,5 +1,6 @@
 <template>
   <v-text-field
+    v-if="!unavailable"
     :label="label"
     :rules="rules"
     :type="type"
@@ -11,6 +12,11 @@
     dense
     hide-details
   />
+<!--  <v-skeleton-loader-->
+<!--    v-else-->
+<!--    boilerplate-->
+<!--    type="list-item"-->
+<!--  />-->
 </template>
 <script lang="ts">
 import Vue from 'vue';
@@ -26,6 +32,7 @@ const TextInputProps = Vue.extend({
     appendIcon: String,
     prependIcon: String,
     value: String,
+    unavailable: Boolean,
   },
 });
 

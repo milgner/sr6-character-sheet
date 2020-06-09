@@ -37,7 +37,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import SheetBox from '@/components/SheetBox.vue';
 
 @Component({
 })
@@ -84,7 +83,7 @@ export default class SkillsBox extends Vue {
       type: 'Aktion',
     },
     {
-      name: 'Cracken',
+      name: 'Cracken (Hacken +2)',
       rating: 6,
       attribute: 'LOG',
       type: 'Aktion',
@@ -167,7 +166,7 @@ export default class SkillsBox extends Vue {
       type: 'Wissen',
     },
     {
-      name: 'Combatbiking',
+      name: 'Strassen von Toronto',
       type: 'Wissen',
     },
     {

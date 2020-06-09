@@ -40,7 +40,11 @@ export default class ArmorBox extends ArmorBoxProps {
     {
       name: 'Gefütterter Mantel',
       rating: 3,
-      notes: '',
+      notes: 'Programmierbare Tarnung, Getarnte Magazintasche',
+    }, {
+      name: 'Ballistische Maske',
+      rating: 1,
+      notes: 'Programmierbare Tarnung',
     },
   ]
 }

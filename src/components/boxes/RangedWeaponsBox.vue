@@ -44,6 +44,11 @@ export default class RangedWeaponsBox extends Vue {
     sortable: false,
     value: 'near',
   }, {
+    text: 'Mittel',
+    align: 'end',
+    sortable: false,
+    value: 'medium',
+  }, {
     text: 'Weit',
     align: 'end',
     sortable: false,
@@ -63,14 +68,15 @@ export default class RangedWeaponsBox extends Vue {
 
   items = [
     {
-      name: 'Ingram Smartgun IX',
+      name: 'Ares Predator VI',
       dv: '3K',
       mode: 'HM/SM',
-      close: 11,
-      near: 9,
-      far: 6,
+      close: 10,
+      near: 10,
+      medium: 8,
+      far: 0,
       extreme: 0,
-      ammo: '32s',
+      ammo: '15s',
     },
   ]
 }

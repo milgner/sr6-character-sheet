@@ -8,6 +8,7 @@
       <text-input
         label="Angriffswert waffenlos"
         type="number"
+        value="7"
       />
     </v-col>
     <v-col
@@ -18,6 +19,7 @@
       <text-input
         label="Verteidigungswert"
         type="number"
+        value="7"
       />
     </v-col>
   </v-row>

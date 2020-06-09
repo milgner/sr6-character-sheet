@@ -42,7 +42,7 @@ export default class EquipmentBox extends Vue {
       rating: 3,
     },
     {
-      name: 'Satellitenverbindung',
+      name: 'Satellitenverbindung (Rauschen max -5)',
       rating: 4,
     },
     {
@@ -90,6 +90,12 @@ export default class EquipmentBox extends Vue {
     {
       name: 'Kontaktlinsen (Smartlink, Bildverbindung)',
       rating: 3,
+    },
+    {
+      name: 'Ersatz-Magazine x9',
+    },
+    {
+      name: 'Schnellzieh-Tarnholster',
     },
   ]
 }

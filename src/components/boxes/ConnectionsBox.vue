@@ -49,7 +49,7 @@ export default class ConnectionsBox extends Vue {
     },
     {
       name: 'Sallie',
-      description: 'Fixer',
+      description: 'Schieber',
       loyalty: 2,
       influence: 3,
     },

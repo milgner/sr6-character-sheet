@@ -62,12 +62,9 @@ import ConnectionsBox from '@/components/boxes/ConnectionsBox.vue';
 import RangedWeaponsBox from '@/components/boxes/RangedWeaponsBox.vue';
 import BodytechBox from '@/components/boxes/BodytechBox.vue';
 import EquipmentBox from '@/components/boxes/EquipmentBox.vue';
-import MeleeWeaponsBox from '@/components/MeleeWeaponsBox.vue';
 import ArmorBox from '@/components/boxes/ArmorBox.vue';
 import MatrixStatsBox from '@/components/boxes/MatrixStatsBox.vue';
-import VehicleBox from '@/components/VehicleBox.vue';
-import MagicBox from '@/components/MagicBox.vue';
-import AdeptPowersBox from '@/components/AdeptPowersBox.vue';
+
 import SheetBox from '@/components/boxes/SheetBox.vue';
 
 const testLayout = [
@@ -93,11 +90,11 @@ const testLayout = [
   }, {
     x: 0, y: 34, w: 6, h: 4, i: 9, type: BodytechBox,
   }, {
-    x: 6, y: 38, w: 6, h: 13, i: 10, type: EquipmentBox,
+    x: 6, y: 38, w: 6, h: 15, i: 10, type: EquipmentBox,
   }, {
   //   x: 6, y: 24, w: 6, h: 3, i: 11, type: MeleeWeaponsBox,
   // }, {
-    x: 0, y: 38, w: 6, h: 4, i: 12, type: ArmorBox,
+    x: 0, y: 38, w: 6, h: 5, i: 12, type: ArmorBox,
   }, {
     x: 6, y: 22, w: 6, h: 8, i: 13, type: MatrixStatsBox,
   // }, {

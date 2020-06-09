@@ -8,7 +8,10 @@
         />
       </v-col>
       <v-col md="6">
-        <text-input label="Nuyen" value="471" />
+        <text-input
+          label="Nuyen"
+          value="35"
+        />
       </v-col>
     </v-row>
     <v-row>

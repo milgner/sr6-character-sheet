@@ -55,7 +55,7 @@
         <text-input
           label="Logik"
           type="number"
-          value="6 (8)"
+          value="8"
         />
       </v-col>
       <v-col
@@ -161,7 +161,7 @@
           ticks="always"
           tick-size="4"
           min="0"
-          max="5"
+          max="7"
           value="5"
           dense
           hide-details

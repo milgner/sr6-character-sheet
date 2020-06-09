@@ -9,7 +9,7 @@
         <text-input
           label="Angriff"
           type="number"
-          value="10"
+          value="6"
         />
       </v-col>
       <v-col

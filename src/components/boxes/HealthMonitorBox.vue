@@ -4,7 +4,7 @@
       <v-col>
         <status-tracker
           label="Körperlich"
-          :value="bodyHealth"
+          :value="physicalDamage"
           :max-value="maxBodyHealth"
           full-icon="mdi-heart"
           empty-icon="mdi-heart-outline"
@@ -17,7 +17,7 @@
       <v-col>
         <status-tracker
           label="Betäubung"
-          :value="mentalHealth"
+          :value="stunDamage"
           :max-value="maxMentalHealth"
           full-icon="mdi-head-heart"
           empty-icon="mdi-head-heart-outline"
@@ -41,10 +41,10 @@ export default class HealthMonitorBox extends Vue {
 
   maxBodyHealth = 10
 
-  bodyHealth = 10;
+  physicalDamage = 0;
 
   maxMentalHealth = 11;
 
-  mentalHealth = 11;
+  stunDamage = 0;
 }
 </script>

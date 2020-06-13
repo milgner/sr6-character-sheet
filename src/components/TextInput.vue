@@ -9,6 +9,7 @@
     :value="value"
     :append-icon="appendIcon"
     :prepend-icon="prependIcon"
+    @change="onchange"
     dense
     hide-details
   />
@@ -38,6 +39,8 @@ const TextInputProps = Vue.extend({
 
 @Component
 export default class TextInput extends TextInputProps {
-
+  onchange(data: any) {
+    this.$emit('input', data);
+  }
 }
 </script>

@@ -22,7 +22,8 @@
           type="number"
           value="5"
         />
-      </v-col>      <v-col
+      </v-col>
+      <v-col
         cols="12"
         sm="4"
         md="3"
@@ -32,7 +33,8 @@
           type="number"
           value="7"
         />
-      </v-col>      <v-col
+      </v-col>
+      <v-col
         cols="12"
         sm="4"
         md="3"
@@ -69,7 +71,7 @@
         <status-tracker
           label="Matrixzustandsmonitor"
           :max-value="matrixMaxHealth"
-          :value="matrixHealth"
+          :value="matrixDamage"
           full-icon="mdi-tablet-dashboard"
           empty-icon="mdi-tablet"
         />
@@ -91,6 +93,6 @@ export default class MatrixStatsBox extends Vue {
 
   matrixMaxHealth = 10;
 
-  matrixHealth = 10;
+  matrixDamage = 0;
 }
 </script>

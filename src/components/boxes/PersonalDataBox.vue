@@ -2,7 +2,10 @@
   <div>
     <v-row>
       <v-col>
-        <text-input label="Name / Primärer Deckname" value="Fizzbuzz (Xavier Devereaux)" />
+        <text-input
+          label="Name / Primärer Deckname"
+          v-model="name"
+        />
       </v-col>
     </v-row>
     <v-row>
@@ -11,14 +14,20 @@
         sm="12"
         md="6"
       >
-        <text-input label="Metatyp" value="Mensch" />
+        <text-input
+          label="Metatyp"
+          v-model="metaType"
+        />
       </v-col>
       <v-col
         cols="12"
         sm="12"
         md="6"
       >
-        <text-input label="Ethnizität" value="Kaukasisch" />
+        <text-input
+          label="Ethnizität"
+          v-model="ethnicity"
+        />
       </v-col>
     </v-row>
     <v-row>
@@ -27,28 +36,40 @@
         sm="6"
         md="3"
       >
-        <text-input label="Alter" value="25" />
+        <text-input
+          label="Alter"
+          v-model="age"
+        />
       </v-col>
       <v-col
         cols="12"
         sm="6"
         md="3"
       >
-        <text-input label="Geschlecht" value="männlich"/>
+        <text-input
+          label="Geschlecht"
+          v-model="gender"
+        />
       </v-col>
       <v-col
         cols="12"
         sm="6"
         md="3"
       >
-        <text-input label="Größe" value="1.74m" />
+        <text-input
+          label="Größe"
+          v-model="height"
+        />
       </v-col>
       <v-col
         cols="12"
         sm="6"
         md="3"
       >
-        <text-input label="Gewicht" value="63m" />
+        <text-input
+          label="Gewicht"
+          v-model="label"
+        />
       </v-col>
     </v-row>
     <v-row>
@@ -57,28 +78,40 @@
         sm="4"
         md="3"
       >
-        <text-input label="Reputation" value="0" />
+        <text-input
+          label="Reputation"
+          v-model="reputation"
+        />
       </v-col>
       <v-col
         cols="12"
         sm="4"
         md="3"
       >
-        <text-input label="Fahndungsstufe" value="0" />
+        <text-input
+          label="Fahndungsstufe"
+          v-model="searchWarrantLevel"
+        />
       </v-col>
       <v-col
         cols="12"
         sm="4"
         md="3"
       >
-        <text-input label="Karma" value="0" />
+        <text-input
+          label="Karma"
+          v-model="availableKarma"
+        />
       </v-col>
       <v-col
         cols="12"
         sm="4"
         md="3"
       >
-        <text-input label="Gesamtkarma" value="0" />
+        <text-input
+          label="Gesamtkarma"
+          v-model="totalKarma"
+        />
       </v-col>
     </v-row>
   </div>
@@ -86,9 +119,24 @@
 <script lang="ts">
 import Vue from 'vue';
 import TextInput from '@/components/TextInput.vue';
+import { mapModelLike } from '@/store/util';
 
 const PersonalDataBoxProps = Vue.extend({
   components: { TextInput },
+  computed: mapModelLike('personalData', [
+    'name',
+    'ethnicity',
+    'metaType',
+    'age',
+    'gender',
+    'height',
+    'weight',
+    'reputation',
+    'searchWarrantLevel',
+    'spentKarma',
+    'totalKarma',
+    'availableKarma',
+  ]),
 });
 
 export default class PersonalDataBox extends PersonalDataBoxProps {

@@ -35,6 +35,10 @@ export default class EquipmentBox extends Vue {
       rating: 4,
     },
     {
+      name: 'Kommlink Renraku Sensei (D2/0)',
+      rating: 3,
+    },
+    {
       name: 'Kleidung, gut, elektrochrom, AR Feedback',
     },
     {

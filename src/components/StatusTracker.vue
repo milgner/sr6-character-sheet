@@ -11,7 +11,11 @@
         dense
         @input="onRatingChanged"
       />
-      <v-chip>{{ damageModifier }}</v-chip>
+      <div @mouseenter="mouseEnterChipArea"
+           @mouseleave="mouseLeaveChipArea">
+        <v-chip @click="clearDamage" v-if="showModifierChip">{{ damageModifier }}</v-chip>
+        <v-icon dense size="32" @click="clearDamage" v-else>mdi-cancel</v-icon>
+      </div>
     </div>
   </div>
 </template>
@@ -36,8 +40,22 @@ const StatusTrackerProps = Vue.extend({
 export default class StatusTracker extends StatusTrackerProps {
   currentValue = this.value
 
+  showModifierChip = true
+
   get damageModifier() {
-    return Math.ceil((this.maxValue - this.currentValue) / -3);
+    return Math.ceil(this.currentValue / -3);
+  }
+
+  mouseEnterChipArea() {
+    this.showModifierChip = this.currentValue === 0;
+  }
+
+  mouseLeaveChipArea() {
+    this.showModifierChip = true;
+  }
+
+  clearDamage() {
+    this.currentValue = 0;
   }
 
   onRatingChanged(newValue: number) {

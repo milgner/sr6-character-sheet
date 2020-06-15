@@ -16,8 +16,6 @@ import Component from 'vue-class-component';
 @Component({
 })
 export default class EquipmentBox extends Vue {
-  static label = 'Ausrüstung';
-
   headers = [
     {
       name: 'Gegenstand',

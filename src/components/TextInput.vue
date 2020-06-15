@@ -9,6 +9,7 @@
     :value="value"
     :append-icon="appendIcon"
     :prepend-icon="prependIcon"
+    :readonly="readonly"
     @change="onchange"
     dense
     hide-details
@@ -34,6 +35,7 @@ const TextInputProps = Vue.extend({
     prependIcon: String,
     value: String,
     unavailable: Boolean,
+    readonly: Boolean,
   },
 });
 

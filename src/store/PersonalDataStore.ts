@@ -1,5 +1,11 @@
 import { simpleUpdaters } from '@/store/util';
 
+export enum CharacterType {
+  Mundane = 'mundane',
+  AwakenedMage = 'mage',
+  AwakenedTechnomancer = 'technomancer',
+}
+
 const initialState = {
   name: 'Fizzbuzz (Xavier Devereaux)',
   metaType: 'Mensch',
@@ -12,9 +18,10 @@ const initialState = {
   searchWarrantLevel: 0,
   spentKarma: 0,
   totalKarma: 0,
+  characterType: CharacterType.Mundane,
 };
 
-const PersonalData = {
+const PersonalDataStore = {
   state: initialState,
   namespaced: true,
   mutations: {
@@ -28,4 +35,4 @@ const PersonalData = {
   },
 };
 
-export default PersonalData;
+export default PersonalDataStore;

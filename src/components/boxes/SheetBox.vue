@@ -3,9 +3,9 @@
     class="sheet-box"
     :height="height"
   >
-    <v-card-title>{{ type.label }}</v-card-title>
+    <v-card-title>{{ $t(`boxes.${type}`) }}</v-card-title>
     <v-container>
-      <component :is="type" />
+      <component :is="componentType" />
     </v-container>
   </v-card>
 </template>
@@ -54,16 +54,31 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const boxes = require('@/components/boxes').default;
 
 const SheetBoxProps = Vue.extend({
   props: {
     height: [String, Number],
-    type: Function,
+    type: {
+      type: String,
+      validator(value: string) {
+        return Object.keys(boxes).includes(value);
+      },
+    },
   },
 });
 
 @Component
 export default class SheetBox extends SheetBoxProps {
+  get componentType() {
+    return (boxes as any)[this.$props.type];
+  }
+
+  /* eslint-disable class-methods-use-this */
+  get boxes() {
+    return boxes;
+  }
 }
 
 </script>

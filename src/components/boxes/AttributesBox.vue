@@ -7,9 +7,10 @@
         md="4"
       >
         <text-input
-          label="Konstitution"
+          :label="$t('attributes.bod')"
           type="number"
-          value="3"
+          v-model="bod"
+          :rules="[rules.notNegative]"
         />
       </v-col>
       <v-col
@@ -18,9 +19,10 @@
         md="4"
       >
         <text-input
-          label="Willenskraft"
+          :label="$t('attributes.wil')"
           type="number"
-          value="5"
+          v-model="wil"
+          :rules="[rules.notNegative]"
         />
       </v-col>
       <v-col
@@ -29,9 +31,9 @@
         md="4"
       >
         <text-input
-          label="Essenz"
-          :rules="[rules.essence]"
-          value="3.3"
+          :label="$t('attributes.ess')"
+          :rules="[rules.essence, rules.notNegative]"
+          v-model="ess"
         />
       </v-col>
     </v-row>
@@ -42,9 +44,10 @@
         md="4"
       >
         <text-input
-          label="Geschicklichkeit"
+          :label="$t('attributes.agi')"
           type="number"
-          value="3"
+          v-model="agi"
+          :rules="[rules.notNegative]"
         />
       </v-col>
       <v-col
@@ -53,9 +56,10 @@
         md="4"
       >
         <text-input
-          label="Logik"
+          :label="$t('attributes.log')"
           type="number"
-          value="8"
+          v-model="log"
+          :rules="[rules.notNegative]"
         />
       </v-col>
       <v-col
@@ -64,10 +68,18 @@
         md="4"
       >
         <text-input
-          label="Magie/Resonanz"
+          v-if="isMage"
+          :label="$t('attributes.mag')"
           type="number"
-          value="-"
-          unavailable
+          v-model="mag"
+          :rules="[rules.notNegative]"
+        />
+        <text-input
+          v-if="isTechnomancer"
+          :label="$t('attributes.res')"
+          type="number"
+          v-model="res"
+          :rules="[rules.notNegative]"
         />
       </v-col>
     </v-row>
@@ -78,9 +90,10 @@
         md="4"
       >
         <text-input
-          label="Reaktion"
+          :label="$t('attributes.rea')"
           type="number"
-          value="5"
+          v-model="rea"
+          :rules="[rules.notNegative]"
         />
       </v-col>
       <v-col
@@ -89,9 +102,49 @@
         md="4"
       >
         <text-input
-          label="Intuition"
+          :label="$t('attributes.int')"
           type="number"
-          value="5"
+          v-model="int"
+          :rules="[rules.notNegative]"
+        />
+      </v-col>
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+      >
+        <!-- TODO: commit changes to store -->
+        <initiative-input
+          :label="$t('attributes.ini')"
+          :base="iniBase"
+          baseReadOnly
+          :dice="iniDice"
+        />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+      >
+        <text-input
+          :label="$t('attributes.str')"
+          type="number"
+          v-model="str"
+          :rules="[rules.notNegative]"
+        />
+      </v-col>
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+      >
+        <text-input
+          :label="$t('attributes.cha')"
+          type="number"
+          v-model="cha"
+          :rules="[rules.notNegative]"
         />
       </v-col>
       <v-col
@@ -100,42 +153,11 @@
         md="4"
       >
         <initiative-input
-          label="Initiative"
-          value="10+1d6"
-        />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col
-        cols="12"
-        sm="6"
-        md="4"
-      >
-        <text-input
-          label="Stärke"
-          type="number"
-          value="2"
-        />
-      </v-col>
-      <v-col
-        cols="12"
-        sm="6"
-        md="4"
-      >
-        <text-input
-          label="Charisma"
-          type="number"
-          value="3"
-        />
-      </v-col>
-      <v-col
-        cols="12"
-        sm="6"
-        md="4"
-      >
-        <initiative-input
-          label="Matrix-Initiative"
-          value="12+1d6"
+          :label="$t('attributes.matrixIni')"
+          :base="matrixIniBase"
+          :dice="matrixIniDice"
+          :unavailable="this.$store.getters['attributes/matrixIniBase'] === null"
+          readonly
         />
       </v-col>
     </v-row>
@@ -146,9 +168,10 @@
         md="4"
       >
         <text-input
-          label="Edge"
+          :label="$t('attributes.edg')"
           type="number"
-          value="5"
+          v-model="edg"
+          :rules="[rules.notNegative]"
         />
       </v-col>
       <v-col
@@ -162,7 +185,7 @@
           tick-size="4"
           min="0"
           max="7"
-          value="5"
+          v-model="currentEdge"
           dense
           hide-details
         />
@@ -173,8 +196,11 @@
         md="4"
       >
         <initiative-input
-          label="Astrale Initiative"
-          unavailable
+          :label="$t('attributes.astralIni')"
+          :base="astralIniBase"
+          :dice="astralIniDice"
+          readonly
+          :unavailable="this.$store.getters['attributes/astralIniBase'] === null"
         />
       </v-col>
     </v-row>
@@ -185,9 +211,10 @@
         md="4"
       >
         <text-input
-          label="Selbstbeherrschung"
+          :label="$t('attributes.composure')"
           type="number"
-          value="8"
+          readonly
+          :value="composure"
         />
       </v-col>
       <v-col
@@ -196,9 +223,10 @@
         md="4"
       >
         <text-input
-          label="Menschenkenntnis"
+          :label="$t('attributes.judgeIntentions')"
           type="number"
-          value="10"
+          readonly
+          :value="judgeIntentions"
         />
       </v-col>
       <v-col
@@ -207,9 +235,10 @@
         md="4"
       >
         <text-input
-          label="Erinnerungsvermögen"
+          :label="$t('attributes.memory')"
           type="number"
-          value="13"
+          readonly
+          :value="memory"
         />
       </v-col>
     </v-row>
@@ -220,9 +249,10 @@
         md="6"
       >
         <text-input
-          label="Heben/Tragen"
+          :label="$t('attributes.carryLift')"
           type="number"
-          value="8"
+          readonly
+          :value="carryLift"
         />
       </v-col>
       <v-col
@@ -231,8 +261,9 @@
         md="6"
       >
         <text-input
-          label="Bewegung"
-          value="10"
+          :label="$t('attributes.movement')"
+          v-model="movement"
+          :rules="[rules.notNegative]"
         />
       </v-col>
     </v-row>
@@ -245,16 +276,59 @@
 import Vue from 'vue';
 import TextInput from '@/components/TextInput.vue';
 import InitiativeInput from '@/components/InitiativeInput.vue';
+import { mapModelLike } from '@/store/util';
+import { mapGetters } from 'vuex';
+import { CharacterType } from '@/store/PersonalDataStore';
 
 const AttributesBoxProps = Vue.extend({
   components: { InitiativeInput, TextInput },
+  computed: {
+    ...mapGetters('attributes', [
+      'composure',
+      'carryLift',
+      'judgeIntentions',
+      'memory',
+      'iniBase',
+      'astralIniBase',
+      'astralIniDice',
+      'matrixIniDice',
+      'matrixIniBase',
+    ]),
+    ...mapModelLike('attributes', [
+      'bod',
+      'agi',
+      'rea',
+      'str',
+      'wil',
+      'log',
+      'int',
+      'cha',
+      'edg',
+      'ess',
+      'mag',
+      'res',
+      'iniDice',
+      'movement',
+      'currentEdge',
+    ]),
+  },
 });
 
 export default class AttributesBox extends AttributesBoxProps {
-  static label = 'Attribute';
-
   rules = {
     essence: (value: string) => /^\d([\\.,]\d{1,2})?$/.test(value) || 'Ungültiger Wert',
+    notNegative: (value: string) => {
+      const parsed = Number.parseInt(value, 10);
+      return (Number.isInteger(parsed) && parsed >= 0) || 'Ungültiger Wert';
+    },
+  }
+
+  get isMage() {
+    return this.$store.state.personalData.characterType === CharacterType.AwakenedMage;
+  }
+
+  get isTechnomancer() {
+    return this.$store.state.personalData.characterType === CharacterType.AwakenedTechnomancer;
   }
 }
 

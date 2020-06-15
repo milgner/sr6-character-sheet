@@ -3,26 +3,28 @@
     <v-row>
       <v-col>
         <status-tracker
-          label="Körperlich"
-          :value="physicalDamage"
-          :max-value="maxBodyHealth"
-          full-icon="mdi-heart"
-          empty-icon="mdi-heart-outline"
-          size="32"
+          :max-value="maxPhysicalDamage"
+          :damage-modifier="physicalDamageModifier"
           dense
+          empty-icon="mdi-heart-outline"
+          full-icon="mdi-heart"
+          label="Körperlich"
+          size="32"
+          v-model="physicalDamage"
         />
       </v-col>
     </v-row>
     <v-row>
       <v-col>
         <status-tracker
-          label="Betäubung"
-          :value="stunDamage"
-          :max-value="maxMentalHealth"
-          full-icon="mdi-head-heart"
-          empty-icon="mdi-head-heart-outline"
-          size="32"
+          :max-value="maxStunDamage"
+          :damage-modifier="stunDamageModifier"
           dense
+          empty-icon="mdi-head-heart-outline"
+          full-icon="mdi-head-heart"
+          label="Betäubung"
+          size="32"
+          v-model="stunDamage"
         />
       </v-col>
     </v-row>
@@ -32,19 +34,24 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import StatusTracker from '@/components/StatusTracker.vue';
+import { mapGetters } from 'vuex';
+import { mapModelLike } from '@/store/util';
 
 @Component({
   components: { StatusTracker },
+  computed: {
+    ...mapModelLike('healthMonitor', [
+      'stunDamage',
+      'physicalDamage',
+    ]),
+    ...mapGetters('healthMonitor', [
+      'maxPhysicalDamage',
+      'maxStunDamage',
+      'physicalDamageModifier',
+      'stunDamageModifier',
+    ]),
+  },
 })
 export default class HealthMonitorBox extends Vue {
-  static label = 'Zustandsmonitor';
-
-  maxBodyHealth = 10
-
-  physicalDamage = 0;
-
-  maxMentalHealth = 11;
-
-  stunDamage = 0;
 }
 </script>

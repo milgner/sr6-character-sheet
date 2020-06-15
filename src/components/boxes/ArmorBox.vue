@@ -5,7 +5,7 @@
     :headers="headers"
     :items="items"
     item-key="name"
-    no-data-text="Keine Rüstüng angelegt"
+    no-data-text="Keine Rüstung angelegt"
     disable-pagination
     hide-default-footer
   />
@@ -17,8 +17,6 @@ const ArmorBoxProps = Vue.extend({
 });
 
 export default class ArmorBox extends ArmorBoxProps {
-  static label = 'Panzerung';
-
   headers = [{
     text: 'Name',
     align: 'start',

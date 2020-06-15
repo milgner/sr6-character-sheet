@@ -11,7 +11,9 @@
       <text-input
         :label="label"
         type="number"
-        :value="baseValue"
+        :value="base"
+        :readonly="readonly || baseReadOnly"
+        @input="baseChanged"
       />
     </v-col>
     <v-col
@@ -22,8 +24,10 @@
       <text-input
         prefix="+"
         append-icon="mdi-dice-d6-outline"
-        :value="dieValue"
+        :value="dice"
         type="number"
+        :readonly="readonly"
+        @input="diceChanged"
       />
     </v-col>
   </v-row>
@@ -44,23 +48,24 @@ import TextInput from '@/components/TextInput.vue';
 const InitiativeInputProps = Vue.extend({
   props: {
     label: String,
-    value: String,
+    base: Number,
+    dice: Number,
     unavailable: Boolean,
+    readonly: Boolean,
+    baseReadOnly: Boolean,
   },
 });
-
-const matcher = /^(\d+)\s*\+(\d)[dw]6$/;
 
 @Component({
   components: { TextInput },
 })
 export default class InitiativeInput extends InitiativeInputProps {
-  get baseValue() {
-    return this.$props.value?.match(matcher)[1];
+  baseChanged(value: string) {
+    this.$emit('baseValue', Number.parseInt(value, 10));
   }
 
-  get dieValue() {
-    return this.$props.value?.match(matcher)[2];
+  diceChanged(value: string) {
+    this.$emit('diceValue', Number.parseInt(value, 10));
   }
 }
 </script>

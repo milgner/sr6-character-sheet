@@ -7,9 +7,9 @@
         md="3"
       >
         <text-input
-          label="Angriff"
+          :label="$t('matrix.attack')"
           type="number"
-          value="6"
+          v-model="attack"
         />
       </v-col>
       <v-col
@@ -18,9 +18,9 @@
         md="3"
       >
         <text-input
-          label="Schleicher"
+          :label="$t('matrix.sleaze')"
           type="number"
-          value="5"
+          v-model="sleaze"
         />
       </v-col>
       <v-col
@@ -29,9 +29,9 @@
         md="3"
       >
         <text-input
-          label="Datenverarbeitung"
+          :label="$t('matrix.dataProcessing')"
           type="number"
-          value="7"
+          v-model="dataProcessing"
         />
       </v-col>
       <v-col
@@ -40,38 +40,53 @@
         md="3"
       >
         <text-input
-          label="Firewall"
+          :label="$t('matrix.firewall')"
           type="number"
-          value="6"
+          v-model="firewall"
+        />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="8">
+        <text-input
+          :label="$t('matrix.deviceName')"
+          v-model="deviceName"
+        />
+      </v-col>
+      <v-col cols="4">
+        <text-input
+          :label="$t('matrix.deviceRating')"
+          v-model="deviceRating"
         />
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="12">
-        <text-input
-          label="Geräte/GS"
-          value="MCT 360 / 3"
-        />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="12">
-        <v-textarea
-          label="Programme"
-          hide-details
+        <v-combobox
+          :delimiters="[',']"
+          :items="availablePrograms"
+          :label="$t('matrix.programs')"
+          :no-data-text="$t('matrix.noPrograms')"
           auto-grow
+          chips
+          deletable-chips
           dense
+          hide-details
+          hide-selected
+          multiple
           rows="3"
-          value="Ausnutzen, Panzerung, Tarnkappe, Blackout, Babymonitor, Schmöker, Editieren"
+          small-chips
+          v-model="programs"
         />
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="12">
         <status-tracker
-          label="Matrixzustandsmonitor"
-          :max-value="matrixMaxHealth"
-          :value="matrixDamage"
+          :label="$t('matrix.damageMonitor')"
+          :max-value="totalHealth"
+          :damage-modifier="damageModifier"
+          v-model="damage"
           full-icon="mdi-tablet-dashboard"
           empty-icon="mdi-tablet"
         />
@@ -84,15 +99,31 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import TextInput from '@/components/TextInput.vue';
 import StatusTracker from '@/components/StatusTracker.vue';
+import { mapGetters } from 'vuex';
+import { mapModelLike } from '@/store/util';
 
 @Component({
   components: { StatusTracker, TextInput },
+  computed: {
+    ...mapGetters('matrix', ['totalHealth', 'damageModifier']),
+    ...mapModelLike('matrix', [
+      'simHot',
+      'attack',
+      'sleaze',
+      'dataProcessing',
+      'firewall',
+      'deviceName',
+      'deviceRating',
+      'programs',
+      'damage',
+    ]),
+  },
 })
 export default class MatrixStatsBox extends Vue {
-  static label = 'Matrixwerte';
-
-  matrixMaxHealth = 10;
-
-  matrixDamage = 0;
+  get availablePrograms() {
+    // const installedPrograms = this.$store.state.matrix.programs;
+    return Object.values(this.$t('matrix.availablePrograms'));
+    //      .filter((e: string) => installedPrograms.indexOf(e) > -1);
+  }
 }
 </script>

@@ -33,6 +33,7 @@ const StatusTrackerProps = Vue.extend({
     label: String,
     fullIcon: String,
     emptyIcon: String,
+    damageModifier: Number,
   },
 });
 
@@ -41,10 +42,6 @@ export default class StatusTracker extends StatusTrackerProps {
   currentValue = this.value
 
   showModifierChip = true
-
-  get damageModifier() {
-    return Math.ceil(this.currentValue / -3);
-  }
 
   mouseEnterChipArea() {
     this.showModifierChip = this.currentValue === 0;
@@ -56,10 +53,12 @@ export default class StatusTracker extends StatusTrackerProps {
 
   clearDamage() {
     this.currentValue = 0;
+    this.$emit('input', 0);
   }
 
   onRatingChanged(newValue: number) {
     this.currentValue = newValue;
+    this.$emit('input', newValue);
   }
 }
 </script>

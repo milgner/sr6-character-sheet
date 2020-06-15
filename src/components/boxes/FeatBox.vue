@@ -16,8 +16,6 @@ import Component from 'vue-class-component';
 @Component({
 })
 export default class FeatBox extends Vue {
-  static label = 'Vor- und Nachteile';
-
   headers = [{
     text: 'Name',
     align: 'start',

@@ -33,6 +33,5 @@ import TextInput from '@/components/TextInput.vue';
   components: { TextInput },
 })
 export default class FightSummaryBox extends Vue {
-  static label = 'Wichtige Kampf-Infos';
 }
 </script>

@@ -35,6 +35,5 @@ import TextInput from '@/components/TextInput.vue';
   components: { TextInput },
 })
 export default class LifestyleBox extends Vue {
-  static label = 'IDs / Lebensstile / Währung';
 }
 </script>

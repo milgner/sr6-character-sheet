@@ -41,8 +41,6 @@ import Component from 'vue-class-component';
 @Component({
 })
 export default class SkillsBox extends Vue {
-  static label = 'Fertigkeiten';
-
   activeHeaders = [{
     text: 'Name',
     align: 'start',

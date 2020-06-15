@@ -16,8 +16,6 @@ import Component from 'vue-class-component';
 @Component({
 })
 export default class RangedWeaponsBox extends Vue {
-  static label = 'Fernkampfwaffen';
-
   headers = [{
     text: 'Name',
     align: 'start',

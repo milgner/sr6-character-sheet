@@ -16,8 +16,6 @@ import Component from 'vue-class-component';
 @Component({
 })
 export default class ConnectionsBox extends Vue {
-  static label = 'Connections';
-
   headers = [{
     text: 'Name',
     align: 'start',

@@ -3,7 +3,7 @@
     <v-row>
       <v-col>
         <text-input
-          label="Name / Primärer Deckname"
+          :label="$t('personalData.name')"
           v-model="name"
         />
       </v-col>
@@ -15,7 +15,7 @@
         md="6"
       >
         <text-input
-          label="Metatyp"
+          :label="$t('personalData.metaType')"
           v-model="metaType"
         />
       </v-col>
@@ -25,7 +25,7 @@
         md="6"
       >
         <text-input
-          label="Ethnizität"
+          :label="$t('personalData.ethnicity')"
           v-model="ethnicity"
         />
       </v-col>
@@ -37,7 +37,8 @@
         md="3"
       >
         <text-input
-          label="Alter"
+          :label="$t('personalData.age')"
+          type="number"
           v-model="age"
         />
       </v-col>
@@ -47,7 +48,7 @@
         md="3"
       >
         <text-input
-          label="Geschlecht"
+          :label="$t('personalData.gender')"
           v-model="gender"
         />
       </v-col>
@@ -57,7 +58,7 @@
         md="3"
       >
         <text-input
-          label="Größe"
+          :label="$t('personalData.height')"
           v-model="height"
         />
       </v-col>
@@ -67,8 +68,8 @@
         md="3"
       >
         <text-input
-          label="Gewicht"
-          v-model="label"
+          :label="$t('personalData.weight')"
+          v-model="weight"
         />
       </v-col>
     </v-row>
@@ -79,7 +80,8 @@
         md="3"
       >
         <text-input
-          label="Reputation"
+          :label="$t('personalData.reputation')"
+          type="number"
           v-model="reputation"
         />
       </v-col>
@@ -89,7 +91,8 @@
         md="3"
       >
         <text-input
-          label="Fahndungsstufe"
+          :label="$t('personalData.searchWarrantLevel')"
+          type="number"
           v-model="searchWarrantLevel"
         />
       </v-col>
@@ -99,8 +102,10 @@
         md="3"
       >
         <text-input
-          label="Karma"
-          v-model="availableKarma"
+          :label="$t('personalData.availableKarma')"
+          type="number"
+          readonly
+          :value="availableKarma"
         />
       </v-col>
       <v-col
@@ -109,7 +114,8 @@
         md="3"
       >
         <text-input
-          label="Gesamtkarma"
+          :label="$t('personalData.totalKarma')"
+          type="number"
           v-model="totalKarma"
         />
       </v-col>
@@ -120,27 +126,36 @@
 import Vue from 'vue';
 import TextInput from '@/components/TextInput.vue';
 import { mapModelLike } from '@/store/util';
+import { mapGetters } from 'vuex';
 
 const PersonalDataBoxProps = Vue.extend({
   components: { TextInput },
-  computed: mapModelLike('personalData', [
-    'name',
-    'ethnicity',
-    'metaType',
-    'age',
-    'gender',
-    'height',
-    'weight',
-    'reputation',
-    'searchWarrantLevel',
-    'spentKarma',
-    'totalKarma',
-    'availableKarma',
-  ]),
+  computed: {
+    ...mapGetters('personalData', [
+      'availableKarma',
+    ]),
+    ...mapModelLike(
+      'personalData', [
+        'name',
+        'ethnicity',
+        'metaType',
+        'age',
+        'gender',
+        'height',
+        'weight',
+        'reputation',
+        'searchWarrantLevel',
+        'spentKarma',
+        'totalKarma',
+      ],
+    ),
+  },
 });
 
 export default class PersonalDataBox extends PersonalDataBoxProps {
-  static label = 'Persönliche Daten';
+  static defaultHeight = 6;
+
+  static multiple = false;
 }
 
 </script>

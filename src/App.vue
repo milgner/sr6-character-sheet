@@ -10,6 +10,16 @@
       </div>
 
       <v-spacer />
+      <v-btn
+        fab
+        color="secondary accent-2"
+        bottom
+        absolute
+        right
+        @click="dialog = !dialog"
+      >
+        <v-icon>mdi-plus</v-icon>
+      </v-btn>
     </v-app-bar>
 
     <v-content>
@@ -39,6 +49,17 @@
         </grid-layout>
       </v-sheet>
     </v-content>
+    <v-dialog v-model="dialog">
+      <v-card>
+        <v-card-text>
+          <v-select>Schalala</v-select>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer />
+          <v-btn text color="primary" @click="dialog = false">Hinzufügen</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 <style lang="scss">
@@ -66,7 +87,7 @@ import SheetBox from '@/components/boxes/SheetBox.vue';
   ]),
 })
 export default class App extends Vue {
-
+  dialog = false;
 }
 
 </script>

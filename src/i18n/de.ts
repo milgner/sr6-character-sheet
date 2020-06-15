@@ -1,4 +1,9 @@
 export default {
+  dialogs: {
+    add: 'Hinzufügen',
+    close: 'Schließen',
+    update: 'Aktualisieren',
+  },
   boxes: {
     PersonalDataBox: 'Persönliche Daten',
     AttributesBox: 'Attribute',
@@ -30,7 +35,7 @@ export default {
     matrixIni: 'Matrix-Initiative',
     mag: 'Magie',
     res: 'Resonanz',
-    compasure: 'Selbstbeherrschung',
+    composure: 'Selbstbeherrschung',
     judgeIntentions: 'Menschenkenntnis',
     memory: 'Erinnerungsvermögen',
     carryLift: 'Heben/Tragen',
@@ -83,6 +88,14 @@ export default {
       chipGuard: 'Splitterschutz',
       stealth: 'Tarnkappe',
       overclock: 'Übertakten',
+    },
+  },
+  bodytech: {
+    name: 'Name',
+    rating: 'Stufe',
+    text: 'Anmerkung',
+    addDialog: {
+      title: 'Bodytech Hinzufügen',
     },
   },
 };

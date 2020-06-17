@@ -1,104 +1,52 @@
 <template>
-  <v-data-table
-    class="equipment-list"
-    dense
+  <data-table-with-dialog
     :headers="headers"
     :items="items"
-    item-key="name"
-    disable-pagination
-    hide-default-footer
-  />
+    scope="equipment"
+    item-key="id"
+    v-slot="{ item }"
+  >
+    <v-row>
+      <v-col cols="8">
+        <v-text-field
+          dense
+          :label="$t('name')"
+          v-model="item.name"
+        />
+      </v-col>
+      <v-col cols="2">
+        <v-text-field
+          dense
+          type="number"
+          :label="$t('rating')"
+          v-model="item.rating"
+        />
+      </v-col>
+    </v-row>
+  </data-table-with-dialog>
 </template>
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import DataTableWithDialog from '@/components/DataTableWithDialog.vue';
+import { mapModelLike } from '@/store/util';
 
 @Component({
+  components: { DataTableWithDialog },
+  computed: mapModelLike('equipment', ['items']),
 })
 export default class EquipmentBox extends Vue {
-  headers = [
-    {
-      name: 'Gegenstand',
-      value: 'name',
-    },
-    {
-      name: 'Stufe',
-      value: 'rating',
-    },
-  ]
-
-  items = [
-    {
-      name: 'Kommlink Erika Elite (D2/F1)',
-      rating: 4,
-    },
-    {
-      name: 'Kommlink Renraku Sensei (D2/0)',
-      rating: 3,
-    },
-    {
-      name: 'Kleidung, gut, elektrochrom, AR Feedback',
-    },
-    {
-      name: 'AR-Handschuhe',
-      rating: 3,
-    },
-    {
-      name: 'Satellitenverbindung (Rauschen max -5)',
-      rating: 4,
-    },
-    {
-      name: 'SIM-Modul',
-      rating: 3,
-    },
-    {
-      name: 'Subvokales Mikrofon',
-      rating: 3,
-    },
-    {
-      name: 'Datenwanze',
-      rating: 2,
-    },
-    {
-      name: 'White-Noise-Generator',
-      rating: 3,
-    },
-    {
-      name: 'Wanzenscanner',
-      rating: 3,
-    },
-    {
-      name: 'Shopsoft (Programme)',
-      rating: 3,
-    },
-    {
-      name: 'Credsticks (10x Standard, 3x Silber)',
-    },
-    {
-      name: 'Kiste: Elektronik, Mechanik',
-    },
-    {
-      name: 'Medikit + Nachfüllpack',
-    },
-    {
-      name: 'Vitalmonitor',
-    },
-    {
-      name: 'Erste-Hilfe-Set x5',
-    },
-    {
-      name: 'Zen (x20)',
-    },
-    {
-      name: 'Kontaktlinsen (Smartlink, Bildverbindung)',
-      rating: 3,
-    },
-    {
-      name: 'Ersatz-Magazine x9',
-    },
-    {
-      name: 'Schnellzieh-Tarnholster',
-    },
-  ]
+  get headers() {
+    return [
+      {
+        text: this.$t('equipment.name'),
+        value: 'name',
+      },
+      {
+        text: this.$t('rating'),
+        value: 'rating',
+      },
+    ];
+  }
 }
 </script>

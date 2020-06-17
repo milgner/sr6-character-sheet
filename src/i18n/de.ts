@@ -112,4 +112,13 @@ export default {
       title: 'Panzerung bearbeiten',
     },
   },
+  equipment: {
+    name: 'Gegenstand',
+    addDialog: {
+      title: 'Ausrüstung hinzufügen',
+    },
+    updateDialog: {
+      title: 'Ausrüstung bearbeiten',
+    },
+  },
 };

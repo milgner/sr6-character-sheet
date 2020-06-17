@@ -4,21 +4,19 @@ const initialState = {
   items: [
     {
       id: 0,
-      name: 'Cyberbuchse',
-      rating: 4,
-      notes: 'D/F 7/6, Matrix-Ini +2',
-      essence: 2.3,
+      name: 'Ballistische Maske',
+      rating: 1,
+      notes: 'Programmierbare Tarnung',
     }, {
       id: 1,
-      name: 'Zerebralbooster',
-      rating: 2,
-      notes: 'LOG +2',
-      essence: 0.4,
+      name: 'Gefütterter Mantel',
+      rating: 3,
+      notes: 'Programmierbare Tarnung, Getarnte Magazintasche',
     },
   ],
 };
 
-const BodytechStore = {
+const ArmorStore = {
   namespaced: true,
   state: initialState,
   mutations: ItemListStoreMutations,
@@ -28,11 +26,10 @@ const BodytechStore = {
         id: null,
         name: '',
         rating: 0,
-        essence: 0,
         notes: '',
       };
     },
   },
 };
 
-export default BodytechStore;
+export default ArmorStore;

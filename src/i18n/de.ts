@@ -1,9 +1,14 @@
 export default {
+  name: 'Name',
+  rating: 'Stufe',
+  notes: 'Anmerkung',
+
   dialogs: {
     add: 'Hinzufügen',
     close: 'Schließen',
     update: 'Aktualisieren',
   },
+
   boxes: {
     PersonalDataBox: 'Persönliche Daten',
     AttributesBox: 'Attribute',
@@ -91,11 +96,20 @@ export default {
     },
   },
   bodytech: {
-    name: 'Name',
-    rating: 'Stufe',
-    text: 'Anmerkung',
     addDialog: {
-      title: 'Bodytech Hinzufügen',
+      title: 'Bodytech hinzufügen',
+    },
+    updateDialog: {
+      title: 'Bodytech bearbeiten',
+    },
+  },
+  armor: {
+    noData: 'Keine Panzerung angelegt',
+    addDialog: {
+      title: 'Panzerung hinzufügen',
+    },
+    updateDialog: {
+      title: 'Panzerung bearbeiten',
     },
   },
 };

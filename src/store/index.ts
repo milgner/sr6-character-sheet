@@ -6,6 +6,7 @@ import PersonalDataStore from './PersonalDataStore';
 import HealthMonitorStore from './HealthMonitorStore';
 import MatrixStore from './MatrixStore';
 import BodytechStore from './BodytechStore';
+import ArmorStore from './ArmorStore';
 
 Vue.use(Vuex);
 
@@ -136,6 +137,7 @@ export default new Vuex.Store({
     matrix: MatrixStore,
     healthMonitor: HealthMonitorStore,
     bodytech: BodytechStore,
+    armor: ArmorStore,
   },
   getters: {
     boxesByCategory() {

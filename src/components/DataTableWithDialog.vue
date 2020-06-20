@@ -2,13 +2,24 @@
   <div>
     <v-data-table
       :headers="allHeaders"
-      :item-key="name"
+      :item-key="itemKey"
       :items="items"
       class="action-table"
       dense
       disable-pagination
       hide-default-footer
     >
+      <!-- pass onn scoped slots for decorators to the child component -->
+      <template
+        v-for="(_, name) in $scopedSlots"
+        :slot="name"
+        slot-scope="slotData"
+      >
+        <slot
+          :name="name"
+          v-bind="slotData"
+        />
+      </template>
       <template #item.actions="{ item }">
         <v-icon
           dense

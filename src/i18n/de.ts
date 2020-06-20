@@ -121,4 +121,9 @@ export default {
       title: 'Ausrüstung bearbeiten',
     },
   },
+  feats: {
+    type: 'Art',
+    advantage: 'Vorteil',
+    disadvantage: 'Nachteil',
+  },
 };

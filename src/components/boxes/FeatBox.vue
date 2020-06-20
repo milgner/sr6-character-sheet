@@ -1,69 +1,92 @@
 <template>
-  <v-data-table
-    class="connections-list"
-    dense
+  <data-table-with-dialog
     :headers="headers"
     :items="items"
-    item-key="name"
-    disable-pagination
-    hide-default-footer
-  />
+    scope="feats"
+    item-key="id"
+  >
+    <template v-slot:item.type="{ item }">
+      {{ translateFeatType(item.type) }}
+    </template>
+    <template v-slot="{ item }">
+      <v-row>
+        <v-col cols="12">
+          <v-select
+            :items="featTypeOptions"
+            v-model="item.type"
+          />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12">
+          <v-text-field
+            dense
+            :label="$t('name')"
+            v-model="item.name"
+          />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12">
+          <v-text-field
+            dense
+            :label="$t('notes')"
+            v-model="item.notes"
+          />
+        </v-col>
+      </v-row>
+    </template>
+  </data-table-with-dialog>
 </template>
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import DataTableWithDialog from '@/components/DataTableWithDialog.vue';
+import { mapModelLike } from '@/store/util';
+import { FeatType } from '@/store/FeatStore';
+import VueI18n from 'vue-i18n';
+
+import TranslateResult = VueI18n.TranslateResult;
 
 @Component({
+  components: { DataTableWithDialog },
+  computed: mapModelLike('feats', ['items']),
 })
 export default class FeatBox extends Vue {
-  headers = [{
-    text: 'Name',
-    align: 'start',
-    sortable: true,
-    value: 'name',
-  }, {
-    text: 'Anmerkungen',
-    align: 'start',
-    sortable: false,
-    value: 'notes',
-  }, {
-    text: 'Art',
-    align: 'start',
-    sortable: true,
-    value: 'type',
-  }]
+  get headers() {
+    return [{
+      text: this.$t('name'),
+      align: 'start',
+      sortable: true,
+      value: 'name',
+    }, {
+      text: this.$t('notes'),
+      align: 'start',
+      sortable: false,
+      value: 'notes',
+    }, {
+      text: this.$t('feats.type'),
+      align: 'start',
+      sortable: true,
+      value: 'type',
+    }];
+  }
 
-  items = [
-    {
-      name: 'Analytischer Geist',
-      notes: '1 Bonus-Edge f. Proben mit Logik',
-      type: 'Vorteil',
-    },
-    {
-      name: 'Härtung',
-      notes: '1 Edge f. Widerstand gg. Matrixschaden',
-      type: 'Vorteil',
-    },
-    {
-      name: 'Willensstark',
-      notes: 'Edge-Boost Proben mit WIL kosten -1',
-      type: 'Vorteil',
-    },
-    {
-      name: 'Beidhändigkeit',
-      notes: '',
-      type: 'Vorteil',
-    },
-    {
-      name: 'Allergie',
-      notes: 'Erdbeeren, -4 auf Proben',
-      type: 'Nachteil',
-    },
-    {
-      name: 'Abhängigkeit',
-      notes: 'Zen, 3 Tage',
-      type: 'Nachteil',
-    },
-  ]
+  translateFeatType(type: FeatType): TranslateResult {
+    return this.$t(`feats.${type}`);
+  }
+
+  get featTypeOptions() {
+    return [
+      {
+        value: FeatType.Advantage,
+        text: this.translateFeatType(FeatType.Advantage),
+      },
+      {
+        value: FeatType.Disadvantage,
+        text: this.translateFeatType(FeatType.Disadvantage),
+      },
+    ];
+  }
 }
 </script>

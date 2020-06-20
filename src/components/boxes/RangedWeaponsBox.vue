@@ -1,81 +1,188 @@
 <template>
-  <v-data-table
-    class="ranged-weapons-list"
-    dense
+  <data-table-with-dialog
     :headers="headers"
     :items="items"
-    item-key="name"
-    disable-pagination
-    hide-default-footer
-  />
+    item-key="id"
+    scope="rangedWeapons"
+  >
+    <template v-slot:item.damage="{ item }">
+      {{ displayDamage(item) }}
+    </template>
+    <template v-slot:item.ammo="{ item }">
+      {{ displayAmmo(item) }}
+    </template>
+
+    <template v-slot="{ item }">
+      <v-row>
+        <v-col cols="8">
+          <v-text-field
+            dense
+            :label="$t('name')"
+            v-model="item.name"
+          />
+        </v-col>
+        <v-col cols="4">
+          <v-text-field
+            dense
+            :label="$t('rangedWeapons.mode')"
+            v-model="item.mode"
+          />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="2">
+          <v-text-field
+            dense
+            type="number"
+            v-model="item.damageValue"
+            :label="$t('weapons.damage')"
+          />
+        </v-col>
+        <v-col cols="4">
+          <v-select
+            :label="$t('weapons.damageType')"
+            :items="damageTypes"
+            v-model="item.damageType"
+            dense
+          />
+        </v-col>
+        <v-col cols="2">
+          <v-text-field
+            dense
+            type="number"
+            v-model="item.ammoCount"
+            :label="$t('rangedWeapons.ammoCount')"
+          />
+        </v-col>
+        <v-col cols="4">
+          <v-select
+            :label="$t('rangedWeapons.ammoType')"
+            :items="ammoTypes"
+            v-model="item.ammoType"
+            dense
+          />
+        </v-col>
+      </v-row>
+      <v-row justify="space-between">
+        <v-col cols="2">
+          <v-text-field
+            dense
+            type="number"
+            v-model="item.close"
+            :label="$t('rangedWeapons.ranges.close')"
+          />
+        </v-col>
+        <v-col cols="2">
+          <v-text-field
+            dense
+            type="number"
+            v-model="item.near"
+            :label="$t('rangedWeapons.ranges.near')"
+          />
+        </v-col>
+        <v-col cols="2">
+          <v-text-field
+            dense
+            type="number"
+            v-model="item.medium"
+            :label="$t('rangedWeapons.ranges.medium')"
+          />
+        </v-col>
+        <v-col cols="2">
+          <v-text-field
+            dense
+            type="number"
+            v-model="item.far"
+            :label="$t('rangedWeapons.ranges.far')"
+          />
+        </v-col>
+        <v-col cols="2">
+          <v-text-field
+            dense
+            type="number"
+            v-model="item.extreme"
+            :label="$t('rangedWeapons.ranges.extreme')"
+          />
+        </v-col>
+      </v-row>
+    </template>
+  </data-table-with-dialog>
 </template>
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import DataTableWithDialog from '@/components/DataTableWithDialog.vue';
+import { mapModelLike } from '@/store/util';
+import { DamageType, AmmoType } from '@/store/RangedWeaponsStore';
+import { reversedEnum, translatedEnumOptions } from '@/i18n';
 
 @Component({
+  components: { DataTableWithDialog },
+  computed: mapModelLike('rangedWeapons', ['items']),
 })
 export default class RangedWeaponsBox extends Vue {
-  headers = [{
-    text: 'Name',
-    align: 'start',
-    sortable: true,
-    value: 'name',
-  }, {
-    text: 'Schaden',
-    align: 'start',
-    sortable: false,
-    value: 'dv',
-  }, {
-    text: 'Modus',
-    align: 'start',
-    sortable: false,
-    value: 'mode',
-  }, {
-    text: 'Sehr nah',
-    align: 'end',
-    sortable: false,
-    value: 'close',
-  }, {
-    text: 'Nah',
-    align: 'end',
-    sortable: false,
-    value: 'near',
-  }, {
-    text: 'Mittel',
-    align: 'end',
-    sortable: false,
-    value: 'medium',
-  }, {
-    text: 'Weit',
-    align: 'end',
-    sortable: false,
-    value: 'far',
-  }, {
-    text: 'Extrem',
-    align: 'end',
-    sortable: false,
-    value: 'extreme',
-  }, {
-    text: 'Ammo',
-    align: 'end',
-    sortable: false,
-    value: 'ammo',
-  },
-  ]
+  damageTypes = translatedEnumOptions(DamageType, 'weapons.damageTypes');
 
-  items = [
-    {
-      name: 'Ares Predator VI',
-      dv: '3K',
-      mode: 'HM/SM',
-      close: 10,
-      near: 10,
-      medium: 8,
-      far: 0,
-      extreme: 0,
-      ammo: '15s',
+  ammoTypes = translatedEnumOptions(AmmoType, 'rangedWeapons.ammoTypes');
+
+  displayDamage(weapon: any) {
+    const damageMnemo = this.$t(`weapons.damageTypes.${reversedEnum(DamageType)[weapon.damageType]}`)[0];
+    return `${weapon.damageValue}${damageMnemo}`;
+  }
+
+  displayAmmo(weapon: any) {
+    const ammoTypeMnemo = this.$t(`rangedWeapons.ammoTypeMnemonics.${reversedEnum(AmmoType)[weapon.ammoType]}`)[0];
+    return `${weapon.ammoCount}${ammoTypeMnemo}`;
+  }
+
+  get headers() {
+    return [{
+      text: this.$t('name'),
+      align: 'start',
+      sortable: true,
+      value: 'name',
+    }, {
+      text: this.$t('weapons.damage'),
+      align: 'start',
+      sortable: false,
+      value: 'damage',
+    }, {
+      text: this.$t('rangedWeapons.mode'),
+      align: 'start',
+      sortable: false,
+      value: 'mode',
+    }, {
+      text: this.$t('rangedWeapons.ranges.close'),
+      align: 'end',
+      sortable: false,
+      value: 'close',
+    }, {
+      text: this.$t('rangedWeapons.ranges.near'),
+      align: 'end',
+      sortable: false,
+      value: 'near',
+    }, {
+      text: this.$t('rangedWeapons.ranges.medium'),
+      align: 'end',
+      sortable: false,
+      value: 'medium',
+    }, {
+      text: this.$t('rangedWeapons.ranges.far'),
+      align: 'end',
+      sortable: false,
+      value: 'far',
+    }, {
+      text: this.$t('rangedWeapons.ranges.extreme'),
+      align: 'end',
+      sortable: false,
+      value: 'extreme',
+    }, {
+      text: this.$t('rangedWeapons.ammo'),
+      align: 'end',
+      sortable: false,
+      value: 'ammo',
     },
-  ]
+    ];
+  }
 }
 </script>

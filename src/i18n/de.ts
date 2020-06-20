@@ -143,4 +143,49 @@ export default {
       title: 'Kontakt bearbeiten',
     },
   },
+  weapons: {
+    damage: 'Schaden',
+    damageType: 'Schadensart',
+    damageTypes: {
+      physical: 'Körperlich',
+      stun: 'Geistig',
+    },
+  },
+  rangedWeapons: {
+    mode: 'Modus',
+    ammo: 'Munition',
+    ammoType: 'Munitions-Zufuhr',
+    ammoCount: 'Mag.-Größe',
+    ranges: {
+      close: 'Sehr nah',
+      near: 'Nah',
+      medium: 'Mittel',
+      far: 'Weit',
+      extreme: 'Extrem',
+    },
+    ammoTypes: {
+      breakAction: 'Kipplauf',
+      clip: 'Streifen',
+      drum: 'Trommel',
+      muzzleLoader: 'Vorderlader',
+      internal: 'Intern',
+      cylinder: 'Zylinder',
+      belt: 'Gürtel',
+    },
+    ammoTypeMnemonics: {
+      breakAction: 'kl',
+      clip: 's',
+      drum: 't',
+      muzzleLoader: 'vl',
+      internal: 'i',
+      cylinder: 'z',
+      belt: 'g',
+    },
+    addDialog: {
+      title: 'Fernkampfwaffe hinzufügen',
+    },
+    updateDialog: {
+      title: 'Fernkampfwaffe bearbeiten',
+    },
+  },
 };

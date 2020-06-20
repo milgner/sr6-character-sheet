@@ -45,6 +45,7 @@ import DataTableWithDialog from '@/components/DataTableWithDialog.vue';
 import { mapModelLike } from '@/store/util';
 import { FeatType } from '@/store/FeatStore';
 import VueI18n from 'vue-i18n';
+import { translatedEnumOptions } from '@/i18n';
 
 import TranslateResult = VueI18n.TranslateResult;
 
@@ -53,6 +54,8 @@ import TranslateResult = VueI18n.TranslateResult;
   computed: mapModelLike('feats', ['items']),
 })
 export default class FeatBox extends Vue {
+  featTypeOptions = translatedEnumOptions(FeatType, 'feats');
+
   get headers() {
     return [{
       text: this.$t('name'),
@@ -74,19 +77,6 @@ export default class FeatBox extends Vue {
 
   translateFeatType(type: FeatType): TranslateResult {
     return this.$t(`feats.${type}`);
-  }
-
-  get featTypeOptions() {
-    return [
-      {
-        value: FeatType.Advantage,
-        text: this.translateFeatType(FeatType.Advantage),
-      },
-      {
-        value: FeatType.Disadvantage,
-        text: this.translateFeatType(FeatType.Disadvantage),
-      },
-    ];
   }
 }
 </script>

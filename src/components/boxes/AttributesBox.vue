@@ -9,7 +9,7 @@
         <text-input
           :label="$t('attributes.bod')"
           type="number"
-          v-model="bod"
+          v-model.number="bod"
           :rules="[rules.notNegative]"
         />
       </v-col>
@@ -21,7 +21,7 @@
         <text-input
           :label="$t('attributes.wil')"
           type="number"
-          v-model="wil"
+          v-model.number="wil"
           :rules="[rules.notNegative]"
         />
       </v-col>
@@ -33,7 +33,7 @@
         <text-input
           :label="$t('attributes.ess')"
           :rules="[rules.essence, rules.notNegative]"
-          v-model="ess"
+          v-model.number="ess"
         />
       </v-col>
     </v-row>
@@ -46,7 +46,7 @@
         <text-input
           :label="$t('attributes.agi')"
           type="number"
-          v-model="agi"
+          v-model.number="agi"
           :rules="[rules.notNegative]"
         />
       </v-col>
@@ -58,7 +58,7 @@
         <text-input
           :label="$t('attributes.log')"
           type="number"
-          v-model="log"
+          v-model.number="log"
           :rules="[rules.notNegative]"
         />
       </v-col>
@@ -71,14 +71,14 @@
           v-if="isMage"
           :label="$t('attributes.mag')"
           type="number"
-          v-model="mag"
+          v-model.number="mag"
           :rules="[rules.notNegative]"
         />
         <text-input
           v-if="isTechnomancer"
           :label="$t('attributes.res')"
           type="number"
-          v-model="res"
+          v-model.number="res"
           :rules="[rules.notNegative]"
         />
       </v-col>
@@ -92,7 +92,7 @@
         <text-input
           :label="$t('attributes.rea')"
           type="number"
-          v-model="rea"
+          v-model.number="rea"
           :rules="[rules.notNegative]"
         />
       </v-col>
@@ -104,7 +104,7 @@
         <text-input
           :label="$t('attributes.int')"
           type="number"
-          v-model="int"
+          v-model.number="int"
           :rules="[rules.notNegative]"
         />
       </v-col>
@@ -117,7 +117,7 @@
         <initiative-input
           :label="$t('attributes.ini')"
           :base="iniBase"
-          baseReadOnly
+          base-read-only
           :dice="iniDice"
         />
       </v-col>
@@ -131,7 +131,7 @@
         <text-input
           :label="$t('attributes.str')"
           type="number"
-          v-model="str"
+          v-model.number="str"
           :rules="[rules.notNegative]"
         />
       </v-col>
@@ -143,7 +143,7 @@
         <text-input
           :label="$t('attributes.cha')"
           type="number"
-          v-model="cha"
+          v-model.number="cha"
           :rules="[rules.notNegative]"
         />
       </v-col>
@@ -170,7 +170,7 @@
         <text-input
           :label="$t('attributes.edg')"
           type="number"
-          v-model="edg"
+          v-model.number="edg"
           :rules="[rules.notNegative]"
         />
       </v-col>
@@ -185,7 +185,7 @@
           tick-size="4"
           min="0"
           max="7"
-          v-model="currentEdge"
+          v-model.number="currentEdge"
           dense
           hide-details
         />
@@ -262,7 +262,7 @@
       >
         <text-input
           :label="$t('attributes.movement')"
-          v-model="movement"
+          v-model.number="movement"
           :rules="[rules.notNegative]"
         />
       </v-col>

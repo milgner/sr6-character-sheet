@@ -9,7 +9,7 @@
         <text-input
           :label="$t('matrix.attack')"
           type="number"
-          v-model="attack"
+          v-model.number="attack"
         />
       </v-col>
       <v-col
@@ -20,7 +20,7 @@
         <text-input
           :label="$t('matrix.sleaze')"
           type="number"
-          v-model="sleaze"
+          v-model.number="sleaze"
         />
       </v-col>
       <v-col
@@ -31,7 +31,7 @@
         <text-input
           :label="$t('matrix.dataProcessing')"
           type="number"
-          v-model="dataProcessing"
+          v-model.number="dataProcessing"
         />
       </v-col>
       <v-col
@@ -42,7 +42,7 @@
         <text-input
           :label="$t('matrix.firewall')"
           type="number"
-          v-model="firewall"
+          v-model.number="firewall"
         />
       </v-col>
     </v-row>
@@ -56,7 +56,7 @@
       <v-col cols="4">
         <text-input
           :label="$t('matrix.deviceRating')"
-          v-model="deviceRating"
+          v-model.number="deviceRating"
         />
       </v-col>
     </v-row>
@@ -86,7 +86,7 @@
           :label="$t('matrix.damageMonitor')"
           :max-value="totalHealth"
           :damage-modifier="damageModifier"
-          v-model="damage"
+          v-model.number="damage"
           full-icon="mdi-tablet-dashboard"
           empty-icon="mdi-tablet"
         />

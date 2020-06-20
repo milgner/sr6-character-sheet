@@ -19,7 +19,7 @@
           dense
           type="number"
           :label="$t('rating')"
-          v-model="item.rating"
+          v-model.number="item.rating"
         />
       </v-col>
     </v-row>

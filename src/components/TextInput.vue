@@ -33,7 +33,7 @@ const TextInputProps = Vue.extend({
     suffix: String,
     appendIcon: String,
     prependIcon: String,
-    value: String,
+    value: [String, Number],
     unavailable: Boolean,
     readonly: Boolean,
   },

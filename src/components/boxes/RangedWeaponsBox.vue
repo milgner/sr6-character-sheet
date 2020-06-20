@@ -34,7 +34,7 @@
           <v-text-field
             dense
             type="number"
-            v-model="item.damageValue"
+            v-model.number="item.damageValue"
             :label="$t('weapons.damage')"
           />
         </v-col>
@@ -50,7 +50,7 @@
           <v-text-field
             dense
             type="number"
-            v-model="item.ammoCount"
+            v-model.number="item.ammoCount"
             :label="$t('rangedWeapons.ammoCount')"
           />
         </v-col>
@@ -68,7 +68,7 @@
           <v-text-field
             dense
             type="number"
-            v-model="item.close"
+            v-model.number="item.close"
             :label="$t('rangedWeapons.ranges.close')"
           />
         </v-col>
@@ -76,7 +76,7 @@
           <v-text-field
             dense
             type="number"
-            v-model="item.near"
+            v-model.number="item.near"
             :label="$t('rangedWeapons.ranges.near')"
           />
         </v-col>
@@ -84,7 +84,7 @@
           <v-text-field
             dense
             type="number"
-            v-model="item.medium"
+            v-model.number="item.medium"
             :label="$t('rangedWeapons.ranges.medium')"
           />
         </v-col>
@@ -92,7 +92,7 @@
           <v-text-field
             dense
             type="number"
-            v-model="item.far"
+            v-model.number="item.far"
             :label="$t('rangedWeapons.ranges.far')"
           />
         </v-col>
@@ -100,7 +100,7 @@
           <v-text-field
             dense
             type="number"
-            v-model="item.extreme"
+            v-model.number="item.extreme"
             :label="$t('rangedWeapons.ranges.extreme')"
           />
         </v-col>

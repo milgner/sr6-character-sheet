@@ -10,7 +10,7 @@
           full-icon="mdi-heart"
           label="Körperlich"
           size="32"
-          v-model="physicalDamage"
+          v-model.number="physicalDamage"
         />
       </v-col>
     </v-row>
@@ -24,7 +24,7 @@
           full-icon="mdi-head-heart"
           label="Betäubung"
           size="32"
-          v-model="stunDamage"
+          v-model.number="stunDamage"
         />
       </v-col>
     </v-row>

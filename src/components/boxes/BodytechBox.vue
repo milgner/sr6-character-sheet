@@ -19,14 +19,14 @@
           dense
           type="number"
           :label="$t('rating')"
-          v-model="item.rating"
+          v-model.number="item.rating"
         />
       </v-col>
       <v-col cols="2">
         <v-text-field
           dense
           :label="$t('attributes.ess')"
-          v-model="item.essence"
+          v-model.number="item.essence"
         />
       </v-col>
     </v-row>

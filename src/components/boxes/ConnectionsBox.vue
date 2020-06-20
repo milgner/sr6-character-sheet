@@ -30,7 +30,7 @@
           dense
           type="number"
           :label="$t('connections.loyalty')"
-          v-model="item.loyalty"
+          v-model.number="item.loyalty"
         />
       </v-col>
       <v-col cols="6">
@@ -38,7 +38,7 @@
           dense
           type="number"
           :label="$t('connections.influence')"
-          v-model="item.influence"
+          v-model.number="item.influence"
         />
       </v-col>
     </v-row>

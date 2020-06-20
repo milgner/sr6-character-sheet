@@ -39,7 +39,7 @@
         <text-input
           :label="$t('personalData.age')"
           type="number"
-          v-model="age"
+          v-model.number="age"
         />
       </v-col>
       <v-col
@@ -82,7 +82,7 @@
         <text-input
           :label="$t('personalData.reputation')"
           type="number"
-          v-model="reputation"
+          v-model.number="reputation"
         />
       </v-col>
       <v-col
@@ -93,7 +93,7 @@
         <text-input
           :label="$t('personalData.searchWarrantLevel')"
           type="number"
-          v-model="searchWarrantLevel"
+          v-model.number="searchWarrantLevel"
         />
       </v-col>
       <v-col
@@ -116,7 +116,7 @@
         <text-input
           :label="$t('personalData.totalKarma')"
           type="number"
-          v-model="totalKarma"
+          v-model.number="totalKarma"
         />
       </v-col>
     </v-row>

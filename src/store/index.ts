@@ -9,6 +9,7 @@ import BodytechStore from './BodytechStore';
 import ArmorStore from './ArmorStore';
 import EquipmentStore from './EquipmentStore';
 import FeatStore from './FeatStore';
+import ConnectionStore from './ConnectionStore';
 
 Vue.use(Vuex);
 
@@ -142,6 +143,7 @@ export default new Vuex.Store({
     armor: ArmorStore,
     equipment: EquipmentStore,
     feats: FeatStore,
+    connections: ConnectionStore,
   },
   getters: {
     boxesByCategory() {

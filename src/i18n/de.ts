@@ -125,5 +125,22 @@ export default {
     type: 'Art',
     advantage: 'Vorteil',
     disadvantage: 'Nachteil',
+    addDialog: {
+      title: 'Vor-/Nachteil hinzufügen',
+    },
+    updateDialog: {
+      title: 'Vor-/Nachteil bearbeiten',
+    },
+  },
+  connections: {
+    description: 'Beschreibung',
+    loyalty: 'Loyalität',
+    influence: 'Einfluss',
+    addDialog: {
+      title: 'Kontakt hinzufügen',
+    },
+    updateDialog: {
+      title: 'Kontakt bearbeiten',
+    },
   },
 };

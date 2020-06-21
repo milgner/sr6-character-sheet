@@ -1,10 +1,5 @@
+import { FeatType } from '@/model';
 import ItemListStoreMutations from './ItemListStoreMutations';
-
-
-export enum FeatType {
-  advantage= 'advantage',
-  disadvantage = 'disadvantage',
-}
 
 const initialState = {
   items: [
@@ -46,7 +41,6 @@ const initialState = {
     },
   ],
 };
-
 
 const FeatStore = {
   namespaced: true,

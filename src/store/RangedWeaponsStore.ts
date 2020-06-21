@@ -1,19 +1,5 @@
+import { AmmoType, DamageType } from '@/model';
 import ItemListStoreMutations from './ItemListStoreMutations';
-
-export enum DamageType {
-  physical = 'P',
-  stun = 'S',
-}
-
-export enum AmmoType {
-  breakAction = 'b',
-  clip = 'c',
-  drum = 'd',
-  muzzleLoader = 'ml',
-  internal = 'm',
-  cylinder = 'cy',
-  belt = 'belt',
-}
 
 const initialState = {
   items: [
@@ -33,7 +19,6 @@ const initialState = {
     },
   ],
 };
-
 
 const RangedWeaponsStore = {
   namespaced: true,

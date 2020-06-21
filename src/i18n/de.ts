@@ -2,6 +2,7 @@ export default {
   name: 'Name',
   rating: 'Stufe',
   notes: 'Anmerkung',
+  dicePool: '# Würfel',
 
   dialogs: {
     add: 'Hinzufügen',
@@ -24,6 +25,7 @@ export default {
     BodytechBox: 'Bodytech',
     ArmorBox: 'Panzerung',
   },
+  attribute: 'Attribut',
   attributes: {
     str: 'Stärke',
     bod: 'Konstitution',
@@ -186,6 +188,49 @@ export default {
     },
     updateDialog: {
       title: 'Fernkampfwaffe bearbeiten',
+    },
+  },
+  skills: {
+    level: 'Stufe',
+    actionSkills: 'Aktionsfertigkeiten',
+    knowledgeSkills: 'Wissensfertigkeiten',
+    types: {
+      action: 'Aktionsfertigkeit',
+      language: 'Sprache',
+      knowledge: 'Wissensfertigkeit',
+    },
+    languageRating: {
+      fluid: 'Gelernt',
+      native: 'Muttersprache',
+      specialized: 'Spezialisiert',
+      expert: 'Experte',
+    },
+    skills: {
+      astral: 'Astral',
+      athletics: 'Athletik',
+      biotech: 'Biotech',
+      closeCombat: 'Nahkampf',
+      con: 'Überreden',
+      conjuring: 'Beschwören',
+      cracking: 'Cracken',
+      electronics: 'Elektronik',
+      enchanting: 'Verzaubern',
+      engineering: 'Mechanik',
+      firearms: 'Feuerwaffen',
+      influence: 'Einfluss',
+      outdoors: 'Natur',
+      perception: 'Wahrnehmung',
+      piloting: 'Steuern',
+      sorcery: 'Verzaubern',
+      stealth: 'Heimlichkeit',
+      tasking: 'Tasken',
+      exoticWeapons: 'Exotische Waffen',
+    },
+    addDialog: {
+      title: 'Fertigkeit hinzufügen',
+    },
+    updateDialog: {
+      title: 'Fertigkeit bearbeiten',
     },
   },
 };

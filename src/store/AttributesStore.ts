@@ -1,5 +1,5 @@
 import { simpleUpdaters } from '@/store/util';
-import { CharacterType } from '@/store/PersonalDataStore';
+import { CharacterType } from '@/model';
 
 const initialState = {
   bod: 3,

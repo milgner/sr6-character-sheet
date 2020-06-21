@@ -11,6 +11,7 @@ import EquipmentStore from './EquipmentStore';
 import FeatStore from './FeatStore';
 import ConnectionStore from './ConnectionStore';
 import RangedWeaponsStore from './RangedWeaponsStore';
+import SkillsStore from './SkillsStore';
 
 Vue.use(Vuex);
 
@@ -146,6 +147,7 @@ export default new Vuex.Store({
     feats: FeatStore,
     connections: ConnectionStore,
     rangedWeapons: RangedWeaponsStore,
+    skills: SkillsStore,
   },
   getters: {
     boxesByCategory() {

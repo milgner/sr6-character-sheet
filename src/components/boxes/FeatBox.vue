@@ -43,7 +43,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import DataTableWithDialog from '@/components/DataTableWithDialog.vue';
 import { mapModelLike } from '@/store/util';
-import { FeatType } from '@/store/FeatStore';
+import { FeatType } from '@/model';
 import VueI18n from 'vue-i18n';
 import { translatedEnumOptions } from '@/i18n';
 

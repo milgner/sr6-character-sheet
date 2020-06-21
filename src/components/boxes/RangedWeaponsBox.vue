@@ -113,8 +113,9 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import DataTableWithDialog from '@/components/DataTableWithDialog.vue';
 import { mapModelLike } from '@/store/util';
-import { DamageType, AmmoType } from '@/store/RangedWeaponsStore';
+
 import { reversedEnum, translatedEnumOptions } from '@/i18n';
+import { AmmoType, DamageType } from '@/model';
 
 @Component({
   components: { DataTableWithDialog },
@@ -126,12 +127,12 @@ export default class RangedWeaponsBox extends Vue {
   ammoTypes = translatedEnumOptions(AmmoType, 'rangedWeapons.ammoTypes');
 
   displayDamage(weapon: any) {
-    const damageMnemo = this.$t(`weapons.damageTypes.${reversedEnum(DamageType)[weapon.damageType]}`)[0];
+    const damageMnemo = this.$t(`weapons.damageTypes.${reversedEnum(DamageType)[weapon.damageType]}`).toString()[0];
     return `${weapon.damageValue}${damageMnemo}`;
   }
 
   displayAmmo(weapon: any) {
-    const ammoTypeMnemo = this.$t(`rangedWeapons.ammoTypeMnemonics.${reversedEnum(AmmoType)[weapon.ammoType]}`)[0];
+    const ammoTypeMnemo = this.$t(`rangedWeapons.ammoTypeMnemonics.${reversedEnum(AmmoType)[weapon.ammoType]}`).toString()[0];
     return `${weapon.ammoCount}${ammoTypeMnemo}`;
   }
 

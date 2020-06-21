@@ -1,10 +1,5 @@
 import { simpleUpdaters } from '@/store/util';
-
-export enum CharacterType {
-  Mundane = 'mundane',
-  AwakenedMage = 'mage',
-  AwakenedTechnomancer = 'technomancer',
-}
+import { CharacterType } from '@/model';
 
 const initialState = {
   name: 'Fizzbuzz (Xavier Devereaux)',

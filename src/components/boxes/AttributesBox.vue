@@ -278,7 +278,7 @@ import TextInput from '@/components/TextInput.vue';
 import InitiativeInput from '@/components/InitiativeInput.vue';
 import { mapModelLike } from '@/store/util';
 import { mapGetters } from 'vuex';
-import { CharacterType } from '@/store/PersonalDataStore';
+import { CharacterType } from '@/model';
 
 const AttributesBoxProps = Vue.extend({
   components: { InitiativeInput, TextInput },

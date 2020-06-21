@@ -141,9 +141,7 @@ export default class DataTableWithDialog extends Vue {
   openAddItemDialog() {
     const data = this.$data;
     data.editingItem = null;
-    Object.entries(this.$store.getters[`${this.scope}/newItem`]).forEach(([k, v]) => {
-      data.itemData[k] = v;
-    });
+    data.itemData = Vue.observable(this.$store.getters[`${this.scope}/newItem`]);
     data.dialog = true;
   }
 
@@ -159,7 +157,7 @@ export default class DataTableWithDialog extends Vue {
 
   editItem(item: any) {
     this.$data.editingItem = item.id;
-    Object.assign(this.$data.itemData, item);
+    this.$data.itemData = Vue.observable({ ...item });
     this.$data.dialog = true;
   }
 
@@ -168,7 +166,3 @@ export default class DataTableWithDialog extends Vue {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

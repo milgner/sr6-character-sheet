@@ -47,6 +47,8 @@ export default {
     memory: 'Erinnerungsvermögen',
     carryLift: 'Heben/Tragen',
     movement: 'Bewegung',
+    defense: 'Verteidigungswert',
+    attackUnarmed: 'Angriffswert waffenlos',
   },
   personalData: {
     name: 'Name / Primärer Deckname',

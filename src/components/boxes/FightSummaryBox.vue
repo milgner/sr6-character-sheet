@@ -1,25 +1,21 @@
 <template>
   <v-row>
     <v-col
-      cols="12"
-      sm="12"
-      md="6"
+      cols="6"
     >
       <text-input
-        label="Angriffswert waffenlos"
+        :label="$t('attributes.attackUnarmed')"
         type="number"
-        value="7"
+        v-model.number="attackUnarmed"
       />
     </v-col>
     <v-col
-      cols="12"
-      sm="12"
-      md="6"
+      cols="6"
     >
       <text-input
-        label="Verteidigungswert"
+        :label="$t('attributes.defense')"
         type="number"
-        value="7"
+        v-model.number="defense"
       />
     </v-col>
   </v-row>
@@ -28,9 +24,11 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import TextInput from '@/components/TextInput.vue';
+import { mapModelLike } from '@/store/util';
 
 @Component({
   components: { TextInput },
+  computed: mapModelLike('attributes', ['attackUnarmed', 'defense']),
 })
 export default class FightSummaryBox extends Vue {
 }

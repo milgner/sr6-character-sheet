@@ -17,6 +17,8 @@ const initialState = {
   iniDice: 1,
   movement: 10,
   currentEdge: 5,
+  attackUnarmed: 7,
+  defense: 7,
 };
 
 const AttributesStore = {

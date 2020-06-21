@@ -14,7 +14,7 @@ export default {
     Object.assign(state.items[index], data);
   },
   addItem(state: any, item: any) {
-    const id = state.items[state.items.length - 1].id + 1;
+    const id = state.items.length === 0 ? 0 : state.items[state.items.length - 1].id + 1;
     state.items.push({ ...item, id });
   },
 };

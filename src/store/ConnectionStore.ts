@@ -1,36 +1,19 @@
 import ItemListStoreMutations from './ItemListStoreMutations';
 
-const initialState = {
-  items: [
-    {
-      id: 0,
-      name: 'Todd',
-      description: 'Mr. Johnson',
-      loyalty: 1,
-      influence: 2,
-    },
-    {
-      id: 1,
-      name: 'Sallie',
-      description: 'Schieber',
-      loyalty: 2,
-      influence: 3,
-    },
-    {
-      id: 2,
-      name: 'Auguste',
-      description: 'Drogendealer',
-      loyalty: 3,
-      influence: 2,
-    },
-    {
-      id: 3,
-      name: 'Sam',
-      description: 'Barkeep',
-      loyalty: 2,
-      influence: 1,
-    },
-  ],
+interface Connection {
+  id: number | null;
+  name: string;
+  description: string;
+  loyalty: number;
+  influence: number;
+}
+
+interface ConnectionState {
+  items: Connection[];
+}
+
+const initialState: ConnectionState = {
+  items: [],
 };
 
 
@@ -39,7 +22,7 @@ const ConnectionStore = {
   state: initialState,
   mutations: ItemListStoreMutations,
   getters: {
-    newItem() {
+    newItem(): Connection {
       return {
         id: null,
         name: '',

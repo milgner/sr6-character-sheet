@@ -1,14 +1,29 @@
 import { simpleUpdaters } from '@/store/util';
 import { CharacterType } from '@/model';
 
-const initialState = {
-  name: 'Fizzbuzz (Xavier Devereaux)',
-  metaType: 'Mensch',
-  ethnicity: 'Kaukasisch',
-  age: 25,
-  gender: 'Männlich',
-  height: '1.74m',
-  weight: '65kg',
+interface PersonalDataState {
+  name: string;
+  metaType: string;
+  ethnicity: string;
+  age: number;
+  gender: string;
+  height: string;
+  weight: string;
+  reputation: number;
+  searchWarrantLevel: number;
+  spentKarma: number;
+  totalKarma: number;
+  characterType: CharacterType;
+}
+
+const initialState: PersonalDataState = {
+  name: '',
+  metaType: '',
+  ethnicity: '',
+  age: 0,
+  gender: '',
+  height: '',
+  weight: '',
   reputation: 0,
   searchWarrantLevel: 0,
   spentKarma: 0,

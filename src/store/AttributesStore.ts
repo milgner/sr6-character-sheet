@@ -1,24 +1,43 @@
 import { simpleUpdaters } from '@/store/util';
 import { CharacterType } from '@/model';
 
-const initialState = {
-  bod: 3,
-  agi: 3,
-  rea: 5,
-  str: 2,
-  wil: 5,
-  log: 8,
-  int: 5,
-  cha: 3,
-  edg: 5,
+interface AttributesState {
+  bod: number;
+  agi: number;
+  rea: number;
+  str: number;
+  wil: number;
+  log: number;
+  int: number;
+  cha: number;
+  edg: number;
+  mag: number;
+  res: number;
+  ess: number;
+  iniDice: number;
+  movement: number;
+  currentEdge: number;
+  attackUnarmed: number;
+  defense: number;
+}
+const initialState: AttributesState = {
+  bod: 0,
+  agi: 0,
+  rea: 0,
+  str: 0,
+  wil: 0,
+  log: 0,
+  int: 0,
+  cha: 0,
+  edg: 0,
   mag: 0,
   res: 0,
-  ess: 3.3,
+  ess: 6,
   iniDice: 1,
   movement: 10,
-  currentEdge: 5,
-  attackUnarmed: 7,
-  defense: 7,
+  currentEdge: 0,
+  attackUnarmed: 0,
+  defense: 0,
 };
 
 const AttributesStore = {

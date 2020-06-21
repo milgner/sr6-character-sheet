@@ -1,22 +1,26 @@
 import { simpleUpdaters } from '@/store/util';
 
-const initialState = {
+interface MatrixState {
+  simHot: boolean;
+  attack: number;
+  sleaze: number;
+  dataProcessing: number;
+  firewall: number;
+  deviceName: string;
+  deviceRating: number;
+  programs: string[];
+  damage: number;
+}
+
+const initialState: MatrixState = {
   simHot: false,
-  attack: 6,
-  sleaze: 5,
-  dataProcessing: 7,
-  firewall: 6,
-  deviceName: 'MCT 360',
-  deviceRating: 3,
-  programs: [
-    'Ausnutzen',
-    'Panzerung',
-    'Tarnkappe',
-    'Blackout',
-    'Babymonitor',
-    'Schmöker',
-    'Editieren',
-  ],
+  attack: 0,
+  sleaze: 0,
+  dataProcessing: 0,
+  firewall: 0,
+  deviceName: '',
+  deviceRating: 0,
+  programs: [],
   damage: 0,
 };
 

@@ -1,23 +1,27 @@
 import { AmmoType, DamageType } from '@/model';
 import ItemListStoreMutations from './ItemListStoreMutations';
 
-const initialState = {
-  items: [
-    {
-      id: 0,
-      name: 'Ares Predator VI',
-      damageValue: 3,
-      damageType: DamageType.physical,
-      mode: 'HM/SM',
-      close: 10,
-      near: 10,
-      medium: 8,
-      far: 0,
-      extreme: 0,
-      ammoCount: 15,
-      ammoType: AmmoType.clip,
-    },
-  ],
+interface RangedWeapon {
+  id: number | null;
+  name: string;
+  damageValue: number;
+  damageType: DamageType;
+  mode: string;
+  close: number;
+  near: number;
+  medium: number;
+  far: number;
+  extreme: number;
+  ammoCount: number;
+  ammoType: AmmoType;
+}
+
+interface RangedWeaponsState {
+  items: RangedWeapon[];
+}
+
+const initialState: RangedWeaponsState = {
+  items: [],
 };
 
 const RangedWeaponsStore = {
@@ -25,7 +29,7 @@ const RangedWeaponsStore = {
   state: initialState,
   mutations: ItemListStoreMutations,
   getters: {
-    newItem() {
+    newItem(): RangedWeapon {
       return {
         id: null,
         name: '',

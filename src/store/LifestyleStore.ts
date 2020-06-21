@@ -1,9 +1,15 @@
 import { simpleUpdaters } from './util';
 
-const initialState = {
-  primaryLifestyle: 'Squatter',
-  nuyen: 35,
-  idsAndLicenses: 'Falsche SIN (4)',
+interface LifestyleState {
+  primaryLifestyle: string;
+  nuyen: number;
+  idsAndLicenses: string;
+}
+
+const initialState: LifestyleState = {
+  primaryLifestyle: '',
+  nuyen: 0,
+  idsAndLicenses: '',
 };
 
 const LifestyleStore = {

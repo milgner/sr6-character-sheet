@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import VuexPersistence from 'vuex-persist';
+
 import boxes from '@/components/boxes';
 import AttributesStore from './AttributesStore';
 import PersonalDataStore from './PersonalDataStore';
@@ -16,7 +18,26 @@ import LifestyleStore from './LifestyleStore';
 
 Vue.use(Vuex);
 
+const vuexLocal = new VuexPersistence({
+  storage: window.localStorage,
+  key: 'sr6Character',
+});
+
+interface BoxState {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  i: number;
+  type: string;
+}
+
+interface RootState {
+  layout: BoxState[];
+}
+
 export default new Vuex.Store({
+  plugins: [vuexLocal.plugin],
   state: {
     layout: [
       {
@@ -31,7 +52,7 @@ export default new Vuex.Store({
         x: 0,
         y: 6,
         w: 6,
-        h: 9,
+        h: 10,
         i: 1,
         type: 'AttributesBox',
       }, {
@@ -73,7 +94,7 @@ export default new Vuex.Store({
         x: 6,
         y: 19,
         w: 6,
-        h: 6,
+        h: 8,
         i: 7,
         type: 'ConnectionsBox',
       }, {
@@ -104,13 +125,6 @@ export default new Vuex.Store({
         h: 5,
         i: 12,
         type: 'ArmorBox',
-      }, {
-        x: 6,
-        y: 22,
-        w: 6,
-        h: 8,
-        i: 13,
-        type: 'MatrixStatsBox',
       },
     ],
   },

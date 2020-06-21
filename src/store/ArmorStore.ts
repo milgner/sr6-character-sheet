@@ -1,19 +1,18 @@
 import ItemListStoreMutations from './ItemListStoreMutations';
 
-const initialState = {
-  items: [
-    {
-      id: 0,
-      name: 'Ballistische Maske',
-      rating: 1,
-      notes: 'Programmierbare Tarnung',
-    }, {
-      id: 1,
-      name: 'Gefütterter Mantel',
-      rating: 3,
-      notes: 'Programmierbare Tarnung, Getarnte Magazintasche',
-    },
-  ],
+interface Armor {
+  id: number | null;
+  name: string;
+  rating: number;
+  notes: string;
+}
+
+interface ArmorState {
+  items: Armor[];
+}
+
+const initialState: ArmorState = {
+  items: [],
 };
 
 const ArmorStore = {
@@ -21,7 +20,7 @@ const ArmorStore = {
   state: initialState,
   mutations: ItemListStoreMutations,
   getters: {
-    newItem() {
+    newItem(): Armor {
       return {
         id: null,
         name: '',

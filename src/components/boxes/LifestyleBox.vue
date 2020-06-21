@@ -3,22 +3,22 @@
     <v-row>
       <v-col md="6">
         <text-input
-          label="Primärer Lebensstil"
-          value="Squatter"
+          :label="$t('lifestyle.primaryLifestyle')"
+          v-model="primaryLifestyle"
         />
       </v-col>
       <v-col md="6">
         <text-input
-          label="Nuyen"
-          value="35"
+          :label="$t('lifestyle.nuyen')"
+          v-model="nuyen"
         />
       </v-col>
     </v-row>
     <v-row>
       <v-col md="12">
         <v-textarea
-          label="IDs, Lizenzen"
-          value="Falsche SIN (4)"
+          :label="$t('lifestyle.idsAndLicenses')"
+          v-model="idsAndLicenses"
           rows="3"
           hide-details
         />
@@ -30,9 +30,11 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import TextInput from '@/components/TextInput.vue';
+import { mapModelLike } from '@/store/util';
 
 @Component({
   components: { TextInput },
+  computed: mapModelLike('lifestyle', ['primaryLifestyle', 'nuyen', 'idsAndLicenses']),
 })
 export default class LifestyleBox extends Vue {
 }

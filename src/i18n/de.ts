@@ -233,4 +233,9 @@ export default {
       title: 'Fertigkeit bearbeiten',
     },
   },
+  lifestyle: {
+    primaryLifestyle: 'Primärer Lebensstil',
+    idsAndLicenses: 'IDs & Lizenzen',
+    nuyen: 'Nuyen',
+  },
 };

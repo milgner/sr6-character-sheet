@@ -151,6 +151,9 @@ export default new Vuex.Store({
         type: boxType,
       });
     },
+    updateLayout(state, layout) {
+      state.layout = layout;
+    },
   },
   actions: {
   },
@@ -172,7 +175,7 @@ export default new Vuex.Store({
     availableBoxes(store: any) {
       const allTypes = Object.entries(boxes)
         .map(([k, v]) => k) as BoxType[];
-      return allTypes.filter((type: BoxType) => !!(boxes[type].allowMultiple)
+      return allTypes.filter((type: BoxType) => !!((boxes[type] as any).allowMultiple)
           || !store.layout.some((e: any) => e.type === type));
     },
   },

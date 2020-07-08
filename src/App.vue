@@ -25,7 +25,8 @@
     <v-content>
       <v-sheet>
         <grid-layout
-          :layout.sync="layout"
+          @layout-updated="onLayoutUpdated"
+          :layout="layout"
           :col-num="12"
           :row-height="30"
           :vertical-compact="true"
@@ -49,7 +50,8 @@
         </grid-layout>
       </v-sheet>
     </v-content>
-    <add-box-dialog :active="dialog" :boxes="availableBoxes"
+    <add-box-dialog :active="dialog"
+                    :boxes="availableBoxes"
                     @close="onDialogClosed"
                     @input="onBoxAddSubmitted"
                     v-if="availableBoxes"/>
@@ -62,13 +64,13 @@
 </style>
 <script lang="ts">
 import Vue from 'vue';
-import { mapState } from 'vuex';
 import Component from 'vue-class-component';
 import VueGridLayout from 'vue-grid-layout';
 
 import SheetBox from '@/components/boxes/SheetBox.vue';
 import AddBoxDialog from '@/components/AddBoxDialog.vue';
 import { BoxType } from '@/store';
+import { Watch } from 'vue-property-decorator';
 
 @Component({
   components: {
@@ -77,19 +79,40 @@ import { BoxType } from '@/store';
     GridLayout: VueGridLayout.GridLayout,
     GridItem: VueGridLayout.GridItem,
   },
-  computed:
-    {
-      ...mapState(['layout']),
-    },
 })
 export default class App extends Vue {
   dialog = false;
+
+  layout = [];
+
+  created() {
+    this.layout = this.layoutFromStore;
+  }
+
+  get layoutFromStore() {
+    return this.$store.state.layout;
+  }
+
+  set layoutFromStore(layout) {
+    this.$store.commit('updateLayout', layout);
+  }
+
+  @Watch('layoutFromStore')
+  onLayoutFromStoreChanged(val: any, oldVal: any) {
+    if (val) {
+      this.layout = JSON.parse(JSON.stringify(this.layoutFromStore));
+    }
+  }
 
   get availableBoxes() {
     return this.$store.getters.availableBoxes.map((boxName: string) => ({
       text: this.$t(`boxes.${boxName}`),
       value: boxName,
     }));
+  }
+
+  onLayoutUpdated(newLayout: any) {
+    this.$store.commit('updateLayout', newLayout);
   }
 
   onBoxAddSubmitted(boxType: BoxType) {

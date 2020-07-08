@@ -108,6 +108,8 @@ import {
     },
   })
 export default class SkillsBox extends Vue {
+  static defaultHeight = 10;
+
   get activeHeaders() {
     return [{
       text: this.$t('name'),

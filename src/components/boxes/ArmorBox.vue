@@ -46,6 +46,8 @@ import DataTableWithDialog from '@/components/DataTableWithDialog.vue';
   computed: mapModelLike('armor', ['items']),
 })
 export default class ArmorBox extends Vue {
+  static defaultHeight = 5;
+
   get headers() {
     return [{
       text: this.$t('name'),

@@ -315,6 +315,8 @@ const AttributesBoxProps = Vue.extend({
 });
 
 export default class AttributesBox extends AttributesBoxProps {
+  static defaultHeight = 10;
+
   rules = {
     essence: (value: string) => /^\d([\\.,]\d{1,2})?$/.test(value) || 'Ungültiger Wert',
     notNegative: (value: string) => {
@@ -331,6 +333,5 @@ export default class AttributesBox extends AttributesBoxProps {
     return this.$store.state.personalData.characterType === CharacterType.AwakenedTechnomancer;
   }
 }
-
 
 </script>

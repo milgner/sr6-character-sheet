@@ -49,17 +49,10 @@
         </grid-layout>
       </v-sheet>
     </v-content>
-    <v-dialog v-model="dialog">
-      <v-card>
-        <v-card-text>
-          <v-select>Schalala</v-select>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn text color="primary" @click="dialog = false">Hinzufügen</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <add-box-dialog :active="dialog" :boxes="availableBoxes"
+                    @close="onDialogClosed"
+                    @input="onBoxAddSubmitted"
+                    v-if="availableBoxes"/>
   </v-app>
 </template>
 <style lang="scss">
@@ -74,20 +67,38 @@ import Component from 'vue-class-component';
 import VueGridLayout from 'vue-grid-layout';
 
 import SheetBox from '@/components/boxes/SheetBox.vue';
-
+import AddBoxDialog from '@/components/AddBoxDialog.vue';
+import { BoxType } from '@/store';
 
 @Component({
   components: {
+    AddBoxDialog,
     SheetBox,
     GridLayout: VueGridLayout.GridLayout,
     GridItem: VueGridLayout.GridItem,
   },
-  computed: mapState([
-    'layout',
-  ]),
+  computed:
+    {
+      ...mapState(['layout']),
+    },
 })
 export default class App extends Vue {
   dialog = false;
+
+  get availableBoxes() {
+    return this.$store.getters.availableBoxes.map((boxName: string) => ({
+      text: this.$t(`boxes.${boxName}`),
+      value: boxName,
+    }));
+  }
+
+  onBoxAddSubmitted(boxType: BoxType) {
+    this.$store.commit('addBox', boxType);
+  }
+
+  onDialogClosed() {
+    this.dialog = false;
+  }
 }
 
 </script>

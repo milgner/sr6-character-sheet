@@ -1,4 +1,3 @@
-
 type updateItemParams = {
   id: number;
   data: object;

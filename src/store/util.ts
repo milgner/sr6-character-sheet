@@ -13,7 +13,7 @@ function propertyUpdater(key: string) {
 }
 
 export function simpleUpdaters(shape: any) {
-  return Object.entries(shape).reduce((acc: any, [key, value]) => {
+  return Object.entries(shape).reduce((acc: any, [key]) => {
     acc[propertyUpdater(key)] = updateAttribute(key);
     return acc;
   }, {});

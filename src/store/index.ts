@@ -23,6 +23,8 @@ const vuexLocal = new VuexPersistence({
   key: 'sr6Character',
 });
 
+export type BoxType = keyof (typeof boxes);
+
 interface BoxState {
   x: number;
   y: number;
@@ -129,7 +131,7 @@ export default new Vuex.Store({
     ],
   },
   mutations: {
-    addBox(state, boxType) {
+    addBox(state, boxType: BoxType) {
       let x = 0;
       const maxY = state.layout.reduce((a, e) => {
         const y = e.y + e.h;
@@ -142,7 +144,8 @@ export default new Vuex.Store({
       state.layout.push({
         x,
         y: maxY,
-        h: boxType.defaultHeight,
+        // FIXME: improve type declaration
+        h: boxes[boxType].defaultHeight,
         i: state.layout.length + 1,
         w: 6,
         type: boxType,
@@ -166,12 +169,11 @@ export default new Vuex.Store({
     lifestyle: LifestyleStore,
   },
   getters: {
-    boxesByCategory() {
-      return Object.entries(boxes).filter(([k, v]) => k === 'true');
-    },
-
-    availableBoxes() {
-      return {};
+    availableBoxes(store: any) {
+      const allTypes = Object.entries(boxes)
+        .map(([k, v]) => k) as BoxType[];
+      return allTypes.filter((type: BoxType) => !!(boxes[type].allowMultiple)
+          || !store.layout.some((e: any) => e.type === type));
     },
   },
 });

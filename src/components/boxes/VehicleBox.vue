@@ -7,5 +7,6 @@ import Component from 'vue-class-component';
 
 @Component
 export default class VehicleBox extends Vue {
+  static defaultHeight = 6;
 }
 </script>

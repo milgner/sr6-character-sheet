@@ -37,5 +37,6 @@ import { mapModelLike } from '@/store/util';
   computed: mapModelLike('lifestyle', ['primaryLifestyle', 'nuyen', 'idsAndLicenses']),
 })
 export default class LifestyleBox extends Vue {
+  static defaultHeight = 6;
 }
 </script>

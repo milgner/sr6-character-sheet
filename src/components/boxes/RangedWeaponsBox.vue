@@ -122,6 +122,8 @@ import { AmmoType, DamageType } from '@/model';
   computed: mapModelLike('rangedWeapons', ['items']),
 })
 export default class RangedWeaponsBox extends Vue {
+  static defaultHeight = 5;
+
   damageTypes = translatedEnumOptions(DamageType, 'weapons.damageTypes');
 
   ammoTypes = translatedEnumOptions(AmmoType, 'rangedWeapons.ammoTypes');

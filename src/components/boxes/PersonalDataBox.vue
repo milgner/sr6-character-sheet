@@ -154,8 +154,6 @@ const PersonalDataBoxProps = Vue.extend({
 
 export default class PersonalDataBox extends PersonalDataBoxProps {
   static defaultHeight = 6;
-
-  static multiple = false;
 }
 
 </script>

@@ -53,5 +53,6 @@ import { mapModelLike } from '@/store/util';
   },
 })
 export default class HealthMonitorBox extends Vue {
+  static defaultHeight = 6;
 }
 </script>

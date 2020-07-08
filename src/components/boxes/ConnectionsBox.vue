@@ -55,6 +55,8 @@ import { mapModelLike } from '@/store/util';
   computed: mapModelLike('connections', ['items']),
 })
 export default class ConnectionsBox extends Vue {
+  static defaultHeight = 8;
+
   get headers() {
     return [{
       text: this.$t('name'),

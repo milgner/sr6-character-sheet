@@ -16,7 +16,6 @@ const initialState: ConnectionState = {
   items: [],
 };
 
-
 const ConnectionStore = {
   namespaced: true,
   state: initialState,

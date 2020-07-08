@@ -36,6 +36,8 @@ import { mapModelLike } from '@/store/util';
   computed: mapModelLike('equipment', ['items']),
 })
 export default class EquipmentBox extends Vue {
+  static defaultHeight = 8;
+
   get headers() {
     return [
       {

@@ -17,6 +17,8 @@ import Component from 'vue-class-component';
 @Component({
 })
 export default class MeleeWeaponsBox extends Vue {
+  static defaultHeight = 6;
+
   headers = [{
     text: 'Name',
     align: 'start',

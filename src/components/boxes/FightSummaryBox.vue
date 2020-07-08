@@ -31,5 +31,6 @@ import { mapModelLike } from '@/store/util';
   computed: mapModelLike('attributes', ['attackUnarmed', 'defense']),
 })
 export default class FightSummaryBox extends Vue {
+  static defaultHeight = 3;
 }
 </script>

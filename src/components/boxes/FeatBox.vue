@@ -54,6 +54,8 @@ import TranslateResult = VueI18n.TranslateResult;
   computed: mapModelLike('feats', ['items']),
 })
 export default class FeatBox extends Vue {
+  static defaultHeight = 7;
+
   featTypeOptions = translatedEnumOptions(FeatType, 'feats');
 
   get headers() {

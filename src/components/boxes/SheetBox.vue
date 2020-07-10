@@ -3,15 +3,34 @@
     class="sheet-box"
     :height="height"
   >
+    <v-btn
+      v-show="showRemoveButton"
+      fab
+      x-small
+      class="remove-sheet-box"
+      @click.stop="onRemoveClicked"
+    >
+      <v-icon>mdi-close</v-icon>
+    </v-btn>
     <v-card-title>{{ $t(`boxes.${type}`) }}</v-card-title>
     <v-container>
-      <component :is="componentType" />
+      <component
+        :is="componentType"
+        v-bind="{ editMode: editMode }"
+      />
     </v-container>
   </v-card>
 </template>
 <style lang="scss">
   .sheet-box {
     overflow: auto;
+
+    .v-btn.remove-sheet-box {
+      position: fixed;
+      right: -1em;
+      top: -1em;
+      z-index: 1000;
+    }
 
     .v-card__title {
       padding-bottom: 0;
@@ -60,6 +79,7 @@ const boxes = require('@/components/boxes').default;
 const SheetBoxProps = Vue.extend({
   props: {
     height: [String, Number],
+    editMode: Boolean,
     type: {
       type: String,
       validator(value: string) {
@@ -75,9 +95,12 @@ export default class SheetBox extends SheetBoxProps {
     return (boxes as any)[this.$props.type];
   }
 
-  /* eslint-disable class-methods-use-this */
-  get boxes() {
-    return boxes;
+  get showRemoveButton() {
+    return this.$props.editMode && this.componentType.optional;
+  }
+
+  onRemoveClicked() {
+    this.$emit('remove');
   }
 }
 

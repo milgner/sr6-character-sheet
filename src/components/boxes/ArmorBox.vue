@@ -48,6 +48,8 @@ import DataTableWithDialog from '@/components/DataTableWithDialog.vue';
 export default class ArmorBox extends Vue {
   static defaultHeight = 5;
 
+  static optional = true;
+
   get headers() {
     return [{
       text: this.$t('name'),

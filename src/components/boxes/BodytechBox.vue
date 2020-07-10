@@ -52,7 +52,9 @@ import DataTableWithDialog from '@/components/DataTableWithDialog.vue';
   computed: mapModelLike('bodytech', ['items']),
 })
 export default class BodytechBox extends Vue {
-  static defaultHeight = 4;
+  static defaultHeight = 4
+
+  static optional = true;
 
   get headers() {
     return [{

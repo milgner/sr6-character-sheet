@@ -2,6 +2,7 @@
   <data-table-with-dialog
     :headers="headers"
     :items="items"
+    :show-add-button="!editMode"
     item-key="id"
     scope="rangedWeapons"
   >
@@ -116,13 +117,18 @@ import { mapModelLike } from '@/store/util';
 
 import { reversedEnum, translatedEnumOptions } from '@/i18n';
 import { AmmoType, DamageType } from '@/model';
+import { Prop } from 'vue-property-decorator';
 
 @Component({
   components: { DataTableWithDialog },
   computed: mapModelLike('rangedWeapons', ['items']),
 })
 export default class RangedWeaponsBox extends Vue {
+  @Prop(Boolean) readonly editMode: boolean | undefined;
+
   static defaultHeight = 5;
+
+  static optional = true;
 
   damageTypes = translatedEnumOptions(DamageType, 'weapons.damageTypes');
 

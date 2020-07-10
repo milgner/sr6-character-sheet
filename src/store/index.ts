@@ -25,7 +25,7 @@ const vuexLocal = new VuexPersistence({
 
 export type BoxType = keyof (typeof boxes);
 
-interface BoxState {
+export interface BoxState {
   x: number;
   y: number;
   w: number;
@@ -36,6 +36,26 @@ interface BoxState {
 
 interface RootState {
   layout: BoxState[];
+}
+
+function determineNewItemCoordinates(layout: BoxState[]): [number, number] {
+  const columnMax: any = {};
+  layout.forEach((e: BoxState) => {
+    // if it's in a different "lane", where there's place in a higher spot, put it there
+    const topY = e.y + e.h;
+    if (columnMax[e.x] === undefined || columnMax[e.x] < topY) {
+      columnMax[e.x] = topY;
+    }
+  });
+  let bestY = 9999;
+  let bestX = 0;
+  Object.entries(columnMax).forEach(([x, y]) => {
+    if ((y as number) < bestY) {
+      bestY = y as number;
+      bestX = Number.parseInt(x, 10);
+    }
+  });
+  return [bestX, bestY];
 }
 
 export default new Vuex.Store({
@@ -132,18 +152,10 @@ export default new Vuex.Store({
   },
   mutations: {
     addBox(state, boxType: BoxType) {
-      let x = 0;
-      const maxY = state.layout.reduce((a, e) => {
-        const y = e.y + e.h;
-        if (y > a) {
-          x = e.x;
-          return y;
-        }
-        return a;
-      }, 0);
+      const [x, y] = determineNewItemCoordinates(state.layout);
       state.layout.push({
         x,
-        y: maxY,
+        y,
         // FIXME: improve type declaration
         h: boxes[boxType].defaultHeight,
         i: state.layout.length + 1,
@@ -177,6 +189,9 @@ export default new Vuex.Store({
         .map(([k, v]) => k) as BoxType[];
       return allTypes.filter((type: BoxType) => !!((boxes[type] as any).allowMultiple)
           || !store.layout.some((e: any) => e.type === type));
+    },
+    minimumCoordinates(store: any): [number, number] {
+      return determineNewItemCoordinates(store.layout);
     },
   },
 });

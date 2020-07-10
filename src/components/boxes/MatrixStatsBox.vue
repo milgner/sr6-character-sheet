@@ -122,6 +122,8 @@ import { mapModelLike } from '@/store/util';
 export default class MatrixStatsBox extends Vue {
   static defaultHeight = 8;
 
+  static optional = true;
+
   get availablePrograms() {
     // const installedPrograms = this.$store.state.matrix.programs;
     return Object.values(this.$t('matrix.availablePrograms'));

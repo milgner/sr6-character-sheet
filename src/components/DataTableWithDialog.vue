@@ -44,6 +44,7 @@
     >
       <template #activator="{ on, attrs }">
         <v-btn
+          v-show="showAddButton"
           fab
           x-small
           v-on="on"
@@ -112,6 +113,8 @@ export default class DataTableWithDialog extends Vue {
   @Prop(String) readonly itemKey: string | undefined;
 
   @Prop(String) readonly scope: string | undefined;
+
+  @Prop(Boolean) readonly showAddButton: boolean | undefined;
 
   // eslint-disable-next-line class-methods-use-this
   data() {

@@ -12,17 +12,17 @@
       <v-spacer />
       <v-btn
         fab
-        color="secondary accent-2"
+        :color="editMode ? 'secondary accent-2' : 'primary accent-2'"
         bottom
         absolute
         right
-        @click="dialog = !dialog"
+        @click="editMode = !editMode"
       >
-        <v-icon>mdi-plus</v-icon>
+        <v-icon>mdi-book-open-page-variant</v-icon>
       </v-btn>
     </v-app-bar>
 
-    <v-content>
+    <v-main>
       <v-sheet>
         <grid-layout
           @layout-updated="onLayoutUpdated"
@@ -45,21 +45,54 @@
               :type="item.type"
               bind="props"
               :height="item.h * 40 - 15"
+              :edit-mode="editMode"
+              @remove="removeBox(item)"
             />
+          </grid-item>
+          <grid-item
+            v-show="editMode"
+            v-bind="editModePlaceholderProps"
+            key="addBoxPlaceholder"
+            :is-draggable="false"
+            :is-resizable="false"
+          >
+            <v-card
+              outlined
+              :height="editModePlaceholderProps.h * 40 - 15"
+              class="d-flex justify-center"
+            >
+              <v-card-actions>
+                <v-btn
+                  fab
+                  large
+                  @click="dialog = true"
+                >
+                  <v-icon large>
+                    mdi-plus
+                  </v-icon>
+                </v-btn>
+              </v-card-actions>
+            </v-card>
           </grid-item>
         </grid-layout>
       </v-sheet>
-    </v-content>
-    <add-box-dialog :active="dialog"
-                    :boxes="availableBoxes"
-                    @close="onDialogClosed"
-                    @input="onBoxAddSubmitted"
-                    v-if="availableBoxes"/>
+    </v-main>
+    <add-box-dialog
+      :active="dialog"
+      :boxes="availableBoxes"
+      @close="onDialogClosed"
+      @input="onBoxAddSubmitted"
+      v-if="availableBoxes"
+    />
   </v-app>
 </template>
 <style lang="scss">
   .vue-grid-item,.vue-resizable .vue-resizable-handle {
     padding-right: 0 !important;
+  }
+
+  .placeholder-card {
+    display: flex;
   }
 </style>
 <script lang="ts">
@@ -69,7 +102,7 @@ import VueGridLayout from 'vue-grid-layout';
 
 import SheetBox from '@/components/boxes/SheetBox.vue';
 import AddBoxDialog from '@/components/AddBoxDialog.vue';
-import { BoxType } from '@/store';
+import { BoxState, BoxType } from '@/store';
 import { Watch } from 'vue-property-decorator';
 
 @Component({
@@ -83,10 +116,31 @@ import { Watch } from 'vue-property-decorator';
 export default class App extends Vue {
   dialog = false;
 
-  layout = [];
+  editMode = false;
 
+  layout: BoxState[] = [];
+
+  // adds a "add box placeholder" box while edit mode is active
+  editModePlaceholderProps: BoxState = {
+    type: 'AddBoxPlaceholder',
+    i: 9999,
+    h: 5,
+    x: 0,
+    y: 0,
+    w: 6,
+  };
+
+  // lifecycle method, invoked by Vue
   created() {
     this.layout = this.layoutFromStore;
+    this.updatePlaceholderBoxState();
+  }
+
+  updatePlaceholderBoxState() {
+    if (this.layout === undefined) { return; }
+    const [x, y] = this.$store.getters.minimumCoordinates;
+    this.editModePlaceholderProps.x = x;
+    this.editModePlaceholderProps.y = y;
   }
 
   get layoutFromStore() {
@@ -101,6 +155,7 @@ export default class App extends Vue {
   onLayoutFromStoreChanged(val: any, oldVal: any) {
     if (val) {
       this.layout = JSON.parse(JSON.stringify(this.layoutFromStore));
+      this.updatePlaceholderBoxState();
     }
   }
 
@@ -112,7 +167,8 @@ export default class App extends Vue {
   }
 
   onLayoutUpdated(newLayout: any) {
-    this.$store.commit('updateLayout', newLayout);
+    this.layoutFromStore = newLayout;
+    this.updatePlaceholderBoxState();
   }
 
   onBoxAddSubmitted(boxType: BoxType) {
@@ -121,6 +177,14 @@ export default class App extends Vue {
 
   onDialogClosed() {
     this.dialog = false;
+  }
+
+  removeBox(item: BoxState) {
+    const idx = this.layoutFromStore.findIndex((e: BoxState) => e.i === item.i);
+    if (idx > -1) {
+      this.layoutFromStore.splice(idx, 1);
+      this.$store.commit('updateLayout', this.layoutFromStore);
+    }
   }
 }
 

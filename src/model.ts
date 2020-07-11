@@ -45,6 +45,33 @@ export enum AmmoType {
   belt = 'belt',
 }
 
+export enum SpellCategory {
+  health = 'health',
+  illusion = 'illusion',
+  combat = 'combat',
+  manipulation = 'manipulation',
+  detection = 'detection',
+}
+
+export enum SpellRange {
+  touch = 'touch',
+  los = 'los',
+  losArea = 'losArea',
+  special = 'special',
+}
+
+export enum SpellKind {
+  mana = 'mana',
+  physical = 'physical',
+}
+
+export enum SpellDuration {
+  instant = 'instant',
+  sustained = 'sustained',
+  temporary = 'temporary',
+  permanent = 'permanent',
+}
+
 interface ActionSkillDescription {
   specializations: string[];
   mainAttribute: Attribute;

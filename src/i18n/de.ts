@@ -26,6 +26,7 @@ export default {
     EquipmentBox: 'Ausrüstung',
     BodytechBox: 'Bodytech',
     ArmorBox: 'Panzerung',
+    SpellsBox: 'Zaubersprüche',
   },
   attribute: 'Attribut',
   attributes: {
@@ -241,5 +242,53 @@ export default {
     primaryLifestyle: 'Primärer Lebensstil',
     idsAndLicenses: 'IDs & Lizenzen',
     nuyen: 'Nuyen',
+  },
+  spells: {
+    addDialog: {
+      title: 'Zauberspruch hinzufügen',
+    },
+    updateDialog: {
+      title: 'Zauberspruch bearbeiten',
+    },
+    drain: 'Entzug',
+    category: 'Kategorie',
+    range: 'Reichweite',
+    duration: 'Dauer',
+    kind: 'Art',
+    kinds: {
+      physical: 'Physisch',
+      mana: 'Mana',
+    },
+    categories: {
+      health: 'Heilung',
+      combat: 'Kampf',
+      illusion: 'Illusion',
+      manipulation: 'Manipulation',
+      detection: 'Wahrnehmung',
+    },
+    ranges: {
+      touch: 'Berührung',
+      los: 'Blickfeld',
+      losArea: 'Blickfeld (Flächenwirkung)',
+      special: 'Speziell',
+    },
+    durations: {
+      instant: 'Sofort',
+      sustained: 'Aufrechterhalten',
+      temporary: 'Zeitlich Begrenzt',
+      permanent: 'Permanent',
+    },
+    durationMnemonics: {
+      instant: 'S',
+      sustained: 'A',
+      temporary: 'ZB',
+      permanent: 'P',
+    },
+    rangeMnemonics: {
+      touch: 'B',
+      los: 'BF',
+      losArea: 'BF (F)',
+      special: 'S',
+    },
   },
 };

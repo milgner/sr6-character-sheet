@@ -3,8 +3,9 @@ import Vuex from 'vuex';
 import VuexPersistence from 'vuex-persist';
 import boxes from '@/components/boxes';
 
-import AttributesStore from './AttributesStore';
 import i18n from '../i18n';
+
+import AttributesStore from './AttributesStore';
 import PersonalDataStore from './PersonalDataStore';
 import HealthMonitorStore from './HealthMonitorStore';
 import MatrixStore from './MatrixStore';
@@ -16,6 +17,7 @@ import ConnectionStore from './ConnectionStore';
 import RangedWeaponsStore from './RangedWeaponsStore';
 import SkillsStore from './SkillsStore';
 import LifestyleStore from './LifestyleStore';
+import SpellsStore from './SpellsStore';
 
 Vue.use(Vuex);
 
@@ -70,6 +72,7 @@ export default new Vuex.Store({
         h: 6,
         i: '0',
         type: 'PersonalDataBox',
+        moved: false,
       },
       {
         x: 0,
@@ -78,76 +81,62 @@ export default new Vuex.Store({
         h: 10,
         i: '1',
         type: 'AttributesBox',
-      }, {
+      },
+      {
         x: 0,
-        y: 15,
+        y: 16,
         w: 6,
         h: 12,
         i: '2',
         type: 'SkillsBox',
-      }, {
+      },
+      {
         x: 0,
-        y: 26,
+        y: 28,
         w: 6,
         h: 6,
         i: '3',
         type: 'LifestyleBox',
-      }, {
+      },
+      {
         x: 6,
         y: 0,
         w: 6,
         h: 3,
         i: '4',
         type: 'FightSummaryBox',
-      }, {
+      },
+      {
         x: 6,
         y: 3,
         w: 6,
         h: 6,
         i: '5',
         type: 'HealthMonitorBox',
-      }, {
+      },
+      {
         x: 6,
-        y: 8,
+        y: 9,
         w: 6,
         h: 7,
         i: '6',
         type: 'FeatBox',
-      }, {
+      },
+      {
         x: 6,
-        y: 19,
+        y: 16,
         w: 6,
         h: 8,
         i: '7',
         type: 'ConnectionsBox',
-      }, {
-        x: 0,
-        y: 23,
-        w: 6,
-        h: 5,
-        i: '8',
-        type: 'RangedWeaponsBox',
-      }, {
-        x: 0,
-        y: 34,
-        w: 6,
-        h: 4,
-        i: '9',
-        type: 'BodytechBox',
-      }, {
+      },
+      {
         x: 6,
-        y: 38,
+        y: 24,
         w: 6,
         h: 15,
-        i: '10',
+        i: '8',
         type: 'EquipmentBox',
-      }, {
-        x: 0,
-        y: 38,
-        w: 6,
-        h: 5,
-        i: '11',
-        type: 'ArmorBox',
       },
     ],
   },
@@ -167,7 +156,7 @@ export default new Vuex.Store({
       });
     },
     updateLayout(state, layout) {
-      state.layout = layout;
+      state.layout = [...layout];
     },
   },
   actions: {
@@ -196,6 +185,7 @@ export default new Vuex.Store({
     rangedWeapons: RangedWeaponsStore,
     skills: SkillsStore,
     lifestyle: LifestyleStore,
+    spells: SpellsStore,
   },
   getters: {
     availableBoxes(store: any) {

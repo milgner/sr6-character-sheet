@@ -10,6 +10,8 @@ export default {
     update: 'Aktualisieren',
   },
 
+  defaultFilename: 'Namenloser Charakter',
+
   boxes: {
     PersonalDataBox: 'Persönliche Daten',
     AttributesBox: 'Attribute',

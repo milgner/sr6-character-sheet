@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import VuexPersistence from 'vuex-persist';
-
 import boxes from '@/components/boxes';
+
 import AttributesStore from './AttributesStore';
+import i18n from '../i18n';
 import PersonalDataStore from './PersonalDataStore';
 import HealthMonitorStore from './HealthMonitorStore';
 import MatrixStore from './MatrixStore';
@@ -30,7 +31,7 @@ export interface BoxState {
   y: number;
   w: number;
   h: number;
-  i: number;
+  i: string;
   type: string;
 }
 
@@ -67,7 +68,7 @@ export default new Vuex.Store({
         y: 0,
         w: 6,
         h: 6,
-        i: 0,
+        i: '0',
         type: 'PersonalDataBox',
       },
       {
@@ -75,77 +76,77 @@ export default new Vuex.Store({
         y: 6,
         w: 6,
         h: 10,
-        i: 1,
+        i: '1',
         type: 'AttributesBox',
       }, {
         x: 0,
         y: 15,
         w: 6,
         h: 12,
-        i: 2,
+        i: '2',
         type: 'SkillsBox',
       }, {
         x: 0,
         y: 26,
         w: 6,
         h: 6,
-        i: 3,
+        i: '3',
         type: 'LifestyleBox',
       }, {
         x: 6,
         y: 0,
         w: 6,
         h: 3,
-        i: 4,
+        i: '4',
         type: 'FightSummaryBox',
       }, {
         x: 6,
         y: 3,
         w: 6,
         h: 6,
-        i: 5,
+        i: '5',
         type: 'HealthMonitorBox',
       }, {
         x: 6,
         y: 8,
         w: 6,
         h: 7,
-        i: 6,
+        i: '6',
         type: 'FeatBox',
       }, {
         x: 6,
         y: 19,
         w: 6,
         h: 8,
-        i: 7,
+        i: '7',
         type: 'ConnectionsBox',
       }, {
         x: 0,
         y: 23,
         w: 6,
         h: 5,
-        i: 8,
+        i: '8',
         type: 'RangedWeaponsBox',
       }, {
         x: 0,
         y: 34,
         w: 6,
         h: 4,
-        i: 9,
+        i: '9',
         type: 'BodytechBox',
       }, {
         x: 6,
         y: 38,
         w: 6,
         h: 15,
-        i: 10,
+        i: '10',
         type: 'EquipmentBox',
       }, {
         x: 0,
         y: 38,
         w: 6,
         h: 5,
-        i: 12,
+        i: '11',
         type: 'ArmorBox',
       },
     ],
@@ -153,12 +154,14 @@ export default new Vuex.Store({
   mutations: {
     addBox(state, boxType: BoxType) {
       const [x, y] = determineNewItemCoordinates(state.layout);
+      const maxI = state.layout
+        .reduce((a: number, e: BoxState) => Math.max(a, Number.parseInt(e.i, 10)), 0);
       state.layout.push({
         x,
         y,
         // FIXME: improve type declaration
         h: boxes[boxType].defaultHeight,
-        i: state.layout.length + 1,
+        i: (maxI + 1).toString(),
         w: 6,
         type: boxType,
       });
@@ -168,6 +171,17 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    downloadState(store) {
+      const data = vuexLocal.storage.getItem('sr6Character') as string;
+      const blob = new Blob([data], {
+        type: 'application/json',
+      });
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = `${store.state.personalData.name || i18n.t('defaultFilename')}.json`;
+      link.click();
+      setTimeout(() => link.remove(), 1000);
+    },
   },
   modules: {
     personalData: PersonalDataStore,

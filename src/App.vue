@@ -10,16 +10,54 @@
       </div>
 
       <v-spacer />
-      <v-btn
-        fab
-        :color="editMode ? 'secondary accent-2' : 'primary accent-2'"
-        bottom
-        absolute
+      <v-speed-dial
+        direction="bottom"
+        open-on-hover
         right
-        @click="editMode = !editMode"
+        top
+        transition="slide-y-transition"
+        v-model="fab"
       >
-        <v-icon>mdi-book-open-page-variant</v-icon>
-      </v-btn>
+        <template v-slot:activator>
+          <v-btn
+            v-model="fab"
+            fab
+            color="secondary"
+          >
+            <v-icon>mdi-menu</v-icon>
+          </v-btn>
+        </template>
+        <v-btn
+          fab
+          small
+          :color="editMode ? 'secondary accent-2' : 'primary accent-2'"
+          @click="editMode = !editMode"
+        >
+          <v-icon>
+            mdi-pencil-outline
+          </v-icon>
+        </v-btn>
+        <v-btn
+          fab
+          small
+          color="primary"
+          @click="onSaveClicked"
+        >
+          <v-icon>
+            mdi-arrow-down-bold-hexagon-outline
+          </v-icon>
+        </v-btn>
+        <v-btn
+          fab
+          small
+          color="primary"
+          @click="onLoadClicked"
+        >
+          <v-icon>
+            mdi-arrow-up-bold-hexagon-outline
+          </v-icon>
+        </v-btn>
+      </v-speed-dial>
     </v-app-bar>
 
     <v-main>
@@ -53,8 +91,7 @@
             v-show="editMode"
             v-bind="editModePlaceholderProps"
             key="addBoxPlaceholder"
-            :is-draggable="false"
-            :is-resizable="false"
+            static
           >
             <v-card
               outlined
@@ -105,6 +142,10 @@ import AddBoxDialog from '@/components/AddBoxDialog.vue';
 import { BoxState, BoxType } from '@/store';
 import { Watch } from 'vue-property-decorator';
 
+// since it's not possible to get notified when cancel is clicked
+// and spamming the DOM is not a good idea, re-use the input
+let loadFileInput: HTMLInputElement | undefined;
+
 @Component({
   components: {
     AddBoxDialog,
@@ -116,6 +157,8 @@ import { Watch } from 'vue-property-decorator';
 export default class App extends Vue {
   dialog = false;
 
+  fab = false;
+
   editMode = false;
 
   layout: BoxState[] = [];
@@ -123,7 +166,7 @@ export default class App extends Vue {
   // adds a "add box placeholder" box while edit mode is active
   editModePlaceholderProps: BoxState = {
     type: 'AddBoxPlaceholder',
-    i: 9999,
+    i: '99999',
     h: 5,
     x: 0,
     y: 0,
@@ -152,7 +195,7 @@ export default class App extends Vue {
   }
 
   @Watch('layoutFromStore')
-  onLayoutFromStoreChanged(val: any, oldVal: any) {
+  onLayoutFromStoreChanged(val: any) {
     if (val) {
       this.layout = JSON.parse(JSON.stringify(this.layoutFromStore));
       this.updatePlaceholderBoxState();
@@ -173,6 +216,31 @@ export default class App extends Vue {
 
   onBoxAddSubmitted(boxType: BoxType) {
     this.$store.commit('addBox', boxType);
+  }
+
+  onSaveClicked() {
+    this.$store.dispatch('downloadState');
+  }
+
+  onLoadClicked() {
+    if (loadFileInput === undefined) {
+      loadFileInput = document.createElement('input');
+      const store = this.$store;
+      loadFileInput.setAttribute('type', 'file');
+      loadFileInput.setAttribute('accept', '.sr6,application/json');
+      loadFileInput.addEventListener('change', (inputEvent) => {
+        const fileList = inputEvent!.target!.files;
+        if (fileList.length === 0) {
+          return;
+        }
+        const reader = new FileReader();
+        reader.addEventListener('load', (loadEvent) => {
+          store.replaceState(JSON.parse(loadEvent!.target!.result));
+        });
+        reader.readAsText(fileList[0]);
+      });
+    }
+    loadFileInput.click();
   }
 
   onDialogClosed() {

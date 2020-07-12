@@ -20,6 +20,7 @@ import LifestyleStore from './LifestyleStore';
 import SpellsStore from './SpellsStore';
 import MeleeWeaponsStore from './MeleeWeaponsStore';
 import AdeptPowersStore from './AdeptPowersStore';
+import ComplexFormsStore from './ComplexFormsStore';
 
 Vue.use(Vuex);
 
@@ -190,6 +191,7 @@ export default new Vuex.Store({
     spells: SpellsStore,
     meleeWeapons: MeleeWeaponsStore,
     adeptPowers: AdeptPowersStore,
+    complexForms: ComplexFormsStore,
   },
   getters: {
     availableBoxes(store: any) {

@@ -14,6 +14,7 @@ import MatrixStatsBox from '@/components/boxes/MatrixStatsBox.vue';
 import SpellsBox from '@/components/boxes/SpellsBox.vue';
 import MeleeWeaponsBox from '@/components/boxes/MeleeWeaponsBox.vue';
 import AdeptPowersBox from '@/components/boxes/AdeptPowersBox.vue';
+import ComplexFormsBox from '@/components/boxes/ComplexFormsBox.vue';
 
 export default {
   PersonalDataBox,
@@ -32,4 +33,5 @@ export default {
   SpellsBox,
   MeleeWeaponsBox,
   AdeptPowersBox,
+  ComplexFormsBox,
 };

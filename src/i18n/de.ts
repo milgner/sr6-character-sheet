@@ -29,6 +29,7 @@ export default {
     SpellsBox: 'Zaubersprüche',
     MeleeWeaponsBox: 'Nahkampfwaffen',
     AdeptPowersBox: 'Adeptenkräfte',
+    ComplexFormsBox: 'Komplexe Formen',
   },
   attribute: 'Attribut',
   attributes: {
@@ -307,6 +308,26 @@ export default {
       los: 'BF',
       losArea: 'BF (F)',
       special: 'S',
+    },
+  },
+  complexForms: {
+    fading: 'Schwund',
+    duration: 'Dauer',
+    addDialog: {
+      title: 'Komplexe Form hinzufügen',
+    },
+    updateDialog: {
+      title: 'Komplexe Form bearbeiten',
+    },
+    durations: {
+      instant: 'Sofort',
+      sustained: 'Aufrechterhalten',
+      permanent: 'Permanent',
+    },
+    durationMnemonics: {
+      instant: 'S',
+      sustained: 'A',
+      permanent: 'P',
     },
   },
 };

@@ -72,6 +72,12 @@ export enum SpellDuration {
   permanent = 'permanent',
 }
 
+export enum ComplexFormDuration {
+  instant = 'instant',
+  sustained = 'sustained',
+  permanent = 'permanent',
+}
+
 interface ActionSkillDescription {
   specializations: string[];
   mainAttribute: Attribute;

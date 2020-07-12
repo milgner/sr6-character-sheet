@@ -27,6 +27,7 @@ export default {
     BodytechBox: 'Bodytech',
     ArmorBox: 'Panzerung',
     SpellsBox: 'Zaubersprüche',
+    MeleeWeaponsBox: 'Nahkampfwaffen',
   },
   attribute: 'Attribut',
   attributes: {
@@ -193,6 +194,14 @@ export default {
     },
     updateDialog: {
       title: 'Fernkampfwaffe bearbeiten',
+    },
+  },
+  meleeWeapons: {
+    addDialog: {
+      title: 'Nahkampfwaffe hinzufügen',
+    },
+    updateDialog: {
+      title: 'Nahkampfwaffe bearbeiten',
     },
   },
   skills: {

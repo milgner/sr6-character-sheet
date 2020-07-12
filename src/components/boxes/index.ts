@@ -13,6 +13,7 @@ import ArmorBox from '@/components/boxes/ArmorBox.vue';
 import MatrixStatsBox from '@/components/boxes/MatrixStatsBox.vue';
 import SpellsBox from '@/components/boxes/SpellsBox.vue';
 import MeleeWeaponsBox from '@/components/boxes/MeleeWeaponsBox.vue';
+import AdeptPowersBox from '@/components/boxes/AdeptPowersBox.vue';
 
 export default {
   PersonalDataBox,
@@ -30,4 +31,5 @@ export default {
   MatrixStatsBox,
   SpellsBox,
   MeleeWeaponsBox,
+  AdeptPowersBox,
 };

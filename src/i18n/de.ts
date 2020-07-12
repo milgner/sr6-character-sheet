@@ -28,6 +28,7 @@ export default {
     ArmorBox: 'Panzerung',
     SpellsBox: 'Zaubersprüche',
     MeleeWeaponsBox: 'Nahkampfwaffen',
+    AdeptPowersBox: 'Adeptenkräfte',
   },
   attribute: 'Attribut',
   attributes: {
@@ -109,6 +110,14 @@ export default {
     },
     updateDialog: {
       title: 'Bodytech bearbeiten',
+    },
+  },
+  adeptPowers: {
+    addDialog: {
+      title: 'Adeptenkraft hinzufügen',
+    },
+    updateDialog: {
+      title: 'Adeptenkraft bearbeiten',
     },
   },
   armor: {

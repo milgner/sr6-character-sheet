@@ -3,6 +3,7 @@
     :headers="headers"
     :items="items"
     item-key="id"
+    :show-add-button="!editMode"
     scope="connections"
     v-slot="{ item }"
   >
@@ -49,6 +50,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import DataTableWithDialog from '@/components/DataTableWithDialog.vue';
 import { mapModelLike } from '@/store/util';
+import { Prop } from 'vue-property-decorator';
 
 @Component({
   components: { DataTableWithDialog },
@@ -56,6 +58,8 @@ import { mapModelLike } from '@/store/util';
 })
 export default class ConnectionsBox extends Vue {
   static defaultHeight = 8;
+
+  @Prop(Boolean) readonly editMode: boolean | undefined;
 
   get headers() {
     return [{

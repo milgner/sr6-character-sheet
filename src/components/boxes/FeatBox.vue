@@ -4,6 +4,7 @@
     :items="items"
     scope="feats"
     item-key="id"
+    :show-add-button="!editMode"
   >
     <template v-slot:item.type="{ item }">
       {{ translateFeatType(item.type) }}
@@ -46,6 +47,7 @@ import { mapModelLike } from '@/store/util';
 import { FeatType } from '@/model';
 import VueI18n from 'vue-i18n';
 import { translatedEnumOptions } from '@/i18n';
+import { Prop } from 'vue-property-decorator';
 
 import TranslateResult = VueI18n.TranslateResult;
 
@@ -57,6 +59,8 @@ export default class FeatBox extends Vue {
   static defaultHeight = 7;
 
   featTypeOptions = translatedEnumOptions(FeatType, 'feats');
+
+  @Prop(Boolean) readonly editMode: boolean | undefined;
 
   get headers() {
     return [{

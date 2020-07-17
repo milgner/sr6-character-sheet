@@ -3,6 +3,7 @@
     :headers="headers"
     :items="items"
     scope="bodytech"
+    :show-add-button="!editMode"
     item-key="id"
     v-slot="{ item }"
   >
@@ -46,6 +47,7 @@ import Vue from 'vue';
 import { mapModelLike } from '@/store/util';
 import Component from 'vue-class-component';
 import DataTableWithDialog from '@/components/DataTableWithDialog.vue';
+import { Prop } from 'vue-property-decorator';
 
 @Component({
   components: { DataTableWithDialog },
@@ -55,6 +57,8 @@ export default class BodytechBox extends Vue {
   static defaultHeight = 4
 
   static optional = true;
+
+  @Prop(Boolean) readonly editMode: boolean | undefined;
 
   get headers() {
     return [{

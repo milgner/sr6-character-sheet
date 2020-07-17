@@ -3,6 +3,7 @@
     :headers="headers"
     :items="items"
     :no-data-text="$t('armor.noData')"
+    :show-add-button="!editMode"
     scope="armor"
     item-key="id"
     v-slot="{ item }"
@@ -40,6 +41,7 @@ import Vue from 'vue';
 import { mapModelLike } from '@/store/util';
 import Component from 'vue-class-component';
 import DataTableWithDialog from '@/components/DataTableWithDialog.vue';
+import { Prop } from 'vue-property-decorator';
 
 @Component({
   components: { DataTableWithDialog },
@@ -49,6 +51,8 @@ export default class ArmorBox extends Vue {
   static defaultHeight = 5;
 
   static optional = true;
+
+  @Prop(Boolean) readonly editMode: boolean | undefined;
 
   get headers() {
     return [{

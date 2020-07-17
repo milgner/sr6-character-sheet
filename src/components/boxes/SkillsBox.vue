@@ -7,6 +7,7 @@
       <data-table-with-dialog
         :headers="activeHeaders"
         :items="actionSkills"
+        :show-add-button="!editMode"
         item-key="id"
         scope="skills"
       >
@@ -43,6 +44,7 @@
       <data-table-with-dialog
         :headers="knowledgeHeaders"
         :items="knowledgeSkills"
+        :show-add-button="!editMode"
         item-key="id"
         scope="skills"
       >
@@ -99,16 +101,19 @@ import { translatedEnumOptions } from '@/i18n';
 import {
   ActionSkill, CharacterSkill, LanguageSkillRating, SkillType, ActionSkillDescriptions, Attribute,
 } from '@/model';
+import { Prop } from 'vue-property-decorator';
 
-  @Component({
-    components: { DataTableWithDialog },
-    computed: {
-      ...mapGetters('skills', ['availableActionSkills', 'knowledgeSkills', 'actionSkills']),
-      ...mapModelLike('skills', ['items']),
-    },
-  })
+@Component({
+  components: { DataTableWithDialog },
+  computed: {
+    ...mapGetters('skills', ['availableActionSkills', 'knowledgeSkills', 'actionSkills']),
+    ...mapModelLike('skills', ['items']),
+  },
+})
 export default class SkillsBox extends Vue {
   static defaultHeight = 10;
+
+  @Prop(Boolean) readonly editMode: boolean | undefined;
 
   get activeHeaders() {
     return [{

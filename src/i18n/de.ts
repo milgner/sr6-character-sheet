@@ -245,7 +245,7 @@ export default {
       outdoors: 'Natur',
       perception: 'Wahrnehmung',
       piloting: 'Steuern',
-      sorcery: 'Verzaubern',
+      sorcery: 'Hexerei',
       stealth: 'Heimlichkeit',
       tasking: 'Tasken',
       exoticWeapons: 'Exotische Waffen',

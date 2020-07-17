@@ -23,6 +23,7 @@ import SpellsStore from './SpellsStore';
 import MeleeWeaponsStore from './MeleeWeaponsStore';
 import AdeptPowersStore from './AdeptPowersStore';
 import ComplexFormsStore from './ComplexFormsStore';
+import VehiclesStore from './VehiclesStore';
 
 Vue.use(Vuex);
 
@@ -30,21 +31,6 @@ const vuexLocal = new VuexPersistence({
   storage: window.localStorage,
   key: 'sr6Character',
 });
-
-export type BoxType = keyof (typeof boxes);
-
-export interface BoxState {
-  x: number;
-  y: number;
-  w: number;
-  h: number;
-  i: string;
-  type: string;
-}
-
-interface RootState {
-  layout: BoxState[];
-}
 
 function determineNewItemCoordinates(layout: BoxState[]): [number, number] {
   const columnMax: any = {};
@@ -146,35 +132,48 @@ export default new Vuex.Store({
     ],
   },
   mutations: {
-    addBox(state, boxType: BoxType) {
-      const [x, y] = determineNewItemCoordinates(state.layout);
-      const maxI = state.layout
-        .reduce((a: number, e: BoxState) => Math.max(a, Number.parseInt(e.i, 10)), 0);
-      state.layout.push({
-        x,
-        y,
-        // FIXME: improve type declaration
-        h: boxes[boxType].defaultHeight,
-        i: (maxI + 1).toString(),
-        w: 6,
-        type: boxType,
-      });
+    addBox(state, boxData) {
+      state.layout.push(boxData);
     },
     updateLayout(state, layout) {
       state.layout = [...layout];
     },
   },
   actions: {
-    downloadState(store) {
+    downloadState({ state }) {
       const data = vuexLocal.storage.getItem('sr6Character') as string;
       const blob = new Blob([data], {
         type: 'application/json',
       });
       const link = document.createElement('a');
       link.href = window.URL.createObjectURL(blob);
-      link.download = `${store.state.personalData.name || i18n.t('defaultFilename')}.json`;
+      link.download = `${state.personalData.name || i18n.t('defaultFilename')}.json`;
       link.click();
       setTimeout(() => link.remove(), 1000);
+    },
+    async addBox({ state, dispatch, commit }, boxType: BoxType) {
+      const [x, y] = determineNewItemCoordinates(state.layout);
+      const maxI = state.layout
+        .reduce((a: number, e: BoxState) => Math.max(a, Number.parseInt(e.i, 10)), 0);
+      const boxData = {
+        x,
+        y,
+        h: boxes[boxType].defaultHeight,
+        i: (maxI + 1).toString(),
+        w: 6,
+        type: boxType,
+        itemId: undefined,
+      };
+      const { repeatableStore } = boxes[boxType];
+      if (repeatableStore) {
+        boxData.itemId = await dispatch(`${repeatableStore}/initNewInstance`);
+      }
+      commit('addBox', boxData);
+      return Promise.resolve(boxData);
+    },
+    removeRepeatedBox({ rootState }, [boxType, itemId]: [BoxType, string]) {
+      const moduleItems = rootState[boxes[boxType].repeatableStore].items;
+      delete moduleItems[itemId];
     },
   },
   modules: {
@@ -194,12 +193,13 @@ export default new Vuex.Store({
     meleeWeapons: MeleeWeaponsStore,
     adeptPowers: AdeptPowersStore,
     complexForms: ComplexFormsStore,
+    vehicles: VehiclesStore,
   },
   getters: {
     availableBoxes(store: any) {
       const allTypes = Object.entries(boxes)
         .map(([k, v]) => k) as BoxType[];
-      return allTypes.filter((type: BoxType) => !!((boxes[type] as any).allowMultiple)
+      return allTypes.filter((type: BoxType) => !!((boxes[type] as any).repeatableStore)
           || !store.layout.some((e: any) => e.type === type));
     },
     minimumCoordinates(store: any): [number, number] {

@@ -15,6 +15,7 @@ import SpellsBox from '@/components/boxes/SpellsBox.vue';
 import MeleeWeaponsBox from '@/components/boxes/MeleeWeaponsBox.vue';
 import AdeptPowersBox from '@/components/boxes/AdeptPowersBox.vue';
 import ComplexFormsBox from '@/components/boxes/ComplexFormsBox.vue';
+import VehicleBox from '@/components/boxes/VehicleBox.vue';
 
 export default {
   PersonalDataBox,
@@ -34,4 +35,5 @@ export default {
   MeleeWeaponsBox,
   AdeptPowersBox,
   ComplexFormsBox,
+  VehicleBox,
 };

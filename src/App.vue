@@ -79,6 +79,7 @@
               bind="props"
               :height="item.h * 40 - 15"
               :edit-mode="editMode"
+              :item-id="item.itemId"
               @remove="removeBox(item)"
             />
           </grid-item>
@@ -137,7 +138,7 @@ import VueGridLayout from 'vue-grid-layout';
 
 import SheetBox from '@/components/boxes/SheetBox.vue';
 import AddBoxDialog from '@/components/AddBoxDialog.vue';
-import { BoxState, BoxType } from '@/store';
+import { BoxState, BoxType } from '@/store/TypeDefs';
 import { Watch } from 'vue-property-decorator';
 import MenuFab from '@/components/MenuFab.vue';
 import LegalInfoDialog from '@/components/LegalInfoDialog.vue';
@@ -175,6 +176,7 @@ export default class App extends Vue {
     x: 0,
     y: 0,
     w: 6,
+    itemId: undefined,
   };
 
   // lifecycle method, invoked by Vue
@@ -223,7 +225,7 @@ export default class App extends Vue {
   }
 
   onBoxAddSubmitted(boxType: BoxType) {
-    this.$store.commit('addBox', boxType);
+    this.$store.dispatch('addBox', boxType);
   }
 
   onSaveClicked() {
@@ -262,6 +264,9 @@ export default class App extends Vue {
   removeBox(item: BoxState) {
     const idx = this.layoutFromStore.findIndex((e: BoxState) => e.i === item.i);
     if (idx > -1) {
+      if (item.itemId !== undefined) {
+        this.$store.dispatch('removeRepeatedBox', [item.type, item.itemId]);
+      }
       this.layoutFromStore.splice(idx, 1);
       this.$store.commit('updateLayout', this.layoutFromStore);
     }

@@ -68,6 +68,8 @@
           :col-num="12"
           :row-height="30"
           :vertical-compact="true"
+          :is-draggable="editMode"
+          :is-resizable="editMode"
         >
           <grid-item
             v-for="item in layout"
@@ -229,12 +231,12 @@ export default class App extends Vue {
       loadFileInput.setAttribute('type', 'file');
       loadFileInput.setAttribute('accept', '.sr6,application/json');
       loadFileInput.addEventListener('change', (inputEvent) => {
-        const fileList = inputEvent!.target!.files;
+        const fileList = (inputEvent as any).target!.files;
         if (fileList.length === 0) {
           return;
         }
         const reader = new FileReader();
-        reader.addEventListener('load', (loadEvent) => {
+        reader.addEventListener('load', (loadEvent: any) => {
           store.replaceState(JSON.parse(loadEvent!.target!.result));
         });
         reader.readAsText(fileList[0]);

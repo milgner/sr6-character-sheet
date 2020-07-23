@@ -8,6 +8,7 @@
       dense
       disable-pagination
       hide-default-footer
+      must-sort
     >
       <!-- pass onn scoped slots for decorators to the child component -->
       <template

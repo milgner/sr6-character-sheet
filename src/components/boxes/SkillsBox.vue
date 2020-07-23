@@ -119,7 +119,7 @@ export default class SkillsBox extends Vue {
     return [{
       text: this.$t('name'),
       align: 'start',
-      sortable: false,
+      sort: (a, b) => this.translateActionSkill(a).localeCompare(this.translateActionSkill(b)),
       value: 'name',
     }, {
       text: this.$t('rating'),
@@ -169,9 +169,13 @@ export default class SkillsBox extends Vue {
 
   skillType = SkillType;
 
-  attributeForActionSkill(skill: ActionSkill) {
+  attributeForActionSkill(skill: ActionSkill): string {
     const attribute = ActionSkillDescriptions[skill].mainAttribute;
-    return this.$t(`attributes.${attribute}`);
+    return this.translateAttribute(attribute).toString();
+  }
+
+  translateAttribute(attribute: Attribute): string {
+    return this.$t(`attributes.${attribute}`).toString();
   }
 
   dicePoolForActionSkill(skill: CharacterSkill) {
@@ -180,15 +184,15 @@ export default class SkillsBox extends Vue {
     return skill.rating + attributeValue;
   }
 
-  translateKnowledgeSkillRating(skill: CharacterSkill) {
+  translateKnowledgeSkillRating(skill: CharacterSkill): string {
     if (skill.type !== this.skillType.language) {
       return '';
     }
-    return this.$t(`skills.languageRating.${skill.rating}`);
+    return this.$t(`skills.languageRating.${skill.rating}`).toString();
   }
 
-  translateActionSkill(skill: ActionSkill) {
-    return this.$t(`skills.skills.${skill}`);
+  translateActionSkill(skill: ActionSkill): string {
+    return this.$t(`skills.skills.${skill}`).toString();
   }
 
   isKnowledgeSkill(skill: SkillType) {

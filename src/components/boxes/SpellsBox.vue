@@ -33,7 +33,7 @@
             :items="spellCategories"
             :label="$t('spells.category')"
             dense
-            v-model="item.mode"
+            v-model="item.category"
           />
         </v-col>
       </v-row>
@@ -84,6 +84,7 @@ import { reversedEnum, translatedEnumOptions } from '@/i18n';
 import {
   SpellCategory, SpellDuration, SpellKind, SpellRange,
 } from '@/model';
+import { Spell } from '@/store/SpellsStore';
 
 @Component({
   components: { DataTableWithDialog },
@@ -104,17 +105,21 @@ export default class SpellsBox extends Vue {
 
   spellDurations = translatedEnumOptions(SpellDuration, 'spells.durations');
 
-  displayDuration(spell: any) {
+  displayDuration(spell: Spell) {
     return this.$t(`spells.durationMnemonics.${reversedEnum(SpellDuration)[spell.duration]}`)
       .toString();
   }
 
-  displayRange(spell: any) {
+  displayRange(spell: Spell) {
     return this.$t(`spells.rangeMnemonics.${reversedEnum(SpellRange)[spell.range]}`).toString();
   }
 
-  displayKind(spell: any) {
+  displayKind(spell: Spell) {
     return this.spellKinds.find((e) => e.value === spell.kind)!!.text.toString()[0];
+  }
+
+  displayCategory(spell: Spell) {
+    return this.spellCategories.find((e) => e.value === spell.category)!!.text.toString();
   }
 
   get headers() {

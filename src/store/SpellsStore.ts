@@ -3,7 +3,7 @@ import {
 } from '@/model';
 import ItemListStoreMutations from './ItemListStoreMutations';
 
-interface Spell {
+export interface Spell {
   id: number | null;
   name: string;
   category: SpellCategory;

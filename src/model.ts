@@ -116,75 +116,78 @@ export enum ActionSkill {
 
 export const ActionSkillDescriptions: { [name in ActionSkill]: ActionSkillDescription } = {
   astral: {
-    specializations: [],
+    specializations: ['astralSignatures', 'astralCombat', 'emotionalStates', 'spiritTypes'],
     mainAttribute: Attribute.intuition,
   },
   athletics: {
-    specializations: [],
+    specializations: ['archery', 'climbing', 'flying', 'escaping', 'sprinting', 'swimming', 'throwing'],
     mainAttribute: Attribute.agility,
   },
   biotech: {
-    specializations: [],
+    specializations: ['biotechnology', 'cybertechnology', 'firstAid', 'medicine'],
     mainAttribute: Attribute.logic,
   },
   closeCombat: {
-    specializations: [],
+    specializations: ['blades', 'clubs', 'unarmedCombat'],
     mainAttribute: Attribute.agility,
   },
   con: {
-    specializations: [],
+    specializations: ['acting', 'disguise', 'impersonation', 'performance'],
     mainAttribute: Attribute.charisma,
   },
   conjuring: {
-    specializations: [],
+    specializations: ['summoning', 'banishing'],
     mainAttribute: Attribute.magic,
   },
   cracking: {
-    specializations: [],
+    specializations: ['electronicWarfare', 'hacking', 'cyberCombat'],
     mainAttribute: Attribute.logic,
   },
   electronics: {
-    specializations: [],
+    specializations: ['computer', 'hardware', 'software'],
     mainAttribute: Attribute.logic,
   },
   enchanting: {
-    specializations: [],
+    specializations: ['alchemy', 'disenchanting', 'artificing'],
     mainAttribute: Attribute.magic,
   },
   engineering: {
-    specializations: [],
+    specializations: ['aeronauticsMechanic', 'armorer', 'automotiveMechanic', 'demolitions',
+      'gunnery', 'industrialMechanic', 'lockpicking', 'nauticalMechanic'],
     mainAttribute: Attribute.logic,
   },
   firearms: {
-    specializations: [],
+    specializations: ['rifles', 'automatics', 'pistols', 'shotguns', 'longarms'],
     mainAttribute: Attribute.agility,
   },
   influence: {
-    specializations: [],
+    specializations: ['intimidation', 'leadership', 'etiquette', 'instruction', 'negotiation'],
     mainAttribute: Attribute.charisma,
   },
   outdoors: {
-    specializations: [],
+    specializations: ['navigation', 'tracking', 'survival',
+      'environmentForest', 'environmentDesert', 'environmentUrban'],
     mainAttribute: Attribute.intuition,
   },
   perception: {
-    specializations: [],
+    specializations: ['aural', 'visual', 'tactile',
+      'environmentForest', 'environmentDesert', 'environmentUrban'],
     mainAttribute: Attribute.intuition,
   },
   piloting: {
-    specializations: [],
+    specializations: ['groundcraft', 'aircraft', 'watercraft'],
     mainAttribute: Attribute.reaction,
   },
   sorcery: {
-    specializations: [],
+    specializations: ['counterspelling', 'ritualSpellcasting', 'spellcasting'],
     mainAttribute: Attribute.magic,
   },
   stealth: {
-    specializations: [],
+    specializations: ['camouflage', 'disguise', 'palming', 'sneaking'],
     mainAttribute: Attribute.agility,
   },
   tasking: {
-    specializations: [],
+    specializations: ['compiling', 'decompiling', 'registering'],
     mainAttribute: Attribute.resonance,
   },
   exoticWeapons: {
@@ -198,5 +201,6 @@ export interface CharacterSkill {
   name: ActionSkill | string; // knowledge skills and languages don't have a definitive list
   type: SkillType;
   rating: SkillRanking;
-  specializations: string[];
+  specialization: string | undefined;
+  expertise: string | undefined;
 }

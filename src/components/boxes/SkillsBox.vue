@@ -28,9 +28,51 @@
               />
             </v-col>
           </v-row>
+          <v-row>
+            <v-col>
+              <v-simple-table
+                dense
+                v-if="item.name"
+              >
+                <template slot="default">
+                  <thead>
+                    <tr>
+                      <th />
+                      <th>{{ $t('skills.skillRating.specialized') }}</th>
+                      <th>{{ $t('skills.skillRating.expert') }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      v-for="specialization in skillSpecializations(item)"
+                      :key="specialization.name"
+                    >
+                      <td>{{ specialization.label }}</td>
+                      <td>
+                        <v-switch
+                          dense
+                          multiple="false"
+                          v-model="item.specialization"
+                          :value="specialization.name"
+                        />
+                      </td>
+                      <td>
+                        <v-switch
+                          dense
+                          multiple="false"
+                          v-model="item.expertise"
+                          :value="specialization.name"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </template>
+              </v-simple-table>
+            </v-col>
+          </v-row>
         </template>
         <template v-slot:item.name="{ item }">
-          {{ translateActionSkill(item.name) }}
+          {{ actionSkillLabel(item) }}
         </template>
         <template v-slot:item.attribute="{ item }">
           {{ attributeForActionSkill(item.name) }}
@@ -165,7 +207,36 @@ export default class SkillsBox extends Vue {
     ];
   }
 
-  languageSkillRatings = translatedEnumOptions(LanguageSkillRating, 'skills.languageRating');
+  skillSpecializations(skill: CharacterSkill): { name: string; label: string }[] {
+    if (skill.name === undefined || skill.name.length === 0) { return []; }
+    const { specializations } = ActionSkillDescriptions[skill.name as ActionSkill];
+    return specializations.map((s: string) => ({
+      name: s,
+      label: this.specializationLabel(skill.name as ActionSkill, s),
+    }));
+  }
+
+  specializationLabel(skill: ActionSkill, specialization: string): string {
+    return this.$i18n.t(`skills.specializations.${skill}.${specialization}`).toString();
+  }
+
+  actionSkillLabel(skill: CharacterSkill): string {
+    const skillName = this.translateActionSkill(skill.name as ActionSkill);
+    const getSpecializationName = (s: string) => this.specializationLabel(skill.name as ActionSkill, s);
+    const specializationLabels = [];
+    if (skill.specialization) {
+      specializationLabels.push(`${this.$i18n.t('skills.skillRatingMnemonics.specialized')}: ${getSpecializationName(skill.specialization)}`);
+    }
+    if (skill.expertise) {
+      specializationLabels.push(`${this.$i18n.t('skills.skillRatingMnemonics.expert')}: ${getSpecializationName(skill.expertise)}`);
+    }
+    if (specializationLabels.length > 0) {
+      return `${skillName} (${specializationLabels.join(', ')})`;
+    }
+    return skillName;
+  }
+
+  languageSkillRatings = translatedEnumOptions(LanguageSkillRating, 'skills.skillRating');
 
   skillType = SkillType;
 
@@ -188,7 +259,7 @@ export default class SkillsBox extends Vue {
     if (skill.type !== this.skillType.language) {
       return '';
     }
-    return this.$t(`skills.languageRating.${skill.rating}`).toString();
+    return this.$t(`skills.skillRating.${skill.rating}`).toString();
   }
 
   translateActionSkill(skill: ActionSkill): string {

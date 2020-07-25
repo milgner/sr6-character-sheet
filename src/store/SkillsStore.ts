@@ -22,7 +22,8 @@ const SkillsStore = {
         name: '',
         rating: 0,
         type: SkillType.action,
-        specializations: [],
+        specialization: undefined,
+        expertise: undefined,
       };
     },
 

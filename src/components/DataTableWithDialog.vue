@@ -145,7 +145,7 @@ export default class DataTableWithDialog extends Vue {
   openAddItemDialog() {
     const data = this.$data;
     data.editingItem = null;
-    data.itemData = Vue.observable(this.$store.getters[`${this.scope}/newItem`]);
+    data.itemData = Vue.observable({ ...this.$store.getters[`${this.scope}/newItem`] });
     data.dialog = true;
   }
 

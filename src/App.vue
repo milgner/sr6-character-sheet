@@ -6,7 +6,7 @@
       dark
     >
       <div class="d-flex align-center">
-        Shadowrun 6
+        {{ characterName }}
       </div>
 
       <v-spacer />
@@ -188,6 +188,10 @@ export default class App extends Vue {
     const [x, y] = this.$store.getters.minimumCoordinates;
     this.editModePlaceholderProps.x = x;
     this.editModePlaceholderProps.y = y;
+  }
+
+  get characterName() {
+    return this.$store.state.personalData.name;
   }
 
   get layoutFromStore() {

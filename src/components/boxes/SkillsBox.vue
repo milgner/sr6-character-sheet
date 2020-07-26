@@ -255,10 +255,21 @@ export default class SkillsBox extends Vue {
     return this.$t(`attributes.${attribute}`).toString();
   }
 
-  dicePoolForActionSkill(skill: CharacterSkill) {
+  dicePoolForActionSkill(skill: CharacterSkill): string {
     const attribute = ActionSkillDescriptions[skill.name as ActionSkill].mainAttribute;
     const attributeValue = this.$store.state.attributes[attribute];
-    return skill.rating + attributeValue;
+    const baseValue = skill.rating + attributeValue;
+    const bonuses = [];
+    if (skill.specialization) {
+      bonuses.push('+2');
+    }
+    if (skill.expertise) {
+      bonuses.push('+3');
+    }
+    if (bonuses.length > 0) {
+      return `${baseValue} (${bonuses.join('/')})`;
+    }
+    return baseValue.toString();
   }
 
   translateKnowledgeSkillRating(skill: CharacterSkill): string {

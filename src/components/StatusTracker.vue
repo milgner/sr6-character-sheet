@@ -2,6 +2,10 @@
   <div>
     <label>{{ label }}</label>
     <div class="d-flex">
+      <clear-value-button
+        @click="clearDamage"
+        :value="damageModifier"
+      />
       <v-rating
         :length="maxValue"
         :value="currentValue"
@@ -11,11 +15,6 @@
         dense
         @input="onRatingChanged"
       />
-      <div @mouseenter="mouseEnterChipArea"
-           @mouseleave="mouseLeaveChipArea">
-        <v-chip @click="clearDamage" v-if="showModifierChip">{{ damageModifier }}</v-chip>
-        <v-icon dense size="32" @click="clearDamage" v-else>mdi-cancel</v-icon>
-      </div>
     </div>
   </div>
 </template>
@@ -25,6 +24,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import ClearValueButton from '@/components/ClearValueButton.vue';
 
 const StatusTrackerProps = Vue.extend({
   props: {
@@ -36,20 +36,11 @@ const StatusTrackerProps = Vue.extend({
     damageModifier: Number,
   },
 });
-
-@Component
+@Component({
+  components: { ClearValueButton },
+})
 export default class StatusTracker extends StatusTrackerProps {
   currentValue = this.value
-
-  showModifierChip = true
-
-  mouseEnterChipArea() {
-    this.showModifierChip = this.currentValue === 0;
-  }
-
-  mouseLeaveChipArea() {
-    this.showModifierChip = true;
-  }
 
   clearDamage() {
     this.currentValue = 0;

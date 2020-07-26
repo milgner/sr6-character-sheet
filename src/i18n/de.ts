@@ -10,6 +10,16 @@ export default {
     update: 'Aktualisieren',
   },
 
+  globalMenu: {
+    edit: {
+      on: 'Bearbeitungsmodus aktivieren',
+      off: 'Bearbeitungsmodus deaktivieren',
+    },
+    save: 'Speichern',
+    load: 'Laden',
+    legal: 'Rechtliches',
+  },
+
   defaultFilename: 'Namenloser Charakter',
 
   boxes: {

@@ -27,39 +27,32 @@
             <v-icon>mdi-menu</v-icon>
           </v-btn>
         </template>
-        <v-btn
-          fab
-          small
+        <menu-fab
           :color="editMode ? 'secondary accent-2' : 'primary accent-2'"
+          icon="mdi-pencil-outline"
+          :tooltip="$i18n.t(`globalMenu.edit.${editMode ? 'off' : 'on'}`)"
           @click="editMode = !editMode"
-        >
-          <v-icon>
-            mdi-pencil-outline
-          </v-icon>
-        </v-btn>
-        <v-btn
-          fab
-          small
+        />
+        <menu-fab
           color="primary"
+          icon="mdi-arrow-down-bold-hexagon-outline"
+          :tooltip="$i18n.t('globalMenu.save')"
           @click="onSaveClicked"
-        >
-          <v-icon>
-            mdi-arrow-down-bold-hexagon-outline
-          </v-icon>
-        </v-btn>
-        <v-btn
-          fab
-          small
+        />
+        <menu-fab
           color="primary"
+          icon="mdi-arrow-up-bold-hexagon-outline"
+          :tooltip="$i18n.t('globalMenu.load')"
           @click="onLoadClicked"
-        >
-          <v-icon>
-            mdi-arrow-up-bold-hexagon-outline
-          </v-icon>
-        </v-btn>
+        />
+        <menu-fab
+          color="secondary"
+          :tooltip="$i18n.t('globalMenu.legal')"
+          icon="mdi-gavel"
+          @click="onLegalClicked"
+        />
       </v-speed-dial>
     </v-app-bar>
-
     <v-main>
       <v-sheet>
         <grid-layout
@@ -123,6 +116,7 @@
       @input="onBoxAddSubmitted"
       v-if="availableBoxes"
     />
+    <legal-info-dialog v-model="legalPopup" />
   </v-app>
 </template>
 <style lang="scss">
@@ -145,6 +139,8 @@ import SheetBox from '@/components/boxes/SheetBox.vue';
 import AddBoxDialog from '@/components/AddBoxDialog.vue';
 import { BoxState, BoxType } from '@/store';
 import { Watch } from 'vue-property-decorator';
+import MenuFab from '@/components/MenuFab.vue';
+import LegalInfoDialog from '@/components/LegalInfoDialog.vue';
 
 // since it's not possible to get notified when cancel is clicked
 // and spamming the DOM is not a good idea, re-use the input
@@ -152,14 +148,18 @@ let loadFileInput: HTMLInputElement | undefined;
 
 @Component({
   components: {
+    MenuFab,
     AddBoxDialog,
     SheetBox,
+    LegalInfoDialog,
     GridLayout: VueGridLayout.GridLayout,
     GridItem: VueGridLayout.GridItem,
   },
 })
 export default class App extends Vue {
   dialog = false;
+
+  legalPopup = false;
 
   fab = false;
 
@@ -228,6 +228,10 @@ export default class App extends Vue {
 
   onSaveClicked() {
     this.$store.dispatch('downloadState');
+  }
+
+  onLegalClicked() {
+    this.legalPopup = true;
   }
 
   onLoadClicked() {

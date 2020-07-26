@@ -137,6 +137,8 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
+// eslint-disable-next-line
+// @ts-ignore
 import VueGridLayout from 'vue-grid-layout';
 
 import SheetBox from '@/components/boxes/SheetBox.vue';

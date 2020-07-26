@@ -161,7 +161,11 @@ export default class SkillsBox extends Vue {
     return [{
       text: this.$t('name'),
       align: 'start',
-      sort: (a, b) => this.translateActionSkill(a).localeCompare(this.translateActionSkill(b)),
+      sort: (a: ActionSkill, b: ActionSkill) => {
+        const nameA = this.translateActionSkill(a);
+        const nameB = this.translateActionSkill(b);
+        return nameA.localeCompare(nameB);
+      },
       value: 'name',
     }, {
       text: this.$t('rating'),
@@ -222,13 +226,15 @@ export default class SkillsBox extends Vue {
 
   actionSkillLabel(skill: CharacterSkill): string {
     const skillName = this.translateActionSkill(skill.name as ActionSkill);
-    const getSpecializationName = (s: string) => this.specializationLabel(skill.name as ActionSkill, s);
+    const i18nSpecName = (s: string) => this.specializationLabel(skill.name as ActionSkill, s);
     const specializationLabels = [];
     if (skill.specialization) {
-      specializationLabels.push(`${this.$i18n.t('skills.skillRatingMnemonics.specialized')}: ${getSpecializationName(skill.specialization)}`);
+      const mnemonic = this.$i18n.t('skills.skillRatingMnemonics.specialized');
+      specializationLabels.push(`${mnemonic}: ${i18nSpecName(skill.specialization)}`);
     }
     if (skill.expertise) {
-      specializationLabels.push(`${this.$i18n.t('skills.skillRatingMnemonics.expert')}: ${getSpecializationName(skill.expertise)}`);
+      const mnemonic = this.$i18n.t('skills.skillRatingMnemonics.expert');
+      specializationLabels.push(`${mnemonic}: ${i18nSpecName(skill.expertise)}`);
     }
     if (specializationLabels.length > 0) {
       return `${skillName} (${specializationLabels.join(', ')})`;

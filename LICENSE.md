@@ -1,5 +1,12 @@
 ### Shadowrun-specific content
 
+## Deutsche Übersetzung / Texte
+Shadowrun-Logo und Inhalte mit freundlicher Genehmigung von Pegasus
+Spiele unter Lizenz von Catalyst Game Labs und Topps Company, Inc.
+© 2020 Topps Company, Inc. Alle Rechte vorbehalten. Shadowrun ist
+eine eingetragene Handelsmarke von Topps Company, Inc.
+
+## English translation / texts
 The Topps Company, Inc. has sole ownership of the names, logo, artwork, marks,
 photographs, sounds, audio, video and/or any proprietary material used in
 connection with the game Shadowrun. The Topps Company, Inc. has granted
@@ -8,7 +15,7 @@ any proprietary materials for promotional and informational purposes on its
 website but does not endorse, and is not affiliated with Marcus Ilgner in any
 official capacity whatsoever.
 
-### The character sheet source code is licensed under
+### The character sheet application code is licensed under
 
 BSD 3-Clause License
 

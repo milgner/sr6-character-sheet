@@ -16,7 +16,7 @@
     <v-container>
       <component
         :is="componentType"
-        v-bind="{ editMode: editMode }"
+        v-bind="{ editMode, itemId }"
       />
     </v-container>
   </v-card>
@@ -79,6 +79,7 @@ const boxes = require('@/components/boxes').default;
 const SheetBoxProps = Vue.extend({
   props: {
     height: [String, Number],
+    itemId: String,
     editMode: Boolean,
     type: {
       type: String,

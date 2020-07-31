@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <v-row>
       <v-col>
         <text-input
@@ -120,15 +120,16 @@
         />
       </v-col>
     </v-row>
-  </div>
+  </v-container>
 </template>
 <script lang="ts">
 import Vue from 'vue';
 import TextInput from '@/components/TextInput.vue';
 import { mapModelLike } from '@/store/util';
 import { mapGetters } from 'vuex';
+import Component from 'vue-class-component';
 
-const PersonalDataBoxProps = Vue.extend({
+@Component({
   components: { TextInput },
   computed: {
     ...mapGetters('personalData', [
@@ -150,10 +151,8 @@ const PersonalDataBoxProps = Vue.extend({
       ],
     ),
   },
-});
-
-export default class PersonalDataBox extends PersonalDataBoxProps {
+})
+export default class PersonalDataBox extends Vue {
   static defaultHeight = 6;
 }
-
 </script>

@@ -40,6 +40,7 @@ export default {
     MeleeWeaponsBox: 'Nahkampfwaffen',
     AdeptPowersBox: 'Adeptenkräfte',
     ComplexFormsBox: 'Komplexe Formen',
+    VehicleBox: 'Fahrzeug',
   },
   attribute: 'Attribut',
   attributes: {
@@ -457,6 +458,19 @@ export default {
       sustained: 'A',
       permanent: 'P',
     },
+  },
+  vehicles: {
+    model: 'Modell',
+    seats: 'Sitze',
+    handlingStreet: 'Handling (Straße)',
+    handlingOffroad: 'Handling (Offroad)',
+    acceleration: 'Beschleunigung',
+    speed: 'Geschwindigkeitsintervall',
+    topSpeed: 'Höchstgeschwindigkeit',
+    body: 'Rumpf',
+    armor: 'Panzerung',
+    pilot: 'Pilot',
+    sensor: 'Sensor',
   },
   legal: {
     title: 'Impressum',

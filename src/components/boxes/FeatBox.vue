@@ -5,7 +5,6 @@
     scope="feats"
     item-key="id"
     :show-add-button="!editMode"
-    :custom-sort="customSort"
   >
     <template v-slot:item.type="{ item }">
       {{ translateFeatType(item.type) }}

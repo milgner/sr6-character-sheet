@@ -17,7 +17,13 @@ export default {
     },
     save: 'Speichern',
     load: 'Laden',
+    settings: 'Einstellungen',
     legal: 'Rechtliches',
+  },
+
+  settings: {
+    title: 'Einstellungen',
+    locale: 'Sprache',
   },
 
   defaultFilename: 'Namenloser Charakter',

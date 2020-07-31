@@ -16,4 +16,5 @@ export interface BoxState {
 
 export interface RootState {
   layout: BoxState[];
+  locale: string;
 }

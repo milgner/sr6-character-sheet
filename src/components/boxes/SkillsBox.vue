@@ -1,8 +1,8 @@
 <template>
   <v-tabs grow>
     <v-tabs-slider />
-    <v-tab>Aktionsfertigkeiten</v-tab>
-    <v-tab>Wissensfertigkeiten</v-tab>
+    <v-tab v-t="'skills.actionSkills'" />
+    <v-tab v-t="'skills.knowledgeSkills'" />
     <v-tab-item>
       <data-table-with-dialog
         :headers="activeHeaders"

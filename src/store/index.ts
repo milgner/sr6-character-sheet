@@ -4,6 +4,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import VuexPersistence from 'vuex-persist';
 import boxes from '@/components/boxes';
+import { RootState } from '@/store/TypeDefs';
 
 import i18n from '../i18n';
 
@@ -52,9 +53,10 @@ function determineNewItemCoordinates(layout: BoxState[]): [number, number] {
   return [bestX, bestY];
 }
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   plugins: [vuexLocal.plugin],
   state: {
+    locale: 'en',
     layout: [
       {
         x: 0,
@@ -138,6 +140,10 @@ export default new Vuex.Store({
     updateLayout(state, layout) {
       state.layout = [...layout];
     },
+    setLocale(state, newLocale) {
+      i18n.locale = newLocale;
+      state.locale = newLocale;
+    },
   },
   actions: {
     downloadState({ state }) {
@@ -150,6 +156,9 @@ export default new Vuex.Store({
       link.download = `${state.personalData.name || i18n.t('defaultFilename')}.json`;
       link.click();
       setTimeout(() => link.remove(), 1000);
+    },
+    setLocale({ commit }, newLocale: string) {
+      commit('setLocale', newLocale);
     },
     async addBox({ state, dispatch, commit }, boxType: BoxType) {
       const [x, y] = determineNewItemCoordinates(state.layout);
@@ -196,14 +205,18 @@ export default new Vuex.Store({
     vehicles: VehiclesStore,
   },
   getters: {
-    availableBoxes(store: any) {
+    availableBoxes(state: RootState) {
       const allTypes = Object.entries(boxes)
         .map(([k, v]) => k) as BoxType[];
       return allTypes.filter((type: BoxType) => !!((boxes[type] as any).repeatableStore)
-          || !store.layout.some((e: any) => e.type === type));
+          || !state.layout.some((e: any) => e.type === type));
     },
-    minimumCoordinates(store: any): [number, number] {
-      return determineNewItemCoordinates(store.layout);
+    minimumCoordinates(state: RootState): [number, number] {
+      return determineNewItemCoordinates(state.layout);
     },
   },
 });
+
+i18n.locale = store.state.locale;
+
+export default store;

@@ -47,6 +47,12 @@
         />
         <menu-fab
           color="secondary"
+          icon="mdi-cog"
+          :tooltip="$i18n.t('globalMenu.settings')"
+          @click="onSettingsClicked"
+        />
+        <menu-fab
+          color="secondary"
           :tooltip="$i18n.t('globalMenu.legal')"
           icon="mdi-gavel"
           @click="onLegalClicked"
@@ -98,7 +104,7 @@
                 <v-btn
                   fab
                   large
-                  @click="dialog = true"
+                  @click="dialog = 'addBox'"
                 >
                   <v-icon large>
                     mdi-plus
@@ -111,13 +117,20 @@
       </v-sheet>
     </v-main>
     <add-box-dialog
-      :active="dialog"
+      :active="dialog == 'addBox'"
       :boxes="availableBoxes"
       @close="onDialogClosed"
       @input="onBoxAddSubmitted"
       v-if="availableBoxes"
     />
-    <legal-info-dialog v-model="legalPopup" />
+    <legal-info-dialog
+      :value="dialog == 'legal'"
+      @input="onDialogClosed"
+    />
+    <settings-dialog
+      :value="dialog == 'settings'"
+      @input="onDialogClosed"
+    />
   </v-app>
 </template>
 <style lang="scss">
@@ -142,6 +155,7 @@ import { BoxState, BoxType } from '@/store/TypeDefs';
 import { Watch } from 'vue-property-decorator';
 import MenuFab from '@/components/MenuFab.vue';
 import LegalInfoDialog from '@/components/LegalInfoDialog.vue';
+import SettingsDialog from '@/components/SettingsDialog.vue';
 
 // since it's not possible to get notified when cancel is clicked
 // and spamming the DOM is not a good idea, re-use the input
@@ -149,6 +163,7 @@ let loadFileInput: HTMLInputElement | undefined;
 
 @Component({
   components: {
+    SettingsDialog,
     MenuFab,
     AddBoxDialog,
     SheetBox,
@@ -158,9 +173,7 @@ let loadFileInput: HTMLInputElement | undefined;
   },
 })
 export default class App extends Vue {
-  dialog = false;
-
-  legalPopup = false;
+  dialog: null | 'addBox' | 'settings' | 'legal' = null;
 
   fab = false;
 
@@ -233,7 +246,11 @@ export default class App extends Vue {
   }
 
   onLegalClicked() {
-    this.legalPopup = true;
+    this.dialog = 'legal';
+  }
+
+  onSettingsClicked() {
+    this.dialog = 'settings';
   }
 
   onLoadClicked() {
@@ -258,7 +275,7 @@ export default class App extends Vue {
   }
 
   onDialogClosed() {
-    this.dialog = false;
+    this.dialog = null;
   }
 
   removeBox(item: BoxState) {

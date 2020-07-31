@@ -8,7 +8,7 @@
           dense
           empty-icon="mdi-heart-outline"
           full-icon="mdi-heart"
-          label="Körperlich"
+          :label="$t('weapons.damageTypes.physical')"
           size="32"
           v-model.number="physicalDamage"
         />
@@ -22,7 +22,7 @@
           dense
           empty-icon="mdi-head-heart-outline"
           full-icon="mdi-head-heart"
-          label="Betäubung"
+          :label="$t('weapons.damageTypes.stun')"
           size="32"
           v-model.number="stunDamage"
         />

@@ -6,14 +6,12 @@
   >
     <v-card>
       <v-card-title class="headline grey lighten-2">
-        {{ $i18n.t('legal.title') }}
+        {{ $i18n.t('settings.title') }}
       </v-card-title>
 
       <v-card-text>
-        <h4 v-t="'legal.developerNotice'" />
-        <p v-html="$t('legal.imprint')" />
-        <p><obfuscated-email :email="$i18n.t('legal.authorEmail')" /></p>
-        <p>{{ $i18n.t('legal.licenseInfo') }}</p>
+        <h4 v-t="'settings.locale'" />
+        <locale-selector />
       </v-card-text>
 
       <v-divider />
@@ -34,13 +32,14 @@
 <script lang="ts">
 import { Vue, Prop, Component } from 'vue-property-decorator';
 import ObfuscatedEmail from '@/components/ObfuscatedEmail.vue';
+import LocaleSelector from './LocaleSelector.vue';
 
 @Component({
   components: {
-    ObfuscatedEmail,
+    LocaleSelector,
   },
 })
-export default class LegalInfoDialog extends Vue {
+export default class SettingsDialog extends Vue {
   @Prop(Boolean) readonly value: boolean | undefined;
 }
 </script>

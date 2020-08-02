@@ -488,4 +488,27 @@ export default {
 + '© 2020 Topps Company, Inc. Alle Rechte vorbehalten. Shadowrun ist '
 + 'eine eingetragene Handelsmarke von Topps Company, Inc.',
   },
+  tour: {
+    skip: 'Tour überspringen',
+    previous: 'Zurück',
+    next: 'Weiter',
+    stop: 'Tour beenden',
+    step1: {
+      title: 'Willkommen...',
+      content: 'zum digitalen, anpassbaren Charakterbogen für Shadowrun 6',
+    },
+    step2: {
+      title: 'Das Hauptmenü',
+      content: 'befindet sich hier. Von hier aus schaltest Du in den Bearbeitungsmodus '
+        + 'und zurück. Ausserdem kannst Du hier den Charakterbogen speichern und laden '
+        + 'und weitere Einstellungen vornehmen.',
+    },
+    step3: {
+      title: 'Wenn der Bearbeitungsmodus aktiv ist...',
+      content: 'kannst Du hier neue Boxen hinzufügen.',
+    },
+    step4: {
+      title: 'Lizenzinformation',
+    },
+  },
 };

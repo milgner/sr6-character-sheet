@@ -144,6 +144,9 @@ const store = new Vuex.Store({
       i18n.locale = newLocale;
       state.locale = newLocale;
     },
+    tourDone(state) {
+      state.tourDone = true;
+    },
   },
   actions: {
     downloadState({ state }) {

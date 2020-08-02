@@ -489,4 +489,27 @@ export default {
       + 'informational purposes on its website but does not endorse, and is not '
       + 'affiliated with Marcus Ilgner in any official capacity whatsoever.',
   },
+  tour: {
+    skip: 'Skip tour',
+    previous: 'Back',
+    next: 'Next',
+    stop: 'Finish tour',
+    step1: {
+      title: 'Welcome...',
+      content: 'to a customizable digital character sheet for your Shadowrun 6 character',
+    },
+    step2: {
+      title: 'The main menu',
+      content: 'is located here. You can use it to switch the character sheet into edit mode '
+        + 'and back. You can also save and load your character sheet here and change the '
+        + ' settings',
+    },
+    step3: {
+      title: 'When edit mode is active',
+      content: 'You can add more boxes to the sheet',
+    },
+    step4: {
+      title: 'License',
+    },
+  },
 };

@@ -11,6 +11,7 @@
 
       <v-spacer />
       <v-speed-dial
+        id="main-menu"
         direction="bottom"
         open-on-hover
         right
@@ -31,7 +32,7 @@
           :color="editMode ? 'secondary accent-2' : 'primary accent-2'"
           icon="mdi-pencil-outline"
           :tooltip="$i18n.t(`globalMenu.edit.${editMode ? 'off' : 'on'}`)"
-          @click="editMode = !editMode"
+          @click="toggleEditMode"
         />
         <menu-fab
           color="primary"
@@ -90,6 +91,7 @@
             />
           </grid-item>
           <grid-item
+            id="add-box-placeholder"
             v-show="editMode"
             v-bind="editModePlaceholderProps"
             key="addBoxPlaceholder"
@@ -131,6 +133,7 @@
       :value="dialog == 'settings'"
       @input="onDialogClosed"
     />
+    <app-tour :toggle-edit-mode="toggleEditMode" />
   </v-app>
 </template>
 <style lang="scss">
@@ -156,6 +159,7 @@ import { Watch } from 'vue-property-decorator';
 import MenuFab from '@/components/MenuFab.vue';
 import LegalInfoDialog from '@/components/LegalInfoDialog.vue';
 import SettingsDialog from '@/components/SettingsDialog.vue';
+import AppTour from '@/components/AppTour.vue';
 
 // since it's not possible to get notified when cancel is clicked
 // and spamming the DOM is not a good idea, re-use the input
@@ -163,6 +167,7 @@ let loadFileInput: HTMLInputElement | undefined;
 
 @Component({
   components: {
+    AppTour,
     SettingsDialog,
     MenuFab,
     AddBoxDialog,
@@ -230,6 +235,14 @@ export default class App extends Vue {
       text: this.$t(`boxes.${boxName}`),
       value: boxName,
     }));
+  }
+
+  toggleEditMode(isOn: boolean | undefined) {
+    if (isOn === undefined) {
+      this.editMode = !this.editMode;
+    } else {
+      this.editMode = !!isOn;
+    }
   }
 
   onLayoutUpdated(newLayout: any) {

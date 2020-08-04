@@ -102,10 +102,9 @@
         md="3"
       >
         <text-input
-          :label="$t('personalData.availableKarma')"
+          :label="$t('personalData.spentKarma')"
           type="number"
-          readonly
-          :value="availableKarma"
+          v-model.number="spentKarma"
         />
       </v-col>
       <v-col
@@ -132,9 +131,6 @@ import Component from 'vue-class-component';
 @Component({
   components: { TextInput },
   computed: {
-    ...mapGetters('personalData', [
-      'availableKarma',
-    ]),
     ...mapModelLike(
       'personalData', [
         'name',

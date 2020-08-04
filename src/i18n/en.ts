@@ -83,7 +83,7 @@ export default {
     weight: 'Weight',
     reputation: 'Reputation',
     searchWarrantLevel: 'Heat',
-    availableKarma: 'Karma',
+    spentKarma: 'Spent Karma',
     totalKarma: 'Total Karma',
   },
   matrix: {

@@ -37,12 +37,6 @@ const PersonalDataStore = {
   mutations: {
     ...simpleUpdaters(initialState),
   },
-  actions: {},
-  getters: {
-    availableKarma(state: any) {
-      return state.totalKarma - state.spentKarma;
-    },
-  },
 };
 
 export default PersonalDataStore;

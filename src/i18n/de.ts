@@ -83,7 +83,7 @@ export default {
     weight: 'Gewicht',
     reputation: 'Reputation',
     searchWarrantLevel: 'Fahndungsstufe',
-    availableKarma: 'Karma',
+    spentKarma: 'Investiertes Karma',
     totalKarma: 'Gesamtkarma',
   },
   matrix: {

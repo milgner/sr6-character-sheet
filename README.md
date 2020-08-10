@@ -1,12 +1,30 @@
-# Experiment: Vue-based character sheet for Shadowrun 6
+# Digital character sheet for Shadowrun 6
 
-This is partly to brush up on my Vue.js-fu as well as to actually build
-a character sheet that isn't tied into some proprietary platform that
-doesn't work right half of the time.
+📄 Build a character sheet as individual as your character
 
-It's still in a very(!) early stage, so don't get your hopes up yet.
+🆓 Open-source software does not require any account (data is kept in the browser)
+
+You can either use [my hosted version](https://sr6.illunis.net) or host
+it yourself.
+
+🇩🇪/🇺🇸 German as well as english translations (contributions welcome!)
+
+![Vue.js 2.6.11](https://img.shields.io/badge/Vue.js-2.6.11-green.svg)
+![Issues](https://img.shields.io/github/issues/milgner/sr6-character-sheet.svg)
+
+In order to brush up on my Vue.js-fu, I built this digital character sheet
+so that my gaming group wouldn't need to use a proprietary system to keep
+their data.
+The ultimate goal is to make this printable, too, but first and foremost
+I want to explore the potential of a digital character sheet.
+
+See [LICENSE.md](https://github.com/milgner/sr6-character-sheet/blob/main/LICENSE.md)
+for Shadowrun-specific licensing information.
+
 
 ## Project setup
+
+Install all dependencies:
 ```
 npm install
 ```
@@ -21,20 +39,9 @@ npm run serve
 npm run build
 ```
 
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
-
 ### Lints and fixes files
 ```
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Contributions are welcome!

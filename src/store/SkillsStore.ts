@@ -1,5 +1,5 @@
 import {
-  SkillType, ActionSkill, LanguageSkillRating, CharacterSkill,
+  SkillType, ActionSkill, CharacterSkill, ActionSkillDescriptions,
 } from '@/model';
 import ItemListStoreMutations from './ItemListStoreMutations';
 
@@ -8,7 +8,16 @@ interface SkillsState {
 }
 
 const initialState: SkillsState = {
-  items: [],
+  items: Object.entries(ActionSkillDescriptions)
+    .filter(([_name, props]) => props.untrained)
+    .map(([name, _props], index) => ({
+      id: index,
+      name,
+      rating: 0,
+      type: SkillType.action,
+      specialization: undefined,
+      expertise: undefined,
+    })),
 };
 
 const SkillsStore = {

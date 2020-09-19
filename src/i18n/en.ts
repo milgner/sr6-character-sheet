@@ -254,14 +254,14 @@ export default {
       astral: 'Astral',
       athletics: 'Athletics',
       biotech: 'Biotech',
-      closeCombat: 'Close Combatf',
+      closeCombat: 'Close Combat',
       con: 'Con',
       conjuring: 'Conjuring',
       cracking: 'Cracking',
       electronics: 'Electronics',
       enchanting: 'Enchanting',
       engineering: 'Engineering',
-      firearms: 'Firerarms',
+      firearms: 'Firearms',
       influence: 'Influence',
       outdoors: 'Outdoors',
       perception: 'Perception',
@@ -274,7 +274,7 @@ export default {
     specializations: {
       astral: {
         astralCombat: 'Astral Combat',
-        astralSignatures: 'Astrale Signatures',
+        astralSignatures: 'Astral Signatures',
         emotionalStates: 'Emotional States',
         spiritTypes: 'Spirit Types',
       },
@@ -370,7 +370,7 @@ export default {
       },
       sorcery: {
         counterspelling: 'Counterspelling',
-        ritualSpellcasting: 'Rituall Spellcasting',
+        ritualSpellcasting: 'Ritual Spellcasting',
         spellcasting: 'Spellcasting',
       },
       stealth: {

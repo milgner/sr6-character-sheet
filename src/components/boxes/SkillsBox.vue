@@ -256,8 +256,11 @@ export default class SkillsBox extends Vue {
   }
 
   dicePoolForActionSkill(skill: CharacterSkill): string {
-    const attribute = ActionSkillDescriptions[skill.name as ActionSkill].mainAttribute;
-    const attributeValue = this.$store.state.attributes[attribute];
+    const skillProps = ActionSkillDescriptions[skill.name as ActionSkill];
+    const attributeValue = this.$store.state.attributes[skillProps.mainAttribute];
+    if (skill.rating < 1) {
+      return (skillProps.untrained ? attributeValue - 1 : 0).toString();
+    }
     const baseValue = skill.rating + attributeValue;
     const bonuses = [];
     if (skill.specialization) {

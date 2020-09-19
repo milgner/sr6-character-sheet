@@ -81,6 +81,7 @@ export enum ComplexFormDuration {
 interface ActionSkillDescription {
   specializations: string[];
   mainAttribute: Attribute;
+  untrained: boolean;
 }
 
 export enum LanguageSkillRating {
@@ -118,81 +119,107 @@ export const ActionSkillDescriptions: { [name in ActionSkill]: ActionSkillDescri
   astral: {
     specializations: ['astralSignatures', 'astralCombat', 'emotionalStates', 'spiritTypes'],
     mainAttribute: Attribute.intuition,
+    untrained: false,
   },
   athletics: {
     specializations: ['archery', 'climbing', 'flying', 'escaping', 'sprinting', 'swimming', 'throwing'],
     mainAttribute: Attribute.agility,
+    untrained: true,
   },
   biotech: {
     specializations: ['biotechnology', 'cybertechnology', 'firstAid', 'medicine'],
     mainAttribute: Attribute.logic,
+    untrained: false,
   },
   closeCombat: {
     specializations: ['blades', 'clubs', 'unarmedCombat'],
     mainAttribute: Attribute.agility,
+    untrained: true,
   },
   con: {
     specializations: ['acting', 'disguise', 'impersonation', 'performance'],
     mainAttribute: Attribute.charisma,
+    untrained: true,
   },
   conjuring: {
     specializations: ['summoning', 'banishing'],
     mainAttribute: Attribute.magic,
+    untrained: false,
   },
   cracking: {
     specializations: ['electronicWarfare', 'hacking', 'cyberCombat'],
     mainAttribute: Attribute.logic,
+    untrained: false,
   },
   electronics: {
     specializations: ['computer', 'hardware', 'software'],
     mainAttribute: Attribute.logic,
+    untrained: true,
   },
   enchanting: {
     specializations: ['alchemy', 'disenchanting', 'artificing'],
     mainAttribute: Attribute.magic,
+    untrained: false,
   },
   engineering: {
-    specializations: ['aeronauticsMechanic', 'armorer', 'automotiveMechanic', 'demolitions',
-      'gunnery', 'industrialMechanic', 'lockpicking', 'nauticalMechanic'],
+    specializations: [
+      'aeronauticsMechanic',
+      'armorer',
+      'automotiveMechanic',
+      'demolitions',
+      'gunnery',
+      'industrialMechanic',
+      'lockpicking',
+      'nauticalMechanic'],
     mainAttribute: Attribute.logic,
+    untrained: true,
   },
   firearms: {
     specializations: ['rifles', 'automatics', 'pistols', 'shotguns', 'longarms'],
     mainAttribute: Attribute.agility,
+    untrained: true,
   },
   influence: {
     specializations: ['intimidation', 'leadership', 'etiquette', 'instruction', 'negotiation'],
     mainAttribute: Attribute.charisma,
+    untrained: true,
   },
   outdoors: {
     specializations: ['navigation', 'tracking', 'survival',
       'environmentForest', 'environmentDesert', 'environmentUrban'],
     mainAttribute: Attribute.intuition,
+    untrained: true,
   },
   perception: {
     specializations: ['aural', 'visual', 'tactile',
       'environmentForest', 'environmentDesert', 'environmentUrban'],
     mainAttribute: Attribute.intuition,
+    untrained: true,
   },
   piloting: {
     specializations: ['groundcraft', 'aircraft', 'watercraft'],
     mainAttribute: Attribute.reaction,
+    untrained: true,
   },
   sorcery: {
     specializations: ['counterspelling', 'ritualSpellcasting', 'spellcasting'],
     mainAttribute: Attribute.magic,
+    untrained: false,
   },
   stealth: {
     specializations: ['camouflage', 'disguise', 'palming', 'sneaking'],
     mainAttribute: Attribute.agility,
+    untrained: true,
   },
   tasking: {
     specializations: ['compiling', 'decompiling', 'registering'],
     mainAttribute: Attribute.resonance,
+    untrained: false,
   },
   exoticWeapons: {
     specializations: [],
     mainAttribute: Attribute.agility,
+    untrained: false,
   },
 };
 

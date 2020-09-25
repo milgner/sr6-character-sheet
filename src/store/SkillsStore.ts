@@ -17,6 +17,7 @@ const initialState: SkillsState = {
       type: SkillType.action,
       specialization: undefined,
       expertise: undefined,
+      readOnly: true,
     })),
 };
 

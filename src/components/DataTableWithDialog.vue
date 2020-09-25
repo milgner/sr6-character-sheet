@@ -23,6 +23,7 @@
       </template>
       <template #item.actions="{ item }">
         <v-icon
+          v-if="!item.readOnly"
           dense
           small
           class="mr-2"
@@ -31,6 +32,7 @@
           mdi-pencil
         </v-icon>
         <v-icon
+          v-if="!item.readOnly"
           dense
           small
           @click="deleteItem(item)"

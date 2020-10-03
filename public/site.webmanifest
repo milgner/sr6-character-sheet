@@ -1,0 +1,20 @@
+{
+    "name": "SR6 Sheet",
+    "short_name": "SR6 Sheet",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#2F2F2F",
+    "background_color": "#2F2F2F",
+    "start_url": "https://sr6.illunis.net",
+    "display": "standalone"
+}

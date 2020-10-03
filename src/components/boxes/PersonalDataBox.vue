@@ -1,5 +1,13 @@
 <template>
   <v-container>
+    <v-row v-if="editMode">
+      <v-col cols="12">
+        <v-select
+          :items="characterTypes"
+          v-model="characterType"
+        />
+      </v-col>
+    </v-row>
     <v-row>
       <v-col>
         <text-input
@@ -127,6 +135,9 @@ import TextInput from '@/components/TextInput.vue';
 import { mapModelLike } from '@/store/util';
 import { mapGetters } from 'vuex';
 import Component from 'vue-class-component';
+import { Prop } from 'vue-property-decorator';
+import { translatedEnumOptions } from '@/i18n';
+import { CharacterType } from '@/model';
 
 @Component({
   components: { TextInput },
@@ -144,11 +155,16 @@ import Component from 'vue-class-component';
         'searchWarrantLevel',
         'spentKarma',
         'totalKarma',
+        'characterType',
       ],
     ),
   },
 })
 export default class PersonalDataBox extends Vue {
   static defaultHeight = 6;
+
+  @Prop(Boolean) readonly editMode: boolean | undefined;
+
+  characterTypes = translatedEnumOptions(CharacterType, 'personalData.characterTypes');
 }
 </script>

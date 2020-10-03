@@ -1,7 +1,7 @@
 export enum CharacterType {
-  Mundane = 'mundane',
-  AwakenedMage = 'mage',
-  AwakenedTechnomancer = 'technomancer',
+  mundane = 'mundane',
+  awakenedMage = 'mage',
+  awakenedTechnomancer = 'technomancer',
 }
 
 export enum Attribute {

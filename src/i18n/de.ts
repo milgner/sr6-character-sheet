@@ -85,6 +85,11 @@ export default {
     searchWarrantLevel: 'Fahndungsstufe',
     spentKarma: 'Investiertes Karma',
     totalKarma: 'Gesamtkarma',
+    characterTypes: {
+      mundane: 'Mundan',
+      awakenedMage: 'Magier',
+      awakenedTechnomancer: 'Technomancer',
+    },
   },
   matrix: {
     simHot: 'Heisses SIM',

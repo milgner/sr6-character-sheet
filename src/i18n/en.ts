@@ -85,6 +85,11 @@ export default {
     searchWarrantLevel: 'Heat',
     spentKarma: 'Spent Karma',
     totalKarma: 'Total Karma',
+    characterTypes: {
+      mundane: 'Mundan',
+      awakenedMage: 'Magier',
+      awakenedTechnomancer: 'Technomancer',
+    },
   },
   matrix: {
     simHot: 'Hot SIM',

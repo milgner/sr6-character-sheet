@@ -28,7 +28,7 @@ const initialState: PersonalDataState = {
   searchWarrantLevel: 0,
   spentKarma: 0,
   totalKarma: 0,
-  characterType: CharacterType.Mundane,
+  characterType: CharacterType.mundane,
 };
 
 const PersonalDataStore = {

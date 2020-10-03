@@ -19,6 +19,7 @@ interface AttributesState {
   currentEdge: number;
   attackUnarmed: number;
   defense: number;
+  characterType: CharacterType;
 }
 const initialState: AttributesState = {
   bod: 0,
@@ -38,6 +39,7 @@ const initialState: AttributesState = {
   currentEdge: 0,
   attackUnarmed: 0,
   defense: 0,
+  characterType: CharacterType.mundane,
 };
 
 const AttributesStore = {
@@ -64,10 +66,10 @@ const AttributesStore = {
       return rootState.matrix.simHot ? 2 : 3;
     },
     astralIniDice(_state: any, _getters: any, rootState: any): number | null {
-      return rootState.personalData.characterType === CharacterType.AwakenedMage ? 2 : null;
+      return rootState.personalData.characterType === CharacterType.awakenedMage ? 2 : null;
     },
     astralIniBase(state: any, _getters: any, rootState: any): number | null {
-      if (rootState.personalData.characterType !== CharacterType.AwakenedMage) {
+      if (rootState.personalData.characterType !== CharacterType.awakenedMage) {
         return null;
       }
       return state.log + state.int;

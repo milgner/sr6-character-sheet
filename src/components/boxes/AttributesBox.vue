@@ -326,11 +326,11 @@ export default class AttributesBox extends AttributesBoxProps {
   }
 
   get isMage() {
-    return this.$store.state.personalData.characterType === CharacterType.AwakenedMage;
+    return this.$store.state.personalData.characterType === CharacterType.awakenedMage;
   }
 
   get isTechnomancer() {
-    return this.$store.state.personalData.characterType === CharacterType.AwakenedTechnomancer;
+    return this.$store.state.personalData.characterType === CharacterType.awakenedTechnomancer;
   }
 }
 

@@ -206,6 +206,7 @@ export default class App extends Vue {
   updatePlaceholderBoxState() {
     if (this.layout === undefined) { return; }
     const [x, y] = this.$store.getters.minimumCoordinates;
+    this.editModePlaceholderProps.w = this.$store.getters.maximumWidth(x, y, 6);
     this.editModePlaceholderProps.x = x;
     this.editModePlaceholderProps.y = y;
   }

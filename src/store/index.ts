@@ -163,16 +163,25 @@ const store = new Vuex.Store({
     setLocale({ commit }, newLocale: string) {
       commit('setLocale', newLocale);
     },
-    async addBox({ state, dispatch, commit }, boxType: BoxType) {
+    async addBox({
+      state,
+      getters,
+      dispatch,
+      commit,
+    }, boxType: BoxType) {
       const [x, y] = determineNewItemCoordinates(state.layout);
-      const maxI = state.layout
-        .reduce((a: number, e: BoxState) => Math.max(a, Number.parseInt(e.i, 10)), 0);
+      const height = boxes[boxType].defaultHeight;
+      const maxI = state.layout.reduce((a: [number, number], e: BoxState) => Math.max(
+        a[0], Number.parseInt(e.i, 10),
+      ), 0);
+      // TODO: would probably be better to add minimum width and then determine x and y from that
+      const maxW = getters.maximumWidth(x, y, height);
       const boxData = {
         x,
         y,
-        h: boxes[boxType].defaultHeight,
+        h: height,
         i: (maxI + 1).toString(),
-        w: 6,
+        w: maxW,
         type: boxType,
         itemId: undefined,
       };
@@ -216,6 +225,12 @@ const store = new Vuex.Store({
     },
     minimumCoordinates(state: RootState): [number, number] {
       return determineNewItemCoordinates(state.layout);
+    },
+    maximumWidth(state: RootState) {
+      return (x, y, height) => state.layout.reduce((a, e) => {
+        const adjacent = e.x > x && (Math.max(e.y, y) <= Math.min(e.y + e.h, y + height));
+        return adjacent ? Math.min(a, e.x - x) : a;
+      }, 12);
     },
   },
 });

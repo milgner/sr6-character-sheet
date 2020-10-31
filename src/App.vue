@@ -165,6 +165,9 @@ import AppTour from '@/components/AppTour.vue';
 // and spamming the DOM is not a good idea, re-use the input
 let loadFileInput: HTMLInputElement | undefined;
 
+const PLACEHOLDER_BOX_WIDTH = 6;
+const PLACEHOLDER_BOX_HEIGHT = 5;
+
 @Component({
   components: {
     AppTour,
@@ -190,10 +193,10 @@ export default class App extends Vue {
   editModePlaceholderProps: BoxState = {
     type: 'AddBoxPlaceholder',
     i: '99999',
-    h: 5,
+    h: PLACEHOLDER_BOX_HEIGHT,
     x: 0,
     y: 0,
-    w: 6,
+    w: PLACEHOLDER_BOX_WIDTH,
     itemId: undefined,
   };
 
@@ -205,8 +208,8 @@ export default class App extends Vue {
 
   updatePlaceholderBoxState() {
     if (this.layout === undefined) { return; }
-    const [x, y] = this.$store.getters.minimumCoordinates;
-    this.editModePlaceholderProps.w = this.$store.getters.maximumWidth(x, y, 6);
+    const [x, y] = this.$store.getters.minimumCoordinates(PLACEHOLDER_BOX_WIDTH,
+      PLACEHOLDER_BOX_HEIGHT);
     this.editModePlaceholderProps.x = x;
     this.editModePlaceholderProps.y = y;
   }

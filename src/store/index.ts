@@ -1,13 +1,14 @@
 // @ts-nocheck
 
+import BitSet from 'bitset';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import VuexPersistence from 'vuex-persist';
 import boxes from '@/components/boxes';
-import { RootState } from '@/store/TypeDefs';
+
+import { BoxState, RootState } from '@/store/TypeDefs';
 
 import i18n from '../i18n';
-
 import AttributesStore from './AttributesStore';
 import PersonalDataStore from './PersonalDataStore';
 import HealthMonitorStore from './HealthMonitorStore';
@@ -33,24 +34,38 @@ const vuexLocal = new VuexPersistence({
   key: 'sr6Character',
 });
 
-function determineNewItemCoordinates(layout: BoxState[]): [number, number] {
-  const columnMax: any = {};
-  layout.forEach((e: BoxState) => {
-    // if it's in a different "lane", where there's place in a higher spot, put it there
-    const topY = e.y + e.h;
-    if (columnMax[e.x] === undefined || columnMax[e.x] < topY) {
-      columnMax[e.x] = topY;
-    }
+const LAYOUT_WIDTH = 12;
+const DEFAULT_WIDTH = 6;
+
+function fillBox(bitset: BitSet, width: number, height: number,
+  offsetX = 0, offsetY = 0) {
+  for (let y = 0; y < height; y += 1) {
+    const rowStart = (offsetY + y) * LAYOUT_WIDTH + offsetX;
+    const rowEnd = rowStart + width;
+    bitset.setRange(rowStart, rowEnd - 1, 1);
+  }
+}
+
+function determineNewItemCoordinates(layout: BoxState[], desiredWidth, desiredHeight):
+  [number, number] {
+  // create a bitset which determines whether a cell in the layout is taken
+  const layoutMask = new BitSet();
+  let maxY = 0; // aka the number of rows in the current layout
+  layout.forEach((box) => {
+    fillBox(layoutMask, box.w, box.h, box.x, box.y);
+    maxY = Math.max(maxY, box.y + box.h);
   });
-  let bestY = 9999;
-  let bestX = 0;
-  Object.entries(columnMax).forEach(([x, y]) => {
-    if ((y as number) < bestY) {
-      bestY = y as number;
-      bestX = Number.parseInt(x, 10);
+  const newBoxMask = new BitSet();
+  fillBox(newBoxMask, desiredWidth, desiredHeight);
+  for (let y = 0; y <= maxY; y += 1) {
+    for (let x = 0; x < LAYOUT_WIDTH - desiredWidth; x += 1) {
+      // a && operation should result in an empty set, otherwise it means there is an obstacle
+      if (layoutMask.slice((y * LAYOUT_WIDTH) + x).and(newBoxMask).isEmpty()) {
+        return [x, y];
+      }
     }
-  });
-  return [bestX, bestY];
+  }
+  return [0, maxY + 1];
 }
 
 const store = new Vuex.Store({
@@ -163,25 +178,18 @@ const store = new Vuex.Store({
     setLocale({ commit }, newLocale: string) {
       commit('setLocale', newLocale);
     },
-    async addBox({
-      state,
-      getters,
-      dispatch,
-      commit,
-    }, boxType: BoxType) {
-      const [x, y] = determineNewItemCoordinates(state.layout);
-      const height = boxes[boxType].defaultHeight;
-      const maxI = state.layout.reduce((a: [number, number], e: BoxState) => Math.max(
-        a[0], Number.parseInt(e.i, 10),
-      ), 0);
-      // TODO: would probably be better to add minimum width and then determine x and y from that
-      const maxW = getters.maximumWidth(x, y, height);
+    async addBox({ state, dispatch, commit }, boxType: BoxType) {
+      const [x, y] = determineNewItemCoordinates(state.layout,
+        DEFAULT_WIDTH,
+        boxes[boxType].defaultHeight);
+      const maxI = state.layout
+        .reduce((a: number, e: BoxState) => Math.max(a, Number.parseInt(e.i, 10)), 0);
       const boxData = {
         x,
         y,
-        h: height,
+        h: boxes[boxType].defaultHeight,
         i: (maxI + 1).toString(),
-        w: maxW,
+        w: DEFAULT_WIDTH,
         type: boxType,
         itemId: undefined,
       };
@@ -223,8 +231,10 @@ const store = new Vuex.Store({
       return allTypes.filter((type: BoxType) => !!((boxes[type] as any).repeatableStore)
           || !state.layout.some((e: any) => e.type === type));
     },
-    minimumCoordinates(state: RootState): [number, number] {
-      return determineNewItemCoordinates(state.layout);
+    minimumCoordinates(state: RootState): (width: number, height: number) => [number, number] {
+      return (width: number, height: number) => determineNewItemCoordinates(
+        state.layout, width, height,
+      );
     },
     maximumWidth(state: RootState) {
       return (x, y, height) => state.layout.reduce((a, e) => {

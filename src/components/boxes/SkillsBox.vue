@@ -11,11 +11,12 @@
         item-key="id"
         scope="skills"
       >
-        <template v-slot="{ item }">
+        <template v-slot="{ item, isEditing }">
           <v-row>
             <v-col cols="9">
               <v-select
                 :items="availableSkillsDecorated(item)"
+                :readonly="isEditing"
                 v-model="item.name"
                 dense
               />

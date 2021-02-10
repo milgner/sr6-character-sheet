@@ -63,7 +63,10 @@
         <v-card>
           <v-card-title>{{ dialogTitle }}</v-card-title>
           <v-card-text>
-            <slot :item="itemData" />
+            <slot
+              :item="itemData"
+              :isEditing="editingItem !== null"
+            />
           </v-card-text>
           <v-card-actions>
             <v-spacer />

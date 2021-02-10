@@ -51,7 +51,7 @@
                       <td>
                         <v-switch
                           dense
-                          multiple="false"
+                          :multiple="false"
                           v-model="item.specialization"
                           :value="specialization.name"
                         />
@@ -59,7 +59,7 @@
                       <td>
                         <v-switch
                           dense
-                          multiple="false"
+                          :multiple="false"
                           v-model="item.expertise"
                           :value="specialization.name"
                         />

@@ -149,7 +149,6 @@ import { Prop } from 'vue-property-decorator';
   components: { DataTableWithDialog },
   computed: {
     ...mapGetters('skills', ['availableActionSkills', 'knowledgeSkills', 'actionSkills']),
-    ...mapModelLike('skills', ['items']),
   },
 })
 export default class SkillsBox extends Vue {

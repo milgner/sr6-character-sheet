@@ -17,7 +17,6 @@ const initialState: SkillsState = {
       type: SkillType.action,
       specialization: undefined,
       expertise: undefined,
-      readOnly: true,
     })),
 };
 
@@ -38,7 +37,19 @@ const SkillsStore = {
     },
 
     actionSkills(store: any) {
-      return store.items.filter((i: CharacterSkill) => i.type === SkillType.action);
+      return store.items.filter((i: CharacterSkill) => i.type === SkillType.action)
+        .map((e: any) => {
+          // TODO: implement proper migrations mechanism
+          delete e.indelible;
+          delete e.readOnly;
+          Object.defineProperty(e, Symbol('indelible'), {
+            get() {
+              const key = e.name as (keyof typeof ActionSkillDescriptions);
+              return !!ActionSkillDescriptions[key].untrained;
+            },
+          });
+          return e;
+        });
     },
 
     knowledgeSkills(store: any) {

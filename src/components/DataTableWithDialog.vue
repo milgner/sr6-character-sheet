@@ -10,7 +10,7 @@
       hide-default-footer
       must-sort
     >
-      <!-- pass onn scoped slots for decorators to the child component -->
+      <!-- pass on scoped slots for decorators to the child component -->
       <template
         v-for="(_, name) in $scopedSlots"
         :slot="name"
@@ -23,7 +23,6 @@
       </template>
       <template #item.actions="{ item }">
         <v-icon
-          v-if="!item.readOnly"
           dense
           small
           class="mr-2"
@@ -32,7 +31,7 @@
           mdi-pencil
         </v-icon>
         <v-icon
-          v-if="!item.readOnly"
+          v-if="!item.indelible"
           dense
           small
           @click="deleteItem(item)"

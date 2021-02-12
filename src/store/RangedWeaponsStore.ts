@@ -6,7 +6,7 @@ interface RangedWeapon {
   name: string;
   damageValue: number;
   damageType: DamageType;
-  mode: string;
+  modes: string[];
   close: number;
   near: number;
   medium: number;
@@ -35,7 +35,7 @@ const RangedWeaponsStore = {
         name: '',
         damageValue: 0,
         damageType: DamageType.physical,
-        mode: 'HM',
+        modes: [],
         close: 0,
         near: 0,
         medium: 0,

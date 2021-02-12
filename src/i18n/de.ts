@@ -224,6 +224,12 @@ export default {
     addDialog: {
       title: 'Fernkampfwaffe hinzufügen',
     },
+    modes: {
+      SS: 'EM',
+      BF: 'SM',
+      SA: 'HA',
+      FA: 'AM',
+    },
     updateDialog: {
       title: 'Fernkampfwaffe bearbeiten',
     },

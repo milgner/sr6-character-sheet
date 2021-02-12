@@ -224,6 +224,12 @@ export default {
     addDialog: {
       title: 'Add Ranged Weapon',
     },
+    modes: {
+      SS: 'EM',
+      BF: 'SM',
+      SA: 'HA',
+      FA: 'AM',
+    },
     updateDialog: {
       title: 'Edit Ranged Weapon',
     },

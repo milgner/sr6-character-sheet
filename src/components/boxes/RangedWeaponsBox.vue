@@ -22,12 +22,42 @@
             v-model="item.name"
           />
         </v-col>
-        <v-col cols="4">
-          <v-text-field
+        <v-col
+          cols="4"
+        >
+          <v-btn-toggle
+            multiple
             dense
-            :label="$t('rangedWeapons.mode')"
-            v-model="item.mode"
-          />
+            mandatory
+            v-model="item.modes"
+          >
+            <v-btn
+              x-small
+              value="SS"
+              :disabled="item.modes && item.modes.indexOf('SA') > -1"
+            >
+              {{ $t('rangedWeapons.modes.SS') }}
+            </v-btn>
+            <v-btn
+              x-small
+              value="SA"
+              @click="enableSSForSA(item)"
+            >
+              {{ $t('rangedWeapons.modes.SA') }}
+            </v-btn>
+            <v-btn
+              x-small
+              value="BF"
+            >
+              {{ $t('rangedWeapons.modes.BF') }}
+            </v-btn>
+            <v-btn
+              x-small
+              value="FA"
+            >
+              {{ $t('rangedWeapons.modes.FA') }}
+            </v-btn>
+          </v-btn-toggle>
         </v-col>
       </v-row>
       <v-row>
@@ -142,6 +172,13 @@ export default class RangedWeaponsBox extends Vue {
   displayAmmo(weapon: any) {
     const ammoTypeMnemo = this.$t(`rangedWeapons.ammoTypeMnemonics.${reversedEnum(AmmoType)[weapon.ammoType]}`).toString()[0];
     return `${weapon.ammoCount}${ammoTypeMnemo}`;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  enableSSForSA(item: any) {
+    if (item.modes.indexOf('SS') === -1 && item.modes.indexOf('SA') === -1) {
+      item.modes.push('SS');
+    }
   }
 
   get headers() {

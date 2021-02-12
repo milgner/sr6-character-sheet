@@ -39,10 +39,17 @@ const SkillsStore = {
     actionSkills(store: any) {
       return store.items.filter((i: CharacterSkill) => i.type === SkillType.action)
         .map((e: any) => {
-          // TODO: implement proper migrations mechanism
-          delete e.indelible;
-          delete e.readOnly;
-          Object.defineProperty(e, Symbol('indelible'), {
+          const indelibleProperty = Object.getOwnPropertyDescriptor(e, 'indelible');
+          if (indelibleProperty !== undefined) {
+            // TODO: implement proper migrations mechanism
+            if (indelibleProperty.configurable) {
+              delete e.indelible;
+            } else {
+              return e;
+            }
+          }
+          // it's not enumerable by default and as such will not be shown included in toJSON()
+          Object.defineProperty(e, 'indelible', {
             get() {
               const key = e.name as (keyof typeof ActionSkillDescriptions);
               return !!ActionSkillDescriptions[key].untrained;

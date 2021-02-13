@@ -196,7 +196,7 @@ export default class RangedWeaponsBox extends Vue {
       text: this.$t('rangedWeapons.mode'),
       align: 'start',
       sortable: false,
-      value: 'mode',
+      value: 'modes',
     }, {
       text: this.$t('rangedWeapons.ranges.close'),
       align: 'end',

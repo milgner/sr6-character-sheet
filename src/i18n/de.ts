@@ -227,7 +227,7 @@ export default {
     modes: {
       SS: 'EM',
       BF: 'SM',
-      SA: 'HA',
+      SA: 'HM',
       FA: 'AM',
     },
     updateDialog: {

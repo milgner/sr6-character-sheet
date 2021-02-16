@@ -9,6 +9,21 @@
     <template v-slot:item.damage="{ item }">
       {{ displayDamage(item) }}
     </template>
+    <template
+      v-slot:item.modes="{ item }"
+    >
+      <div v-if="item && item.modes && item.modes.length === 1">
+        {{ item.modes[0] }}
+      </div>
+      <div v-else-if="item && item.modes">
+        <v-select
+          :value="item.currentMode"
+          dense
+          @input="updateCurrentWeaponMode(item, $event)"
+          :items="translatedModes(item.modes)"
+        />
+      </div>
+    </template>
     <template v-slot:item.ammo="{ item }">
       {{ displayAmmo(item) }}
     </template>
@@ -139,6 +154,11 @@
     </template>
   </data-table-with-dialog>
 </template>
+<style type="text/css">
+.v-input > .v-input__control > .v-text-field__details {
+  display: none;
+}
+</style>
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
@@ -148,6 +168,7 @@ import { mapModelLike } from '@/store/util';
 import { reversedEnum, translatedEnumOptions } from '@/i18n';
 import { AmmoType, DamageType } from '@/model';
 import { Prop } from 'vue-property-decorator';
+import { WeaponMode } from '@/store/RangedWeaponsStore';
 
 @Component({
   components: { DataTableWithDialog },
@@ -174,10 +195,19 @@ export default class RangedWeaponsBox extends Vue {
     return `${weapon.ammoCount}${ammoTypeMnemo}`;
   }
 
+  translatedModes(modes: WeaponMode[]): any[] {
+    return modes.map((mode) => ({ value: mode, text: this.$i18n.t(`rangedWeapons.modes.${mode}`) }));
+  }
+
+  updateCurrentWeaponMode(item: any, value: WeaponMode) {
+    this.$store.commit('rangedWeapons/updateItem',
+      { id: item.id, data: { ...item, currentMode: value } });
+  }
+
   // eslint-disable-next-line class-methods-use-this
   enableSSForSA(item: any) {
-    if (item.modes.indexOf('SS') === -1 && item.modes.indexOf('SA') === -1) {
-      item.modes.push('SS');
+    if (item.modes.indexOf(WeaponMode.SS) === -1 && item.modes.indexOf(WeaponMode.SA) === -1) {
+      item.modes.push(WeaponMode.SS);
     }
   }
 

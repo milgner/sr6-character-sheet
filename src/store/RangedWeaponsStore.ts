@@ -1,12 +1,17 @@
 import { AmmoType, DamageType } from '@/model';
 import ItemListStoreMutations from './ItemListStoreMutations';
 
+export enum WeaponMode {
+  SS = 'SS', BF = 'BF', SA = 'SA', FA = 'FA'
+}
+
 interface RangedWeapon {
   id: number | null;
   name: string;
   damageValue: number;
   damageType: DamageType;
-  modes: string[];
+  modes: WeaponMode[];
+  currentMode: WeaponMode;
   close: number;
   near: number;
   medium: number;
@@ -35,7 +40,8 @@ const RangedWeaponsStore = {
         name: '',
         damageValue: 0,
         damageType: DamageType.physical,
-        modes: [],
+        modes: [WeaponMode.SS],
+        currentMode: WeaponMode.SS,
         close: 0,
         near: 0,
         medium: 0,

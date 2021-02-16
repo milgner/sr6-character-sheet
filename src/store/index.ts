@@ -19,6 +19,7 @@ import EquipmentStore from './EquipmentStore';
 import FeatStore from './FeatStore';
 import ConnectionStore from './ConnectionStore';
 import RangedWeaponsStore from './RangedWeaponsStore';
+import RangedWeaponsAmmoStore from './RangedWeaponsAmmoStore';
 import SkillsStore from './SkillsStore';
 import LifestyleStore from './LifestyleStore';
 import SpellsStore from './SpellsStore';
@@ -216,6 +217,7 @@ const store = new Vuex.Store({
     feats: FeatStore,
     connections: ConnectionStore,
     rangedWeapons: RangedWeaponsStore,
+    rangedWeaponsAmmo: RangedWeaponsAmmoStore,
     skills: SkillsStore,
     lifestyle: LifestyleStore,
     spells: SpellsStore,

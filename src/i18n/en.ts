@@ -3,6 +3,7 @@ export default {
   rating: 'Rating',
   notes: 'Notes',
   dicePool: '# Dice',
+  amount: 'Amount',
 
   dialogs: {
     add: 'Add',
@@ -33,6 +34,7 @@ export default {
     AttributesBox: 'Attributes',
     SkillsBox: 'Skills',
     RangedWeaponsBox: 'Ranged Weapons',
+    RangedWeaponsAmmoBox: 'Ammunition',
     LifestyleBox: 'IDs /  Lifestyles / Currency',
     FightSummaryBox: 'Important Fight Info',
     HealthMonitorBox: 'Condition Monitor',
@@ -194,7 +196,7 @@ export default {
   rangedWeapons: {
     mode: 'Mode',
     ammo: 'Ammo',
-    ammoType: 'Ammo Type',
+    ammoFeedType: 'Ammo Type',
     ammoCount: 'Mag.-Size',
     ranges: {
       close: 'Close',
@@ -203,7 +205,7 @@ export default {
       far: 'Far',
       extreme: 'Extreme',
     },
-    ammoTypes: {
+    ammoFeedTypes: {
       breakAction: 'Break Action',
       clip: 'Clip',
       drum: 'Drum',
@@ -212,7 +214,7 @@ export default {
       cylinder: 'Cylinder',
       belt: 'Belt',
     },
-    ammoTypeMnemonics: {
+    ammoFeedTypeMnemonics: {
       breakAction: 'ba',
       clip: 'c',
       drum: 'd',
@@ -232,6 +234,24 @@ export default {
     },
     updateDialog: {
       title: 'Edit Ranged Weapon',
+    },
+  },
+  rangedWeaponsAmmo: {
+    type: 'Type',
+    types: {
+      apds: 'APDS',
+      explosive: 'Explosive',
+      flechette: 'Flechette',
+      gel: 'Gel',
+      shocker: 'Shocker',
+      standard: 'Standard',
+      caseless: 'Caseless',
+    },
+    addDialog: {
+      title: 'Add Ammo',
+    },
+    updateDialog: {
+      title: 'Change Ammo',
     },
   },
   meleeWeapons: {

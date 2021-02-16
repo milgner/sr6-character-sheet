@@ -35,7 +35,7 @@ export enum DamageType {
   stun = 'stun',
 }
 
-export enum AmmoType {
+export enum AmmoFeedType {
   breakAction = 'breakAction',
   clip = 'clip',
   drum = 'drum',

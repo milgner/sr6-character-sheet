@@ -16,6 +16,7 @@ import MeleeWeaponsBox from '@/components/boxes/MeleeWeaponsBox.vue';
 import AdeptPowersBox from '@/components/boxes/AdeptPowersBox.vue';
 import ComplexFormsBox from '@/components/boxes/ComplexFormsBox.vue';
 import VehicleBox from '@/components/boxes/VehicleBox.vue';
+import RangedWeaponsAmmoBox from '@/components/boxes/RangedWeaponsAmmoBox.vue';
 
 export default {
   PersonalDataBox,
@@ -27,6 +28,7 @@ export default {
   FeatBox,
   ConnectionsBox,
   RangedWeaponsBox,
+  RangedWeaponsAmmoBox,
   BodytechBox,
   EquipmentBox,
   ArmorBox,

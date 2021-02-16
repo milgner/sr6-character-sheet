@@ -102,9 +102,9 @@
         </v-col>
         <v-col cols="4">
           <v-select
-            :label="$t('rangedWeapons.ammoType')"
-            :items="ammoTypes"
-            v-model="item.ammoType"
+            :label="$t('rangedWeapons.ammoFeedType')"
+            :items="ammoFeedTypes"
+            v-model="item.ammoFeedType"
             dense
           />
         </v-col>
@@ -166,7 +166,7 @@ import DataTableWithDialog from '@/components/DataTableWithDialog.vue';
 import { mapModelLike } from '@/store/util';
 
 import { reversedEnum, translatedEnumOptions } from '@/i18n';
-import { AmmoType, DamageType } from '@/model';
+import { AmmoFeedType, DamageType } from '@/model';
 import { Prop } from 'vue-property-decorator';
 import { WeaponMode } from '@/store/RangedWeaponsStore';
 
@@ -183,7 +183,7 @@ export default class RangedWeaponsBox extends Vue {
 
   damageTypes = translatedEnumOptions(DamageType, 'weapons.damageTypes');
 
-  ammoTypes = translatedEnumOptions(AmmoType, 'rangedWeapons.ammoTypes');
+  ammoFeedTypes = translatedEnumOptions(AmmoFeedType, 'rangedWeapons.ammoFeedTypes');
 
   displayDamage(weapon: any) {
     const damageMnemo = this.$t(`weapons.damageTypes.${reversedEnum(DamageType)[weapon.damageType]}`).toString()[0];
@@ -191,8 +191,8 @@ export default class RangedWeaponsBox extends Vue {
   }
 
   displayAmmo(weapon: any) {
-    const ammoTypeMnemo = this.$t(`rangedWeapons.ammoTypeMnemonics.${reversedEnum(AmmoType)[weapon.ammoType]}`).toString()[0];
-    return `${weapon.ammoCount}${ammoTypeMnemo}`;
+    const ammoFeedTypeMnemo = this.$t(`rangedWeapons.ammoFeedTypeMnemonics.${reversedEnum(AmmoFeedType)[weapon.ammoFeedType]}`).toString()[0];
+    return `${weapon.ammoCount}${ammoFeedTypeMnemo}`;
   }
 
   translatedModes(modes: WeaponMode[]): any[] {

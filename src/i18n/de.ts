@@ -3,6 +3,7 @@ export default {
   rating: 'Stufe',
   notes: 'Anmerkung',
   dicePool: '# Würfel',
+  amount: 'Anzahl',
 
   dialogs: {
     add: 'Hinzufügen',
@@ -33,6 +34,7 @@ export default {
     AttributesBox: 'Attribute',
     SkillsBox: 'Fertigkeiten',
     RangedWeaponsBox: 'Fernkampfwaffen',
+    RangedWeaponsAmmoBox: 'Munitionsvorrat',
     LifestyleBox: 'IDs /  Lebensstile / Währung',
     FightSummaryBox: 'Wichtige Kampf-Infos',
     HealthMonitorBox: 'Zustandsmonitor',
@@ -194,7 +196,7 @@ export default {
   rangedWeapons: {
     mode: 'Modus',
     ammo: 'Munition',
-    ammoType: 'Munitions-Zufuhr',
+    ammoFeedType: 'Munitions-Zufuhr',
     ammoCount: 'Mag.-Größe',
     ranges: {
       close: 'Sehr nah',
@@ -203,7 +205,7 @@ export default {
       far: 'Weit',
       extreme: 'Extrem',
     },
-    ammoTypes: {
+    ammoFeedTypes: {
       breakAction: 'Kipplauf',
       clip: 'Streifen',
       drum: 'Trommel',
@@ -212,7 +214,7 @@ export default {
       cylinder: 'Zylinder',
       belt: 'Gürtel',
     },
-    ammoTypeMnemonics: {
+    ammoFeedTypeMnemonics: {
       breakAction: 'kl',
       clip: 's',
       drum: 't',
@@ -232,6 +234,24 @@ export default {
     },
     updateDialog: {
       title: 'Fernkampfwaffe bearbeiten',
+    },
+  },
+  rangedWeaponsAmmo: {
+    type: 'Typ',
+    types: {
+      apds: 'APDS',
+      explosive: 'Explosiv',
+      flechette: 'Flechette',
+      gel: 'Gel',
+      shocker: 'Schock',
+      standard: 'Standard',
+      caseless: 'Hülsenlos',
+    },
+    addDialog: {
+      title: 'Munition hinzufügen',
+    },
+    updateDialog: {
+      title: 'Munition anpassen',
     },
   },
   meleeWeapons: {

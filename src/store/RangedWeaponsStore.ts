@@ -1,4 +1,4 @@
-import { AmmoType, DamageType } from '@/model';
+import { AmmoFeedType, DamageType } from '@/model';
 import ItemListStoreMutations from './ItemListStoreMutations';
 
 export enum WeaponMode {
@@ -18,7 +18,7 @@ interface RangedWeapon {
   far: number;
   extreme: number;
   ammoCount: number;
-  ammoType: AmmoType;
+  ammoFeedType: AmmoFeedType;
 }
 
 interface RangedWeaponsState {
@@ -48,7 +48,7 @@ const RangedWeaponsStore = {
         far: 0,
         extreme: 0,
         ammoCount: 0,
-        ammoType: AmmoType.clip,
+        ammoFeedType: AmmoFeedType.clip,
       };
     },
   },

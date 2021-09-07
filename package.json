@@ -56,7 +56,8 @@
   },
   "eslintConfig": {
     "rules": {
-      "no-debugger": "off"
+      "no-debugger": "off",
+      "@typescript-eslint/ban-ts-ignore": "off"
     },
     "root": true,
     "env": {

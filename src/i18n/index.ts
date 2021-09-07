@@ -15,7 +15,7 @@ const i18n = new VueI18n({
 });
 export default i18n;
 
-export function reversedEnum(enumClass: object) {
+export function reversedEnum(enumClass: Record<string, string>) {
   return Object.entries(enumClass).reduce((a: any, [k, v]) => {
     // eslint-disable-next-line no-param-reassign
     a[v] = k;
@@ -23,7 +23,7 @@ export function reversedEnum(enumClass: object) {
   }, {});
 }
 
-export function translatedEnumOptions(enumClass: object, scope: string) {
+export function translatedEnumOptions(enumClass: Record<string, unknown>, scope: string) {
   return Object.entries(enumClass).map(([k, v]) => ({
     value: v,
     text: i18n.t(`${scope}.${k}`),

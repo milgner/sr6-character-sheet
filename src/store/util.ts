@@ -63,7 +63,7 @@ export function mapModelLike(namespace: string, properties: string[]) {
   }, {});
 }
 
-export function addPropertiesIndexed(target: object, itemId: string,
+export function addPropertiesIndexed(target: any, itemId: string,
   namespace: string, properties: string[]) {
   properties.forEach((e: string) => {
     Object.defineProperty(target, e, modelLikeIndexed(itemId, namespace, e));

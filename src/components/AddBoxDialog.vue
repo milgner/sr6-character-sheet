@@ -1,13 +1,25 @@
 <template>
-  <v-dialog :value="active" @input="onStateChanged">
+  <v-dialog
+    :value="active"
+    @input="onStateChanged"
+  >
     <v-form @submit.prevent="onBoxAddSubmitted">
       <v-card>
         <v-card-text>
-          <v-select :items="boxes" v-model="currentValue"/>
+          <v-select
+            :items="boxes"
+            v-model="currentValue"
+          />
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn color="primary" text type="submit">{{ $t('dialogs.add') }}</v-btn>
+          <v-btn
+            color="primary"
+            text
+            type="submit"
+          >
+            {{ $t('dialogs.add') }}
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-form>

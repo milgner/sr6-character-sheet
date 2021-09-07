@@ -1,6 +1,6 @@
 type updateItemParams = {
   id: number;
-  data: object;
+  data: any;
 }
 
 export default {

@@ -1,6 +1,5 @@
-
 // FIXME: improve type declaration with static information
-import boxes from "@/components/boxes";
+import boxes from '@/components/boxes';
 
 export type BoxType = keyof (typeof boxes);
 

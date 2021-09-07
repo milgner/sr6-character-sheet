@@ -1,12 +1,10 @@
-// @ts-nocheck
-
 import BitSet from 'bitset';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import VuexPersistence from 'vuex-persist';
 import boxes from '@/components/boxes';
 
-import { BoxState, RootState } from '@/store/TypeDefs';
+import { BoxState, BoxType, RootState } from '@/store/TypeDefs';
 
 import i18n from '../i18n';
 import AttributesStore from './AttributesStore';
@@ -47,7 +45,9 @@ function fillBox(bitset: BitSet, width: number, height: number,
   }
 }
 
-function determineNewItemCoordinates(layout: BoxState[], desiredWidth, desiredHeight):
+function determineNewItemCoordinates(layout: BoxState[],
+  desiredWidth: number,
+  desiredHeight: number):
   [number, number] {
   // create a bitset which determines whether a cell in the layout is taken
   const layoutMask = new BitSet();
@@ -73,6 +73,7 @@ const store = new Vuex.Store({
   plugins: [vuexLocal.plugin],
   state: {
     locale: 'en',
+    tourDone: false,
     layout: [
       {
         x: 0,
@@ -81,7 +82,7 @@ const store = new Vuex.Store({
         h: 6,
         i: '0',
         type: 'PersonalDataBox',
-        moved: false,
+        itemId: undefined,
       },
       {
         x: 0,
@@ -90,6 +91,7 @@ const store = new Vuex.Store({
         h: 10,
         i: '1',
         type: 'AttributesBox',
+        itemId: undefined,
       },
       {
         x: 0,
@@ -98,6 +100,7 @@ const store = new Vuex.Store({
         h: 12,
         i: '2',
         type: 'SkillsBox',
+        itemId: undefined,
       },
       {
         x: 0,
@@ -106,6 +109,7 @@ const store = new Vuex.Store({
         h: 6,
         i: '3',
         type: 'LifestyleBox',
+        itemId: undefined,
       },
       {
         x: 6,
@@ -114,6 +118,7 @@ const store = new Vuex.Store({
         h: 3,
         i: '4',
         type: 'FightSummaryBox',
+        itemId: undefined,
       },
       {
         x: 6,
@@ -122,6 +127,7 @@ const store = new Vuex.Store({
         h: 6,
         i: '5',
         type: 'HealthMonitorBox',
+        itemId: undefined,
       },
       {
         x: 6,
@@ -130,6 +136,7 @@ const store = new Vuex.Store({
         h: 7,
         i: '6',
         type: 'FeatBox',
+        itemId: undefined,
       },
       {
         x: 6,
@@ -138,6 +145,7 @@ const store = new Vuex.Store({
         h: 8,
         i: '7',
         type: 'ConnectionsBox',
+        itemId: undefined,
       },
       {
         x: 6,
@@ -146,6 +154,7 @@ const store = new Vuex.Store({
         h: 15,
         i: '8',
         type: 'EquipmentBox',
+        itemId: undefined,
       },
     ],
   },
@@ -166,12 +175,13 @@ const store = new Vuex.Store({
   },
   actions: {
     downloadState({ state }) {
-      const data = vuexLocal.storage.getItem('sr6Character') as string;
+      const data = vuexLocal.storage?.getItem('sr6Character') as string;
       const blob = new Blob([data], {
         type: 'application/json',
       });
       const link = document.createElement('a');
       link.href = window.URL.createObjectURL(blob);
+      // @ts-ignore
       link.download = `${state.personalData.name || i18n.t('defaultFilename')}.json`;
       link.click();
       setTimeout(() => link.remove(), 1000);
@@ -194,6 +204,7 @@ const store = new Vuex.Store({
         type: boxType,
         itemId: undefined,
       };
+      // @ts-ignore
       const { repeatableStore } = boxes[boxType];
       if (repeatableStore) {
         boxData.itemId = await dispatch(`${repeatableStore}/initNewInstance`);
@@ -202,6 +213,7 @@ const store = new Vuex.Store({
       return Promise.resolve(boxData);
     },
     removeRepeatedBox({ rootState }, [boxType, itemId]: [BoxType, string]) {
+      // @ts-ignore
       const moduleItems = rootState[boxes[boxType].repeatableStore].items;
       delete moduleItems[itemId];
     },
@@ -239,7 +251,7 @@ const store = new Vuex.Store({
       );
     },
     maximumWidth(state: RootState) {
-      return (x, y, height) => state.layout.reduce((a, e) => {
+      return (x: number, y: number, height: number) => state.layout.reduce((a, e) => {
         const adjacent = e.x > x && (Math.max(e.y, y) <= Math.min(e.y + e.h, y + height));
         return adjacent ? Math.min(a, e.x - x) : a;
       }, 12);

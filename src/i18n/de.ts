@@ -435,6 +435,7 @@ export default {
     updateDialog: {
       title: 'Zauberspruch bearbeiten',
     },
+    tradition: 'Tradition',
     drain: 'Entzug',
     category: 'Kategorie',
     range: 'Reichweite',

@@ -5,6 +5,7 @@
     :show-add-button="!editMode"
     item-key="id"
     scope="spells"
+    class="spell-list"
   >
     <template v-slot:item.category="{ item }">
       {{ $t(`spells.categories.${item.category}`) }}
@@ -74,10 +75,16 @@
     </template>
   </data-table-with-dialog>
 </template>
+<style scoped>
+  .spell-list {
+    padding-top: 0.5em;
+  }
+</style>
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import DataTableWithDialog from '@/components/DataTableWithDialog.vue';
+import TextInput from '@/components/TextInput.vue';
 import { mapModelLike } from '@/store/util';
 import { Prop } from 'vue-property-decorator';
 import { reversedEnum, translatedEnumOptions } from '@/i18n';
@@ -85,10 +92,11 @@ import {
   SpellCategory, SpellDuration, SpellKind, SpellRange,
 } from '@/model';
 import { Spell } from '@/store/SpellsStore';
+import HeaderAddon from './SpellsBoxHeaderAddon.vue';
 
 @Component({
-  components: { DataTableWithDialog },
-  computed: mapModelLike('spells', ['items']),
+  components: { DataTableWithDialog, TextInput },
+  computed: mapModelLike('spells', ['items', 'tradition']),
 })
 export default class SpellsBox extends Vue {
   @Prop(Boolean) readonly editMode: boolean | undefined;
@@ -96,6 +104,8 @@ export default class SpellsBox extends Vue {
   static defaultHeight = 5;
 
   static optional = true;
+
+  static readonly HeaderAddon = HeaderAddon;
 
   spellKinds = translatedEnumOptions(SpellKind, 'spells.kinds');
 

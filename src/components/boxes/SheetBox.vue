@@ -12,7 +12,13 @@
     >
       <v-icon>mdi-close</v-icon>
     </v-btn>
-    <v-card-title>{{ $t(`boxes.${type}`) }}</v-card-title>
+    <v-card-title>
+      {{ $t(`boxes.${type}`) }}
+      <component
+        v-if="headerAddon"
+        :is="headerAddon"
+      />
+    </v-card-title>
     <v-container>
       <component
         :is="componentType"
@@ -25,6 +31,10 @@
   .sheet-box {
     overflow: auto;
 
+    .boxheader-addon {
+      align-self: end;
+    }
+
     .v-btn.remove-sheet-box {
       position: fixed;
       right: -1em;
@@ -34,6 +44,7 @@
 
     .v-card__title {
       padding-bottom: 0;
+      justify-content: space-between;
     }
 
     .container {
@@ -94,6 +105,17 @@ const SheetBoxProps = Vue.extend({
 export default class SheetBox extends SheetBoxProps {
   get componentType() {
     return (boxes as any)[this.$props.type];
+  }
+
+  get headerAddon() {
+    // TODO: not sure how to access this or make it accessible w/o much indirection
+    const componentType = (boxes as any)[this.$props.type];
+    // TODO: change to Object.hasOwn once sure that Apple/Safari support can be dropped
+    // eslint-disable-next-line no-prototype-builtins
+    if (componentType?.hasOwnProperty('HeaderAddon')) {
+      return componentType.HeaderAddon;
+    }
+    return undefined;
   }
 
   get showRemoveButton() {

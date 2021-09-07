@@ -435,6 +435,7 @@ export default {
     updateDialog: {
       title: 'Edit Spell',
     },
+    tradition: 'Tradition',
     drain: 'Drain',
     category: 'Category',
     range: 'Range',

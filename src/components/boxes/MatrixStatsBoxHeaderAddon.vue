@@ -5,6 +5,7 @@
     v-model="simHot"
     hide-details
     dense
+    class="d-print-none"
   />
 </template>
 <script lang="ts">

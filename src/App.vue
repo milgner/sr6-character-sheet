@@ -144,11 +144,32 @@
   .placeholder-card {
     display: flex;
   }
+
+  @media print {
+    header.v-app-bar {
+      display: none;
+    }
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+
+    .v-sheet {
+      width: 1000px !important;
+    }
+  }
 </style>
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-// eslint-disable-next-line
 // @ts-ignore
 import VueGridLayout from 'vue-grid-layout';
 

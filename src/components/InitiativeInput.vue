@@ -35,6 +35,7 @@
     v-else
     boilerplate
     type="list-item"
+    class="d-print-none"
   />
 </template>
 <style lang="scss">

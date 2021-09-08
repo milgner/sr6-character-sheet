@@ -61,6 +61,7 @@ export default {
     int: 'Intuition',
     cha: 'Charisma',
     edg: 'Edge',
+    currentEdge: 'Akt. Edge',
     ess: 'Essenz',
     ini: 'Initiative',
     astralIni: 'Astrale Initiative',

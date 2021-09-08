@@ -25,7 +25,7 @@
         <v-icon
           dense
           small
-          class="mr-2"
+          class="mr-2 d-print-none"
           @click="editItem(item)"
         >
           mdi-pencil
@@ -35,6 +35,7 @@
           dense
           small
           @click="deleteItem(item)"
+          class="d-print-none"
         >
           mdi-delete
         </v-icon>
@@ -51,7 +52,7 @@
           x-small
           v-on="on"
           v-bind="attrs"
-          class="add-item"
+          class="add-item d-print-none"
           @click.stop="openAddItemDialog"
         >
           <v-icon>mdi-plus</v-icon>

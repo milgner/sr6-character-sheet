@@ -176,8 +176,20 @@
       </v-col>
       <v-col
         cols="12"
+        sm="8"
+        class="d-none d-print-block"
+      >
+        <text-input
+          :label="$t('attributes.currentEdge')"
+          type="number"
+          v-model.number="currentEdge"
+        />
+      </v-col>
+      <v-col
+        cols="12"
         sm="12"
         md="4"
+        class="d-print-none"
       >
         <v-slider
           step="1"

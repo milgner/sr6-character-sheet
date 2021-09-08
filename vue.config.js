@@ -4,6 +4,6 @@ module.exports = {
   ],
 
   pwa: {
-    name: 'SR6 by Illunis.net'
-  }
+    name: 'SR6 by Illunis.net',
+  },
 };

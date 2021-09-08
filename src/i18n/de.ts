@@ -238,6 +238,7 @@ export default {
   },
   rangedWeaponsAmmo: {
     type: 'Typ',
+    weaponClass: 'Waffengattung',
     types: {
       apds: 'APDS',
       explosive: 'Explosiv',
@@ -246,6 +247,16 @@ export default {
       shocker: 'Schock',
       standard: 'Standard',
       caseless: 'Hülsenlos',
+    },
+    weaponClasses: {
+      taser: 'Taser',
+      lightPistol: 'Holdout- / Leichte Pistole / Automatikpistole ',
+      heavyPistol: 'Schwere Pistole / Maschinenpistole',
+      rifle: 'Gewehr',
+      automaticRifle: 'Maschinengewehr',
+      cannon: 'Sturmkanone',
+      dmsoGel: 'DMSO-Gelpack',
+      injectionDart: 'Injektionspfeil',
     },
     addDialog: {
       title: 'Munition hinzufügen',

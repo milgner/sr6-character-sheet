@@ -10,9 +10,21 @@ export enum AmmoType {
   caseless = 'caseless',
 }
 
+export enum WeaponClass {
+  taser = 'taser',
+  lightPistol = 'lightPistol',
+  heavyPistol = 'heavyPistol',
+  rifle = 'rifle',
+  automaticRifle = 'automaticRifle',
+  cannon = 'cannon',
+  dmsoGel = 'dmsoGel',
+  injectionDart = 'injectionDart'
+}
+
 interface RangedWeaponsAmmo {
   id: number | null;
   type: AmmoType;
+  weaponClass: WeaponClass;
   amount: number;
 }
 
@@ -33,6 +45,7 @@ const RangedWeaponsAmmoStore = {
       return {
         id: null,
         type: AmmoType.standard,
+        weaponClass: WeaponClass.taser,
         amount: 0,
       };
     },

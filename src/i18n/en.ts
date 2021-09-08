@@ -238,6 +238,7 @@ export default {
   },
   rangedWeaponsAmmo: {
     type: 'Type',
+    weaponClass: 'Weapon Class',
     types: {
       apds: 'APDS',
       explosive: 'Explosive',
@@ -246,6 +247,16 @@ export default {
       shocker: 'Shocker',
       standard: 'Standard',
       caseless: 'Caseless',
+    },
+    weaponClasses: {
+      taser: 'Taser',
+      lightPistol: 'Holdout / Light Pistol / Automatic Pistol',
+      heavyPistol: 'Heavy Pistol / Machine Pistol',
+      rifle: 'Rifle',
+      automaticRifle: 'Automatic Rifle',
+      cannon: 'Cannon',
+      dmsoGel: 'DMSO-Gelpack',
+      injectionDart: 'Injection Dart',
     },
     addDialog: {
       title: 'Add Ammo',

@@ -257,7 +257,7 @@ export default {
       cannon: 'Sturmkanone',
       dmsoGel: 'DMSO-Gelpack',
       injectionDart: 'Injektionspfeil',
-      grenade: 'Grenade',
+      grenade: 'Granate',
     },
     grenadeTypes: {
       concussion: 'Betäubungsgranate',

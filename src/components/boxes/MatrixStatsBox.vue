@@ -101,6 +101,7 @@ import TextInput from '@/components/TextInput.vue';
 import StatusTracker from '@/components/StatusTracker.vue';
 import { mapGetters } from 'vuex';
 import { mapModelLike } from '@/store/util';
+import MatrixStatsBoxHeaderAddon from '@/components/boxes/MatrixStatsBoxHeaderAddon.vue';
 
 @Component({
   components: { StatusTracker, TextInput },
@@ -123,6 +124,8 @@ export default class MatrixStatsBox extends Vue {
   static defaultHeight = 8;
 
   static optional = true;
+
+  static HeaderAddon = MatrixStatsBoxHeaderAddon;
 
   get availablePrograms() {
     // const installedPrograms = this.$store.state.matrix.programs;

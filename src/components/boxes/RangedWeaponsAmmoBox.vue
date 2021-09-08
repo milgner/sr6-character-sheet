@@ -77,7 +77,7 @@ export default class RangedWeaponsAmmoBox extends Vue {
 
   grenadeTypes = translatedEnumOptions(GrenadeType, 'rangedWeaponsAmmo.grenadeTypes');
 
-  translatedType(item: any) {
+  translatedType(item: RangedWeaponsAmmo) {
     let i18nPrefix: string;
     if (item.weaponClass === WeaponClass.grenade) {
       i18nPrefix = 'grenadeTypes';
@@ -89,7 +89,7 @@ export default class RangedWeaponsAmmoBox extends Vue {
 
   weaponClasses = translatedEnumOptions(WeaponClass, 'rangedWeaponsAmmo.weaponClasses')
 
-  translatedWeaponClass(item: any) {
+  translatedWeaponClass(item: RangedWeaponsAmmo) {
     return this.$i18n.t(`rangedWeaponsAmmo.weaponClasses.${item.weaponClass}`);
   }
 

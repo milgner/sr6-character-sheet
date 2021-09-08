@@ -94,7 +94,10 @@ export default {
     },
   },
   matrix: {
-    simHot: 'Heisses SIM',
+    simModes: {
+      cold: 'Kaltes Sim',
+      hot: 'Heisses Sim',
+    },
     attack: 'Angriff',
     sleaze: 'Schleicher',
     dataProcessing: 'Datenverarbeitung',

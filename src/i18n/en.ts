@@ -257,6 +257,16 @@ export default {
       cannon: 'Cannon',
       dmsoGel: 'DMSO-Gelpack',
       injectionDart: 'Injection Dart',
+      grenade: 'Grenade',
+    },
+    grenadeTypes: {
+      concussion: 'Concussion Grenade',
+      flash: 'Flash-Pack',
+      gas: 'Gas Grenade',
+      irSmoke: 'IR-Smoke Grenade',
+      smoke: 'Smoke Grenade',
+      cluster: 'Cluster Grenade',
+      explosive: 'Explosive Grenade',
     },
     addDialog: {
       title: 'Add Ammo',

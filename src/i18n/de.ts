@@ -257,6 +257,16 @@ export default {
       cannon: 'Sturmkanone',
       dmsoGel: 'DMSO-Gelpack',
       injectionDart: 'Injektionspfeil',
+      grenade: 'Grenade',
+    },
+    grenadeTypes: {
+      concussion: 'Betäubungsgranate',
+      flash: 'Flash-Pack',
+      gas: 'Gasgranate',
+      irSmoke: 'IR-Rauchgranate',
+      smoke: 'Rauchgranate',
+      cluster: 'Splittergranate',
+      explosive: 'Sprenggranate',
     },
     addDialog: {
       title: 'Munition hinzufügen',

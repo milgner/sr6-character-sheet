@@ -24,8 +24,16 @@
         </v-col>
         <v-col cols="4">
           <v-select
+            v-if="isRegularWeapon(item)"
             :label="$t('rangedWeaponsAmmo.type')"
             :items="ammoTypes"
+            v-model="item.type"
+            dense
+          />
+          <v-select
+            v-if="isGrenade(item)"
+            :label="$t('rangedWeaponsAmmo.type')"
+            :items="grenadeTypes"
             v-model="item.type"
             dense
           />
@@ -49,8 +57,12 @@ import DataTableWithDialog from '@/components/DataTableWithDialog.vue';
 import { mapModelLike } from '@/store/util';
 import { Prop } from 'vue-property-decorator';
 import { translatedEnumOptions } from '@/i18n';
-import { AmmoFeedType } from '@/model';
-import { AmmoType, WeaponClass } from '@/store/RangedWeaponsAmmoStore';
+import {
+  AmmoType,
+  GrenadeType,
+  RangedWeaponsAmmo,
+  WeaponClass,
+} from '@/store/RangedWeaponsAmmoStore';
 
 @Component({
   components: { DataTableWithDialog },
@@ -63,14 +75,32 @@ export default class RangedWeaponsAmmoBox extends Vue {
 
   ammoTypes = translatedEnumOptions(AmmoType, 'rangedWeaponsAmmo.types');
 
+  grenadeTypes = translatedEnumOptions(GrenadeType, 'rangedWeaponsAmmo.grenadeTypes');
+
   translatedType(item: any) {
-    return this.$i18n.t(`rangedWeaponsAmmo.types.${item.type}`);
+    let i18nPrefix: string;
+    if (item.weaponClass === WeaponClass.grenade) {
+      i18nPrefix = 'grenadeTypes';
+    } else {
+      i18nPrefix = 'types';
+    }
+    return this.$i18n.t(`rangedWeaponsAmmo.${i18nPrefix}.${item.type}`);
   }
 
   weaponClasses = translatedEnumOptions(WeaponClass, 'rangedWeaponsAmmo.weaponClasses')
 
   translatedWeaponClass(item: any) {
     return this.$i18n.t(`rangedWeaponsAmmo.weaponClasses.${item.weaponClass}`);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  isRegularWeapon(item: RangedWeaponsAmmo): boolean {
+    return item.weaponClass !== WeaponClass.grenade;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  isGrenade(item: RangedWeaponsAmmo): boolean {
+    return item.weaponClass === WeaponClass.grenade;
   }
 
   get headers() {

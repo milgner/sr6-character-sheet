@@ -18,12 +18,23 @@ export enum WeaponClass {
   automaticRifle = 'automaticRifle',
   cannon = 'cannon',
   dmsoGel = 'dmsoGel',
-  injectionDart = 'injectionDart'
+  injectionDart = 'injectionDart',
+  grenade = 'grenade'
 }
 
-interface RangedWeaponsAmmo {
+export enum GrenadeType {
+  concussion = 'concussion',
+  flash = 'flash',
+  gas = 'gas',
+  irSmoke = 'irSmoke',
+  smoke = 'smoke',
+  cluster = 'cluster',
+  explosive = 'explosive',
+}
+
+export interface RangedWeaponsAmmo {
   id: number | null;
-  type: AmmoType;
+  type: AmmoType | GrenadeType;
   weaponClass: WeaponClass;
   amount: number;
 }

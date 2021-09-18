@@ -2,6 +2,7 @@
   <data-table-with-dialog
     :headers="headers"
     :items="items"
+    :table-options="sortOptions"
     scope="rangedWeaponsAmmo"
     :show-add-button="!editMode"
     item-key="id"
@@ -76,6 +77,8 @@ export default class RangedWeaponsAmmoBox extends Vue {
   ammoTypes = translatedEnumOptions(AmmoType, 'rangedWeaponsAmmo.types');
 
   grenadeTypes = translatedEnumOptions(GrenadeType, 'rangedWeaponsAmmo.grenadeTypes');
+
+  sortOptions = { sortBy: ['weaponClass', 'type'] };
 
   translatedType(item: RangedWeaponsAmmo) {
     let i18nPrefix: string;

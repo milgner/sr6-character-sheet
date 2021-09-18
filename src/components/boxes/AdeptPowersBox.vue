@@ -3,6 +3,7 @@
     :headers="headers"
     :items="items"
     :show-add-button="!editMode"
+    :table-options="sortOptions"
     item-key="id"
     scope="adeptPowers"
   >
@@ -51,6 +52,8 @@ export default class AdeptPowersBox extends Vue {
   static defaultHeight = 5;
 
   static optional = true;
+
+  sortOptions = { sortBy: ['name'] };
 
   @Prop(Boolean) readonly editMode: boolean | undefined;
 

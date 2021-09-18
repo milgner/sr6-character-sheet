@@ -4,6 +4,7 @@
     :items="items"
     :no-data-text="$t('armor.noData')"
     :show-add-button="!editMode"
+    :table-options="sortOptions"
     scope="armor"
     item-key="id"
     v-slot="{ item }"
@@ -51,6 +52,8 @@ export default class ArmorBox extends Vue {
   static defaultHeight = 5;
 
   static optional = true;
+
+  sortOptions = { sortBy: ['name'] };
 
   @Prop(Boolean) readonly editMode: boolean | undefined;
 

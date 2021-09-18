@@ -4,6 +4,7 @@
       :headers="allHeaders"
       :item-key="itemKey"
       :items="items"
+      :options="tableOptions"
       class="action-table"
       dense
       disable-pagination
@@ -120,6 +121,8 @@ export default class DataTableWithDialog extends Vue {
   @Prop(String) readonly scope: string | undefined;
 
   @Prop(Boolean) readonly showAddButton: boolean | undefined;
+
+  @Prop(Object) readonly tableOptions: { sortBy: string[]; sortDesc: boolean[] } | undefined;
 
   // eslint-disable-next-line class-methods-use-this
   data() {

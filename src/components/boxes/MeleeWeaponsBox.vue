@@ -3,6 +3,7 @@
     :headers="headers"
     :items="items"
     :show-add-button="!editMode"
+    :table-options="sortOptions"
     item-key="id"
     scope="meleeWeapons"
   >
@@ -69,6 +70,10 @@ export default class MeleeWeaponsBox extends Vue {
   static optional = true;
 
   damageTypes = translatedEnumOptions(DamageType, 'weapons.damageTypes');
+
+  sortOptions = {
+    sortBy: ['name'],
+  }
 
   displayDamage(weapon: any) {
     const damageMnemo = this.$t(`weapons.damageTypes.${reversedEnum(DamageType)[weapon.damageType]}`).toString()[0];

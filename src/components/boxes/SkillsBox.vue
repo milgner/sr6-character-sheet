@@ -8,6 +8,7 @@
         :headers="activeHeaders"
         :items="actionSkills"
         :show-add-button="!editMode"
+        :table-options="sortOptions"
         item-key="id"
         scope="skills"
       >
@@ -88,6 +89,7 @@
         :headers="knowledgeHeaders"
         :items="knowledgeSkills"
         :show-add-button="!editMode"
+        :table-options="sortOptions"
         item-key="id"
         scope="skills"
       >
@@ -156,6 +158,8 @@ export default class SkillsBox extends Vue {
   static defaultHeight = 10;
 
   @Prop(Boolean) readonly editMode: boolean | undefined;
+
+  sortOptions = { sortBy: ['name'] };
 
   get activeHeaders() {
     return [{

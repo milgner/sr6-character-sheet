@@ -2,6 +2,7 @@
   <data-table-with-dialog
     :headers="headers"
     :items="items"
+    :table-options="sortOptions"
     scope="feats"
     item-key="id"
     :show-add-button="!editMode"
@@ -59,6 +60,8 @@ export default class FeatBox extends Vue {
   static defaultHeight = 7;
 
   featTypeOptions = translatedEnumOptions(FeatType, 'feats');
+
+  sortOptions = { sortBy: ['type', 'name'] };
 
   @Prop(Boolean) readonly editMode: boolean | undefined;
 

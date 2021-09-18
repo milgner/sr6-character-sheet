@@ -2,6 +2,7 @@
   <data-table-with-dialog
     :headers="headers"
     :items="items"
+    :table-options="sortOptions"
     scope="bodytech"
     :show-add-button="!editMode"
     item-key="id"
@@ -57,6 +58,8 @@ export default class BodytechBox extends Vue {
   static defaultHeight = 4
 
   static optional = true;
+
+  sortOptions = { sortBy: ['name'] };
 
   @Prop(Boolean) readonly editMode: boolean | undefined;
 

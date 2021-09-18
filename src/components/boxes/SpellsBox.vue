@@ -3,6 +3,7 @@
     :headers="headers"
     :items="items"
     :show-add-button="!editMode"
+    :table-options="sortOptions"
     item-key="id"
     scope="spells"
     class="spell-list"
@@ -115,6 +116,8 @@ export default class SpellsBox extends Vue {
 
   spellDurations = translatedEnumOptions(SpellDuration, 'spells.durations');
 
+  sortOptions = { sortBy: ['category', 'name'] };
+
   displayDuration(spell: Spell) {
     return this.$t(`spells.durationMnemonics.${reversedEnum(SpellDuration)[spell.duration]}`)
       .toString();
@@ -146,12 +149,12 @@ export default class SpellsBox extends Vue {
     }, {
       text: this.$t('spells.kind'),
       align: 'start',
-      sortable: true,
+      sortable: false,
       value: 'kind',
     }, {
       text: this.$t('spells.range'),
       align: 'start',
-      sortable: true,
+      sortable: false,
       value: 'range',
     }, {
       text: this.$t('spells.duration'),
